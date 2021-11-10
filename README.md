@@ -36,8 +36,8 @@ We aim to visualize and verify these results and different patterns through vari
 List of questions we are interested in pursuing:
 
 1. The nature of the event from which the data was collected in this case follows that every participant is allowed to meet every other participant of the opposite gender, and the rating is given based on the participant’s perception during the 4 min conversation. 
-  1. Does this subjective perception depend on the order in which the participants have met each other? 
-  2. Statistically speaking, are the events of rating participants given they are all coming from a single participant, independent of the ratings of events that occurred before that meeting?
+    1. Does this subjective perception depend on the order in which the participants have met each other? 
+    2. Statistically speaking, are the events of rating participants given they are all coming from a single participant, independent of the ratings of events that occurred before that meeting?
 2. What are the major factors which both genders consider important for them to go on a second date? 
 3. There are six main attributes that every participant is rated against. Are participants’ responses to these factors biased towards other attributes like race, school of study, and geographic home location? For instance, validating whether a participant from one department is likely to say yes to a participant from the same department.
 4. Is self-perception of certain qualities on the same page as to how others perceive it? Are participants overestimating or underestimating what one thinks of oneself? 
