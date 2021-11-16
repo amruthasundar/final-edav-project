@@ -1,1 +1,156 @@
-# Missing values
+## Missing values
+
+### Libraries
+
+```{r setup, warning = FALSE, message = FALSE}
+# this prevents package loading message from appearing in the rendered version of your problem set
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE,
+                      echo = TRUE,
+                      include = FALSE)
+# Libraries
+library(tidyverse)
+library(patchwork)
+library(repr)
+library(ggnewscale)
+library(RColorBrewer)
+library(Lock5withR)
+```
+
+
+### Missing Value Patterns
+```{r missing_value_pattern_function}
+
+missing_patterns_plot = function(df, percent) {
+  
+  # Finding number of rows missing for each column, and sorting them
+  col_na = data.frame(count_c = colSums(is.na(df)) %>%
+    sort(decreasing = TRUE))
+  
+  col_na_1 = as.data.frame(t(col_na))
+  df = df[names(col_na_1)]
+  
+  # Finding the number of rows missing for each missing pattern
+  row_missing_pattern = data.frame(is.na(df)) %>%
+    group_by_all() %>%
+    count(name = "count", sort = TRUE) %>%
+    ungroup()
+  
+  row_missing_pattern$index = as.factor(1:nrow(row_missing_pattern))
+  
+  tidy_pattern = row_missing_pattern %>% 
+    gather(key = "column_name", value = "missing", -index, -count)
+  
+  row_missing = row_missing_pattern[, -c(ncol(row_missing_pattern)-1, ncol(row_missing_pattern))]
+  row_missing <- row_missing[names(col_na_1)]
+  
+  c_col <- c(names(row_missing))
+  
+  row_missing_pattern$missing = apply(row_missing, 1, any)
+  
+  # geom_text() position defining
+  
+  val = max(as.numeric(tidy_pattern$index))
+  columns_ = unique(tidy_pattern$column_name)
+  name = columns_[as.integer(length(columns_)/2) + 1]
+  
+  no_missing = as.numeric(filter(tidy_pattern %>% 
+                                   group_by(index) %>% 
+                                   summarize(missing=max(missing)), 
+                                 missing==0)['index'])
+  
+  # Plotting
+  
+  if (percent == TRUE) {
+    col_na = col_na %>% 
+      mutate(count_c = 100*count_c/sum(count_c))
+    
+    row_missing_pattern = row_missing_pattern %>% 
+      mutate(count = 100*count/sum(count))
+  }
+  
+  col_count = ggplot(data=col_na, aes(x=unique(factor(tidy_pattern$column_name, levels = colnames(row_missing))), y=count_c)) +
+    geom_bar(stat = "identity", fill = "#77D86C") +
+    theme_light() +
+    theme(panel.grid.minor.x = element_blank(),
+          panel.grid.major.x = element_blank()) +
+    xlab("") +
+    ylab(ifelse(percent == TRUE, "%\nRows\nMissing", "Nums\nRows\nMissing")) +
+    ggtitle("Missing Value Patterns")
+  
+  row_count = 
+    ggplot(row_missing_pattern, aes(x = fct_rev(factor(index)), y = count, fill = missing)) +
+    geom_bar(stat = "identity") +
+    theme_light() +
+    theme(panel.grid.minor.y = element_blank(),
+          panel.grid.major.y = element_blank()) +
+    scale_fill_manual(values = c("#77D86C", "#B3ECAD")) +
+    theme(legend.position = "none") +
+    xlab("") +
+    ylab(ifelse(percent == TRUE, "% Rows", "Row Count")) +
+    coord_flip()
+  
+  missing_pattern = 
+    ggplot(tidy_pattern,
+           aes(x = factor(column_name, levels = colnames(row_missing)), 
+               y = fct_rev(index), 
+               fill = missing)) +
+    geom_tile(color = "white", lwd = 1.5) +
+    scale_fill_brewer(palette = "Reds") +
+    theme(legend.position = "none") +
+    xlab("Variable") +
+    ylab("Missing Pattern") +
+    new_scale_color() +
+    geom_tile(tidy_pattern, mapping = aes(factor(column_name), val - no_missing + 1), fill = "#1C1A1A06") +
+    annotate("text", x = name, y = val - no_missing + 1, label = "Complete Cases")
+  
+  missing_value_plot = col_count + 
+  plot_spacer() + 
+  missing_pattern + 
+  row_count + 
+  plot_layout(heights = c(1, 2), widths = c(4, 1))
+  
+  return(missing_value_plot)
+}
+
+```
+
+#### Reading Data
+
+```{r}
+df = read.csv("Speed Dating Data.csv")
+```
+
+```{r}
+
+col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
+df_1 = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
+df_2 = df[c(col_common, "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1")]
+df_3 = df[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1")]
+df_4 = df[c(col_common, "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
+df_5 = df[c(col_common, "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1")]
+
+# 6, 13, 5, 2
+
+
+missing_patterns_plot(df_1 %>% filter(wave %in% c(6, 13, 5, 2)), percent = TRUE)
+
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+missing_patterns_plot(df, percent = FALSE)
+missing_patterns_plot(df, percent = TRUE)
+```
+
+
+
+
