@@ -1,21 +1,5 @@
 ## INTRODUCTION 
 
-*BOOK DOWN URL - https://amruthasundar.github.io/final-edav-project/*
-
-Please provide intro about the project!
-
-*This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
-
-### Demo Video	
-
-A demo video showing how to create a **bookdown book** following these similar instructions: http://bit.ly/fiveminutebookdown Note that this video uses a different template.
-
-### Additional features	
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
-
-## INTRODUCTION 
-
 The data we chose for the project is the 2006 Speed Dating Dataset gathered by three professors of Columbia Business School: Sheena Iyengar, Emir Kamenica, Itamar Simonson. The dataset and the data key of the experiment can be found on the website  https://data.world/annavmontoya/speed-dating-experiment. The webpage archive of the experiment conducted is https://www8.gsb.columbia.edu/researcharchive/articles/867. 
 
 Data Source: https://data.world/annavmontoya/speed-dating-experiment
