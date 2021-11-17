@@ -1,4 +1,4 @@
-## INTRODUCTION 
+## Introduction 
 
 The data we chose for the project is the 2006 Speed Dating Dataset gathered by three professors of Columbia Business School: Sheena Iyengar, Emir Kamenica, Itamar Simonson. The dataset and the data key of the experiment can be found on the website  https://data.world/annavmontoya/speed-dating-experiment. The webpage archive of the experiment conducted is https://www8.gsb.columbia.edu/researcharchive/articles/867. 
 
