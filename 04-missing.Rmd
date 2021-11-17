@@ -1,9 +1,5 @@
-## Missing values
+```{r libraries, warning = FALSE, message = FALSE, echo = TRUE, include = FALSE}
 
-### Libraries
-
-```{r setup, warning = FALSE, message = FALSE}
-# this prevents package loading message from appearing in the rendered version of your problem set
 knitr::opts_chunk$set(warning = FALSE, 
                       message = FALSE,
                       echo = TRUE,
@@ -17,8 +13,264 @@ library(RColorBrewer)
 library(Lock5withR)
 ```
 
+## Missing values
 
-### Missing Value Patterns
+First, we analyzed our data set to on groups or subsets of our data for which we could analyze missing data. Our data has 8378 observations and 195 variables, with lots of missing values. The speed dating experiment was done in 21 waves. Below is the list of dates on which the experiment was done:
+
+Wave 01: Oct 16, 2002
+
+Wave 02: Oct 23, 2002
+
+Wave 03: Nov 12, 2002
+
+Wave 04: Nov 12, 2002
+
+Wave 05: Nov 20, 2002
+
+Wave 06: Mar 26, 2003
+
+Wave 07: Mar 26, 2003
+
+Wave 08: Apr 02, 2003
+
+Wave 09: Apr 02, 2003
+
+Wave 10: Sep 24, 2003
+
+Wave 11: Sep 24, 2003
+
+Wave 12: Oct 07, 2003
+
+Wave 13: Oct 08, 2003
+
+Wave 14: Oct 08, 2003
+
+Wave 15: Feb 24, 2004
+
+Wave 16: Feb 25, 2004
+
+Wave 17: Feb 25, 2004
+
+Wave 18: Apr 06, 2004
+
+Wave 19: Apr 06, 2004
+
+Wave 20: Apr 07, 2004
+
+Wave 21: Apr 07, 2004
+
+
+To pick subsets of our data, we chose 11 important variables along with 5 variables which answered survey questions for each wave. The 12 important variables we chose are:
+
+*1. iid: unique subject number, grouped by wave id gender*
+
+*2. pid: partner’s iid number*
+
+*3. gender:	Female = 0,	Male = 1*
+
+*4. match: 1 = yes, 0 = no*
+
+*5. age: age of subject*
+
+*6. field: field of study*
+
+*7. race: Black/African American = 1,*
+	    *European/Caucasian-American = 2,*
+    	*Latino/Hispanic American = 3,*
+    	*Asian/Pacific Islander/Asian-American = 4,*
+    	*Native American = 5,*
+    	*Other = 6*
+    	
+*8. from: Where are you from originally (before coming to Columbia)? *
+
+*9. income: Median household income based on zipcode*
+
+*10. goal: What is your primary goal in participating in this event? *
+	    *Seemed like a fun night out = 1,*
+    	*To meet new people = 2,*
+    	*To get a date = 3,*
+    	*Looking for a serious relationship = 4,*
+    	*To say I did it = 5,*
+    	*Other = 6*
+
+*11. career: What is your intended career?*
+
+*12. wave: wave number*
+
+
+These are the common variables we chose to analyze missing values. There were several questions in this experiment,
+but we chose five in specific, which were most relevant to our project and analyzed missing values for all five
+questions separately.
+
+The five questions are:
+
+**Question 1_1:**
+
+**We want to know what you look for in the opposite sex.**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 1_1.
+
+
+**Question 2_1:**
+
+**What do you think the opposite sex looks for in a date?**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 2_1.
+
+
+**Question 3_1:**
+
+**How do you think you measure up?**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 3_1.
+
+
+**Question 4_1:**
+
+**Now we want to know what you think MOST of your fellow men/women look for in the opposite sex**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 4_1.
+
+
+**Question 5_1:**
+
+**And finally, how do you think others perceive you?**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 5_1.
+
+```{r read_data}
+df = read.csv("Speed Dating Data.csv")
+
+col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
+df_1 = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
+df_2 = df[c(col_common, "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1")]
+df_3 = df[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1")]
+df_4 = df[c(col_common, "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
+df_5 = df[c(col_common, "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1")]
+
+colnames(df_1) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc",
+                   "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
+colnames(df_2) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc",
+                   "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
+colnames(df_3) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc",
+                   "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
+colnames(df_4) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc",
+                   "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
+colnames(df_5) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc",
+                   "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
+```
+
+### Number of missing attributes for each wave per question
+
+First, we plotted a barplot of the maximum number of missing answers given (for variables 13 - 17) per wave for each question. This helps us understand which waves had people that had a considerable amount of missing values for each question.
+
+```{r}
+na_wave = function(df) {
+  na_by_wave = df %>% 
+  mutate(ans = rowSums(is.na(df[, c(13:17)]))) %>% 
+  group_by(wve) %>% 
+  summarise(na = max(ans))
+
+  na_wave_plot = ggplot(na_by_wave, aes(x = reorder(wve, -na), y = na)) +
+    geom_col(color = "#77D86C", fill = "#B3ECAD") +
+    xlab("Wave") +
+    ylab("Number of missing answers") +
+    ggtitle("Missing answers by wave",
+            subtitle = "Missing answers = missing values in columns 'attr', 'sinc', 'intel', 'fun', and 'amb'")
+  
+  return(na_wave_plot)
+}
+```
+
+**For Question 1_1:**
+```{r}
+na_wave(df_1)
+```
+
+We can observe that in waves 2, 3, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 1_1. In wave 5, the maximum number of missing attributes is 1, so everyone rated at least 4 of 5 attributes. In all other waves, all attributes were answered by everyone.
+
+**For Question 2_1:**
+```{r}
+na_wave(df_2)
+```
+
+Same as question 1_1, we can observe that in waves 2, 3, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 2_1. In wave 5, the maximum number of missing attributes is 1, so everyone rated at least 4 of 5 attributes. In all other waves, all attributes were answered by everyone.
+
+**For Question 3_1:**
+```{r}
+na_wave(df_3)
+```
+
+We can observe that in waves 2, 3, 6, 13, 14, 15 and 16; there are people who did not answer any of the 5 attributes in question 3_1. In all other waves, all attributes were answered by everyone. Here, the maximum number of missing answers given are all or none.
+
+**For Question 4_1:**
+```{r}
+na_wave(df_4)
+```
+
+We can observe that in waves 1, 2, 3, 4, 5, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 3_1. In all other waves, all attributes were answered by everyone. Here too, the maximum number of missing answers given are all or none.
+
+**For Question 5_1:**
+```{r}
+na_wave(df_5)
+```
+
+We can observe that in waves 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, and 16; there are people who did not answer any of the 5 attributes in question 3_1. In all other waves, all attributes were answered by everyone. Here too, the maximum number of missing answers given are all or none.
+
+### Missing patterns question 
+
+Since we have 8378 observations, we used row percentages indtead of row count in our missing values plot. Below are the plots for missing values per question.
+
 ```{r missing_value_pattern_function}
 
 missing_patterns_plot = function(df, percent) {
@@ -115,42 +367,37 @@ missing_patterns_plot = function(df, percent) {
 
 ```
 
-#### Reading Data
+**For question 1_1:**
 
 ```{r}
-df = read.csv("Speed Dating Data.csv")
+missing_patterns_plot(df_1, percent = TRUE)
+```
+
+**For question 2_1:**
+
+```{r}
+missing_patterns_plot(df_2, percent = TRUE)
+```
+
+**For question 3_1:**
+
+```{r}
+missing_patterns_plot(df_3, percent = TRUE)
+```
+
+**For question 4_1:**
+
+```{r}
+missing_patterns_plot(df_4, percent = TRUE)
+```
+
+**For question 5_1:**
+
+```{r}
+missing_patterns_plot(df_5, percent = TRUE)
 ```
 
 ```{r}
 
-col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
-df_1 = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
-df_2 = df[c(col_common, "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1")]
-df_3 = df[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1")]
-df_4 = df[c(col_common, "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
-df_5 = df[c(col_common, "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1")]
-
-# 6, 13, 5, 2
-
-
-missing_patterns_plot(df_1 %>% filter(wave %in% c(6, 13, 5, 2)), percent = TRUE)
-
 ```
-
-
-
-
-
-
-
-
-
-
-```{r}
-missing_patterns_plot(df, percent = FALSE)
-missing_patterns_plot(df, percent = TRUE)
-```
-
-
-
 
