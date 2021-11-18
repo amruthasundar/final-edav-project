@@ -269,11 +269,11 @@ We can observe that in waves 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, and 16; ther
 
 ### Missing patterns question 
 
-Since we have 8378 observations, we used row percentages indtead of row count in our missing values plot. Below are the plots for missing values per question.
+Since we have 8378 observations, we used row percentages instead of row count in our missing values plot. Below are the plots for missing values per question.
 
 ```{r missing_value_pattern_function}
 
-missing_patterns_plot = function(df, percent) {
+missing_patterns_plot = function(df, percent, subtitle) {
   
   # Finding number of rows missing for each column, and sorting them
   col_na = data.frame(count_c = colSums(is.na(df)) %>%
@@ -328,7 +328,7 @@ missing_patterns_plot = function(df, percent) {
           panel.grid.major.x = element_blank()) +
     xlab("") +
     ylab(ifelse(percent == TRUE, "%\nRows\nMissing", "Nums\nRows\nMissing")) +
-    ggtitle("Missing Value Patterns")
+    ggtitle("Missing Value Patterns", subtitle = subtitle)
   
   row_count = 
     ggplot(row_missing_pattern, aes(x = fct_rev(factor(index)), y = count, fill = missing)) +
@@ -367,35 +367,69 @@ missing_patterns_plot = function(df, percent) {
 
 ```
 
+
 **For question 1_1:**
 
 ```{r}
-missing_patterns_plot(df_1, percent = TRUE)
+missing_patterns_plot(df_1, percent = TRUE, subtitle = "For question 1_1")
 ```
+
+We can observe that we have 9 missing value patterns in the data for question 1_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.
+
+Moreover, we observe that about 14% of the rows have a missing value for ambitious, which is the highest percentage of missing rows for question 1_1. The second most missing column is age, with slightly lower than 14% of the rows missing it; followed by fun, with about 13% of the rows missing it.
+
 
 **For question 2_1:**
 
 ```{r}
-missing_patterns_plot(df_2, percent = TRUE)
+missing_patterns_plot(df_2, percent = TRUE, subtitle = "For question 2_1")
 ```
+
+We can observe that we have 8 missing value patterns in the data for question 2_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.
+
+Moreover, we observe that about 14% of the rows have a missing value for age, which is the highest percentage of missing rows for question 2_1. The second most missing column is ambitious, with about 13% of the rows missing it; followed by fun, with about 12% of the rows missing it.
+
 
 **For question 3_1:**
 
 ```{r}
-missing_patterns_plot(df_3, percent = TRUE)
+missing_patterns_plot(df_3, percent = TRUE, subtitle = "For question 3_1")
 ```
+
+
+We can observe that we have 7 missing value patterns in the data for question 3_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.
+
+Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 13.5% of the rows, which is the highest percentage of missing rows for question 3_1. The second most missing column is age, with about 12.5% of the rows missing it; followed by goal, with about 10% of the rows missing it.
+
 
 **For question 4_1:**
 
 ```{r}
-missing_patterns_plot(df_4, percent = TRUE)
+missing_patterns_plot(df_4, percent = TRUE, subtitle = "For question 4_1")
 ```
+
+
+We can observe that we have 8 missing value patterns in the data for question 4_1. We can see that almost above 75% of the observations come under the complete cases pattern. About 20% of the observations have missing values for for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious.
+
+The second most observed pattern is that there is missing values for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious. The third most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race.
+
+Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 19% of the rows, which is the highest percentage of missing rows for question 4_1. The second most missing column is age, with about 1% of the rows missing it; followed by goal, with less than 1% of the rows missing it.
+
 
 **For question 5_1:**
 
 ```{r}
-missing_patterns_plot(df_5, percent = TRUE)
+missing_patterns_plot(df_5, percent = TRUE, subtitle = "For question 5_1")
 ```
+
+
+We can observe that we have 8 missing value patterns in the data for question 4_1. We can see that almost 58% of the observations come under the complete cases pattern. About 20% of the observations have missing values for for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious.
+
+The second most observed pattern is that there is missing values for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious. The third most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race.
+
+Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 20% of the rows, which is the highest percentage of missing rows for question 4_1. The second most missing column is age, with about 1% of the rows missing it; followed by goal, with less than 1% of the rows missing it.
+
+*We have noted only the top three of the most seen pattern and the number of missing rows per column. However, we could bot make a note for others as their percentages are too small to interpret from the plot.*
 
 ```{r}
 
