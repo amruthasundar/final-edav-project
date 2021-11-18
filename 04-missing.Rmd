@@ -1,9 +1,11 @@
-```{r libraries, warning = FALSE, message = FALSE, echo = TRUE, include = FALSE}
+```{r libraries}
 
-knitr::opts_chunk$set(warning = FALSE, 
-                      message = FALSE,
-                      echo = TRUE,
-                      include = FALSE)
+# , warning = FALSE, message = FALSE, echo = TRUE, include = FALSE
+
+# knitr::opts_chunk$set(warning = FALSE, 
+#                       message = FALSE,
+#                       echo = TRUE,
+#                       include = FALSE)
 # Libraries
 library(tidyverse)
 library(patchwork)
@@ -210,7 +212,7 @@ colnames(df_5) = c("iid", "pid", "gen", "mch", "age", "fld", "rce", "frm", "inc"
                    "goal", "car", "wve", "at1", "si1", "in1", "fu1", "am1")
 ```
 
-### Number of missing attributes for each wave per question
+## Number of missing attributes for each wave per question
 
 First, we plotted a barplot of the maximum number of missing answers given (for variables 13 - 17) per wave for each question. This helps us understand which waves had people that had a considerable amount of missing values for each question.
 
@@ -267,7 +269,7 @@ na_wave(df_5)
 
 We can observe that in waves 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, and 16; there are people who did not answer any of the 5 attributes in question 3_1. In all other waves, all attributes were answered by everyone. Here too, the maximum number of missing answers given are all or none.
 
-### Missing patterns question 
+## Missing patterns question 
 
 Since we have 8378 observations, we used row percentages instead of row count in our missing values plot. Below are the plots for missing values per question.
 
