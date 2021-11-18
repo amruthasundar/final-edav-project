@@ -2,6 +2,8 @@ introduction
 data-sources
 data-transformation
 missing-values
+number-of-missing-attributes-for-each-wave-per-question
+missing-patterns-question
 results
 interactive-component
 conclusion

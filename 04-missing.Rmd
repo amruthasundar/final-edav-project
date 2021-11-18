@@ -15,7 +15,7 @@ library(RColorBrewer)
 library(Lock5withR)
 ```
 
-## Missing values
+# Missing values
 
 First, we analyzed our data set to on groups or subsets of our data for which we could analyze missing data. Our data has 8378 observations and 195 variables, with lots of missing values. The speed dating experiment was done in 21 waves. Below is the list of dates on which the experiment was done:
 
