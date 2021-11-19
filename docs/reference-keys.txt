@@ -2,10 +2,8 @@ introduction
 data-sources
 data-transformation
 missing-values
-number-of-missing-attributes-for-each-wave-per-question
-barplot
+number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots
 heatmap
-cleaveland-plot
 missing-patterns-question
 results
 interactive-component
