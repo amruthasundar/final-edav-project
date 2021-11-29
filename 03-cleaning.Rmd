@@ -1,1 +1,7 @@
 # Data transformation
+
+Here is the process on how we transformed our data. Link to the the file doing the same is 
+
+## Same unit for ratings
+
+As mentioned in the previous chapter, the ratings in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they are in 100 point allocations. To use a common unit, we converted the 10 scale ratings to 100 point percentages by multiplying them by 10

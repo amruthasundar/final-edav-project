@@ -1,1 +1,87 @@
 # Results
+
+```{r}
+df = read.csv("Speed Dating Data.csv")
+
+library(tidyverse)
+library(fastmatch)
+```
+
+## Representation of paricipants by different categories
+
+First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.
+
+### By field of study
+
+First, let us check the percentage of students per field of study. We used the column `field_cd` from the data set that represented the coded fields (from 1-18). The codes summarize all the fields that were provided by the participants. The details of the fileds for the codes can be found in the [data key](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc).
+
+```{r}
+df_by_cat = df %>% 
+  group_by(field_cd) %>% 
+  summarise(count = n()) %>% 
+  mutate(per = count*100/sum(count))
+
+df_by_cat$field_cd = as.factor(df_by_cat$field_cd)
+
+ggplot(df_by_cat, aes(x = field_cd, y = per)) +
+  geom_bar(stat = "identity", color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
+  xlab("Field of Study") +
+  ylab("Percentage of participants") +
+  ggtitle("Representation of participants by field of study")
+
+```
+
+We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
+
+The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).
+
+## By age group
+
+Next, let us check for better understanding of the age group represented. We plotted a bar plot for the count of `age`.
+
+```{r}
+df_by_age = df %>% 
+  group_by(iid) %>% 
+  select(iid, age)
+
+df_by_age = unique(df_by_age)
+
+ggplot(df_by_age, aes(x = age)) +
+  geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9, binwidth = 5) +
+  #scale_x_binned() +
+  xlab("Age Group") +
+  ylab("Number of participants") +
+  ggtitle("Representation of participants by age")
+
+```
+
+We can observe that most students are between the age 20 and 30, with slightly more participants between 25-30 than 20-25. For ages 25-30, there are about 245 participants, while 
+
+### 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
