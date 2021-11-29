@@ -1,2 +1,74 @@
 # Data sources
 
+The data set used for the project is [Speed Dating Data.csv](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data.csv). The key used along with this dataset can be found [here](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc).
+
+This data was published in the *Quarterly Journal of Economics* in May 2006, by three Columbia University professors: Sheena Iyengar, Emir Kamenica, and Itamar Simonson. The link to their paper can be found [here](https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/867/fisman%20iyengar.pdf).
+
+## The Experiment
+
+This data was compiled by the professors as part of a speed dating experiment conducted in 21 waves and 13 days from 2002 to 2004.
+
+
+The dates of the experiments are given below:
+
+Wave 01: Oct 16, 2002
+
+Wave 02: Oct 23, 2002
+
+Wave 03: Nov 12, 2002
+
+Wave 04: Nov 12, 2002
+
+Wave 05: Nov 20, 2002
+
+Wave 06: Mar 26, 2003
+
+Wave 07: Mar 26, 2003
+
+Wave 08: Apr 02, 2003
+
+Wave 09: Apr 02, 2003
+
+Wave 10: Sep 24, 2003
+
+Wave 11: Sep 24, 2003
+
+Wave 12: Oct 07, 2003
+
+Wave 13: Oct 08, 2003
+
+Wave 14: Oct 08, 2003
+
+Wave 15: Feb 24, 2004
+
+Wave 16: Feb 25, 2004
+
+Wave 17: Feb 25, 2004
+
+Wave 18: Apr 06, 2004
+
+Wave 19: Apr 06, 2004
+
+Wave 20: Apr 07, 2004
+
+Wave 21: Apr 07, 2004
+
+
+The experiment included every participant speed dating every participant from the opposite sex for four minutes, and after each 4 minute session, they were asked to fill a questionnaire of questions that asked them to rate their partner in terms of Attractiveness, Sincerity, Intelligence, Fun, Ambition, and Shared Interests. 
+
+Moreover, they were asked if they would date them again. Demographic data of each participant was also collected for the purpose of the analysis.
+
+
+## Data Description
+
+All the data collected was given in a single CSV file with 195 columns and 8373 observations. Most of the variables given are numbers, either of the type integer of numeric, since they are mostly about ratings. However, variables such as field, from location, career, etc. were character fields.
+
+
+## Issues with the data
+
+We noticed that in different waves, the data 
+
+For example, the ratings asked in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they were asked for a 100 point allocation instead. This made the units different for different questions.
+
+Moreover, some questions did not have the option of rating for Shared Interests, while some did. This brought a mismatch in the number of columns (answers) per question.
+

@@ -15,51 +15,7 @@ library(Lock5withR)
 
 # Missing values
 
-First, we analyzed our data set to on groups or subsets of our data for which we could analyze missing data. Our data has 8378 observations and 195 variables, with lots of missing values. The speed dating experiment was done in 21 waves. Below is the list of dates on which the experiment was done:
-
-Wave 01: Oct 16, 2002
-
-Wave 02: Oct 23, 2002
-
-Wave 03: Nov 12, 2002
-
-Wave 04: Nov 12, 2002
-
-Wave 05: Nov 20, 2002
-
-Wave 06: Mar 26, 2003
-
-Wave 07: Mar 26, 2003
-
-Wave 08: Apr 02, 2003
-
-Wave 09: Apr 02, 2003
-
-Wave 10: Sep 24, 2003
-
-Wave 11: Sep 24, 2003
-
-Wave 12: Oct 07, 2003
-
-Wave 13: Oct 08, 2003
-
-Wave 14: Oct 08, 2003
-
-Wave 15: Feb 24, 2004
-
-Wave 16: Feb 25, 2004
-
-Wave 17: Feb 25, 2004
-
-Wave 18: Apr 06, 2004
-
-Wave 19: Apr 06, 2004
-
-Wave 20: Apr 07, 2004
-
-Wave 21: Apr 07, 2004
-
-
+First, we analyzed our data set to on groups or subsets of our data for which we could analyze missing data. Our data has 8378 observations and 195 variables, with lots of missing values. The speed dating experiment was done in 21 waves. 
 To pick subsets of our data, we chose 11 important variables along with 5 variables which answered survey questions for each wave. The 12 important variables we chose are:
 
 *1. iid: unique subject number, grouped by wave id gender*
@@ -190,6 +146,7 @@ These are the 5 other variables of question 5_1.
 
 ```{r read_data}
 df = read.csv("Speed Dating Data.csv")
+
 col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
 df_1 = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
 df_2 = df[c(col_common, "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1")]
