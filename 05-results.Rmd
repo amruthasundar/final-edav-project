@@ -4,82 +4,94 @@
 df = read.csv("Speed Dating Data.csv")
 
 library(tidyverse)
-library(fastmatch)
+library(patchwork)
 ```
 
 ## Representation of paricipants by different categories
 
 First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.
 
-### By field of study
+We have chosen four characteristics of the participants: field of study, age, race, and intended career. Here are the bar plots for the same.
 
-First, let us check the percentage of students per field of study. We used the column `field_cd` from the data set that represented the coded fields (from 1-18). The codes summarize all the fields that were provided by the participants. The details of the fileds for the codes can be found in the [data key](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc).
+*Note: The field, race, and career codes are summarized in the [data key](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc).*
 
-```{r}
-df_by_cat = df %>% 
+```{r, fig.width=12, fig.height=9}
+df_by_field = df %>% 
   group_by(field_cd) %>% 
   summarise(count = n()) %>% 
   mutate(per = count*100/sum(count))
 
-df_by_cat$field_cd = as.factor(df_by_cat$field_cd)
+df_by_field$field_cd = as.factor(df_by_field$field_cd)
 
-ggplot(df_by_cat, aes(x = field_cd, y = per)) +
+g_by_field = ggplot(df_by_field, aes(x = field_cd, y = per)) +
   geom_bar(stat = "identity", color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
   xlab("Field of Study") +
   ylab("Percentage of participants") +
   ggtitle("Representation of participants by field of study")
 
-```
-
-We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
-
-The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).
-
-## By age group
-
-Next, let us check for better understanding of the age group represented. We plotted a bar plot for the count of `age`.
-
-```{r}
 df_by_age = df %>% 
   group_by(iid) %>% 
   select(iid, age)
 
 df_by_age = unique(df_by_age)
 
-ggplot(df_by_age, aes(x = age)) +
-  geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9, binwidth = 5) +
+g_by_age = ggplot(df_by_age, aes(x = age)) +
+  geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
   #scale_x_binned() +
   xlab("Age Group") +
   ylab("Number of participants") +
   ggtitle("Representation of participants by age")
 
+df_by_race = df %>% 
+  group_by(iid) %>% 
+  select(iid, race)
+
+df_by_race$race = as.factor(df_by_race$race)
+
+g_by_race = ggplot(df_by_race, aes(x = race)) +
+  geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9, binwidth = 5) +
+  xlab("Race") +
+  ylab("Number of participants") +
+  ggtitle("Representation of participants by race")
+
+df_by_career = df %>% 
+  group_by(iid) %>% 
+  select(iid, career_c)
+
+df_by_career = unique(df_by_career)
+df_by_career$career_c = as.factor(df_by_career$career_c)
+
+g_by_career = ggplot(df_by_career, aes(x = career_c)) +
+  geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
+  xlab("Intended Career") +
+  ylab("Number of participants") +
+  ggtitle("Representation of participants by intended career")
+
+plot = (g_by_field | g_by_age)/(g_by_race | g_by_career)
+plot
 ```
 
-We can observe that most students are between the age 20 and 30, with slightly more participants between 25-30 than 20-25. For ages 25-30, there are about 245 participants, while 
+Here are the inferences from these plots:
 
-### 
+1. For field of study
 
+We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
 
+The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).
 
+2. For age group
 
+We can observe that most students are between the age 20 and 30, with about 68 people with age around 27. Almost all the participants are between 18 and 39 years of age, with the exception of a few of age 42 and 55.
 
+3. For race
 
+We can observe that race 2, which is European/Caucasian-American is the highest represented group here, which has about 4700 participants. Second most highest represented race is 4, i.e., Asian/Pacific Islander/Asian-American with about 2000 participants.
 
+The count for race not specified is the least among all the races. Apart from that, the least represented race is Black/African American with about 450 participants.
 
+4. For intended career
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Here, we can observe that the intended career of most students is career 2 and 7, i.e., Academic/Research and Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin respectively. They constitute for about 155 and 135 participants respectively. The least represented career field is career 17, which is Architecture. Similar trend was seen in the representation by field of study.
 
 
 
