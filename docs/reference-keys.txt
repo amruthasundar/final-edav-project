@@ -14,4 +14,3 @@ number-of-yes-matches-per-participant
 change-of-feature-perception-with-time
 interactive-component
 conclusion
-data-transformation-1
