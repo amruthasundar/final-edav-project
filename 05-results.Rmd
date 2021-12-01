@@ -142,6 +142,32 @@ Here, we can observe that the maximum number of yes matches of participants in w
 
 Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.
 
+## Analysing correlation between the chosen variables
+
+One of the important questions we want to address is visualizing whether the features in the dataset exhibit correlation among themselves or with the target variable that tells whether the pair matched or not. This is important as it will help us come up with blatant patterns observed in features that help in formulations of simple if-then rules. 
+For the purposes of this visualization, we have narrowed down comparison of ratings to a specific question that were asked prior to the event - Distribute a score of 100 among the five attributes in the order of importance that you would like to see in your potential date.
+  
+This question is interesting to inspect if the attributes of what people look for in their potential partners bear any correlation among themselves and also with the actual number of people they agreed to match with.
+
+```{r fig.width=12, fig.height=40}
+columns = c("iid", "age", "race", "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")
+
+df_distinct = df %>% group_by(iid, age, race, attr1_1, sinc1_1, intel1_1, fun1_1, amb1_1) %>% summarise(total_matches=sum(match))
+
+ggpairs(df_distinct[c(columns,  "total_matches")], lower=list(combo=wrap("facethist")))+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),) +
+  ggtitle("Pair plot for attributes and total number of people agreed to match")
+```
+
+Some of the interesting inferences we can make regarding the plots are,
+
+* The distribution of most of the attributes are close to normal except for ambition with seems to be right skewed. A relatively high number of participants have given a low priority to ambition of their potential partners as a deciding factor.
+* While most of the features are weakly negatively correlated almost exhibiting no correlation at all, the pair of feature sincerity, attractiveness and sincerity, intelligence are negatively correlated by the greatest amount. This tells us that people who gave a high preference to sincerity gave a low preference to intelligence and attractiveness and the other set of people weighed attractiveness and intelligence over sincerity.
+* The age of the participants are mostly between 20 and 30, while one senior participant over 50 did not match with anyone, evident by the anomaly of the farthest point in the age vs total_matches plot.
+* The trend that is seen in all the plots of attributes of attractiveness, sincerity, intelligence, fun and ambition is that, as the rating or the priority of certain feature increases, the number of matches goes down, for a few points. This is justifiable with the points that are to the farthest right at the bottom. This is expected as participants who have a really high expectation on one feature might not find someone suitable to meet their high expectations on that feature.
+* It is interesting to note that the same plot of features vs total matches also exhibits some anomaly. There seems to be one point in all these plots that have a relatively medium level rating/priority while the number of matches is pretty high. This can be verified by the top most point to the left of the plots. There were some participants who are estimated to have based their criteria of matching on factors others that the ones that were rated on. This can be infered as they have a relatively high number of matches than their peers who matched less, given the same priority for those features.
+
 ## Change of feature perception with time
 
 Here, our objective is to find that if a participant's perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: *What you look for in the opposite sex.*
@@ -248,8 +274,3 @@ There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` t
 5) For Ambition
 
 Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`.
-
-
-
-
->>>>>>> b767703b846da09d3db8077ae5b51568aca48934
