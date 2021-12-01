@@ -167,7 +167,9 @@ Some of the interesting inferences we can make regarding the plots are,
 
 ## Change of feature perception with time
 
-Here, our objective is to find that if a participant's perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: *What you look for in the opposite sex.*
+Here, our objective is to find that if a participant's perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: 
+
+**What you look for in the opposite sex?**
 
 Now, this question was asked to the same people multiple times. We specifically choose three times. The times we chose were: 
 
@@ -177,7 +179,7 @@ Now, this question was asked to the same people multiple times. We specifically 
 
 3) Asked 3-4 weeks after the speed dating experiment
 
-To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). Again, we used waves 10-21 for this plot.
+To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). We color coded them by gender to find more inferences. Again, we used waves 10-21 for this plot.
 
 We did this for each of the five features: Attractiveness, Sincerity, Intelligence, Fun, and Ambition. We normalized the values of each variable in the plots using the `uniminmax` scale. We did not use splines because we believe we lost information if we include it.
 
@@ -193,10 +195,13 @@ df_a <- df_a[which(df_a$wave >= 10),]
 df_a$iid = as.factor(df_a$iid)
 
 df_1_a = df_a %>% 
-  select(iid, attr1_1, attr1_2, attr1_3, match)
+  select(iid, attr1_1, attr1_2, attr1_3, match, gender)
+
+df_1_a$gender = factor(df_1_a$gender, levels = c(0,1), labels = c("female","male"))
 df_1_a = unique(df_1_a)
 
-g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Attractiveness with time")
@@ -205,10 +210,13 @@ g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0
 
 
 df_1_b = df_a %>% 
-  select(iid, sinc1_1, sinc1_2, sinc1_3, match)
+  select(iid, sinc1_1, sinc1_2, sinc1_3, match, gender)
+
+df_1_b$gender = factor(df_1_b$gender, levels = c(0,1), labels = c("female","male"))
 df_1_b = unique(df_1_b)
 
-g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Sincerity with time")
@@ -216,10 +224,13 @@ g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0
 
 
 df_1_c = df_a %>% 
-  select(iid, intel1_1, intel1_2, intel1_3, match)
+  select(iid, intel1_1, intel1_2, intel1_3, match, gender)
+
+df_1_c$gender = factor(df_1_c$gender, levels = c(0,1), labels = c("female","male"))
 df_1_c = unique(df_1_c)
 
-g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Intelligence with time")
@@ -227,10 +238,13 @@ g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0
 
 
 df_1_d = df_a %>% 
-  select(iid, fun1_1, fun1_2, fun1_3, match)
+  select(iid, fun1_1, fun1_2, fun1_3, match, gender)
+
+df_1_d$gender = factor(df_1_d$gender, levels = c(0,1), labels = c("female","male"))
 df_1_d = unique(df_1_d)
 
-g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Fun with time")
@@ -238,10 +252,13 @@ g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0
 
 
 df_1_e = df_a %>% 
-  select(iid, amb1_1, amb1_2, amb1_3, match)
+  select(iid, amb1_1, amb1_2, amb1_3, match, gender)
+
+df_1_e$gender = factor(df_1_e$gender, levels = c(0,1), labels = c("female","male"))
 df_1_e = unique(df_1_e)
 
-g_1_e = ggparcoord(df_1_e, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+g_1_e = ggparcoord(df_1_e, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Ambition with time")
@@ -252,22 +269,22 @@ g_1_123
 
 Here are the interpretations from the above plot:
 
-1) For Attractiveness
+**1) For Attractiveness**
 
-Since most lines go slightly upwards from `attr1_1` to `attr1_2`, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From `attr1_2` to `attr1_3`, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks.
+Since most lines go slightly upwards from `attr1_1` to `attr1_2`, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From `attr1_2` to `attr1_3`, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks. In general, the importance of attractiveness usually keeps increasing for males more, while there is no pattern for females. However, the increase of importance for females is more drastic in females.
 
-2) For Sincerity
+**2) For Sincerity**
 
-Since most lines go upwards from `sinc1_1` to `sinc1_2`, we can say that people give more importance to the sincerity of the other person the next day. From `sinc1_2` to `sinc1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner.
+Since most lines go upwards from `sinc1_1` to `sinc1_2`, we can say that people give more importance to the sincerity of the other person the next day. From `sinc1_2` to `sinc1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner. For females, the importance of sincerity increases the day after the experiment, but reduces drastically in 3-4 weeks. For males, their sincerity importance level remained steady with time.
 
-3) For Intelligence
+**3) For Intelligence**
 
-Most lines go upwards from `intel1_1` to `intel1_2`, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From `intel1_2` to `intel1_3`, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner's intelligence.
+Most lines go upwards from `intel1_1` to `intel1_2`, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From `intel1_2` to `intel1_3`, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner's intelligence. For most males, the importance of intelligence increased after the experiment and remained steady afterward. For most females, it first increased too and then decreased.
 
-4) For Fun
+**4) For Fun**
 
-There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` to `fun1_3` since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from `fun1_1` to `fun1_3`. Here too, the ratings of people with zero rating remained steady.
+There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` to `fun1_3` since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from `fun1_1` to `fun1_3`. Here too, the ratings of people with zero rating remained steady. No pattern is observed for particular genders.
 
-5) For Ambition
+**5) For Ambition**
 
-Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`.
+Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`. For females, the importance of ambition increased after the experiment, but decreased again in 3-4 weeks. For males, there seems to be an even distribution of people with increasing and decreasing importance.
