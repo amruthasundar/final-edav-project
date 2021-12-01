@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Data Transformation</title>
-  <meta name="description" content="Data Transformation" />
+  <title>Speed Dating Analysis and Visualization</title>
+  <meta name="description" content="Speed Dating Analysis and Visualization" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Transformation" />
+  <meta property="og:title" content="Speed Dating Analysis and Visualization" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Transformation" />
+  <meta name="twitter:title" content="Speed Dating Analysis and Visualization" />
   
   
   
 
-<meta name="author" content="Group 17" />
+<meta name="author" content="Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi" />
 
 
-<meta name="date" content="2021-11-29" />
+<meta name="date" content="2021-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -80,10 +80,7 @@
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-description"><i class="fa fa-check"></i><b>2.2</b> Data Description</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues-with-the-data"><i class="fa fa-check"></i><b>2.3</b> Issues with the data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#same-unit-for-ratings"><i class="fa fa-check"></i><b>3.1</b> Same unit for ratings</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots"><i class="fa fa-check"></i><b>4.1</b> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</a></li>
@@ -94,10 +91,10 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.3</b> Change of feature perception with time</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
-<li class="chapter" data-level="8" data-path="data-transformation-1.html"><a href="data-transformation-1.html"><i class="fa fa-check"></i><b>8</b> Data Transformation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -109,7 +106,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Transformation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Speed Dating Analysis and Visualization</a>
           </h1>
         </div>
 
@@ -118,12 +115,27 @@
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Data Transformation</h1>
-<p class="author"><em>Group 17</em></p>
-<p class="date"><em>11/29/2021</em></p>
+<h1 class="title">Speed Dating Analysis and Visualization</h1>
+<p class="author"><em>Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi</em></p>
+<p class="date"><em>2021-11-30</em></p>
 </div>
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>In this project, we are using data visualization for the purpose of explanatory data analysis. The data we are using for the project is the <strong>2006 Speed Dating Dataset</strong> gathered by three professors of Columbia Business School: Sheena Iyengar, Emir Kamenica, Itamar Simonson.</p>
+<p>The dataset and the data key of the experiment can be found on the website <a href="https://data.world/annavmontoya/speed-dating-experiment" class="uri">https://data.world/annavmontoya/speed-dating-experiment</a>. The webpage archive of the experiment conducted is <a href="https://www8.gsb.columbia.edu/researcharchive/articles/867" class="uri">https://www8.gsb.columbia.edu/researcharchive/articles/867</a>.</p>
+<p><strong>Data Source:</strong> <a href="https://data.world/annavmontoya/speed-dating-experiment" class="uri">https://data.world/annavmontoya/speed-dating-experiment</a></p>
+<p>This data was found as part of an experiment that involved finding the major factors which affect the decision of people from both genders if they would consider someone from the opposite sex as their partner. In this experiment, every participant is allowed to meet every other participant of the opposite gender, and the rating is given based on the participant’s perception during a four-minute conversation. The link to the full article is <a href="https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/867/fisman%20iyengar.pdf" class="uri">https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/867/fisman%20iyengar.pdf</a>.</p>
+<p>The full citation for the data is:</p>
+<p>Fisman, Raymond, Sheena Iyengar, Emir Kamenica, and Itamar Simonson. “Gender Differences in Mate Selection: Evidence from a Speed Dating Experiment.” <em>Quarterly Journal of Economics 121</em>, no. 2 (May 2006): 673-97.</p>
+<p>The main conclusions from the experiment were as follows -</p>
+<ul>
+<li>Women generally give more importance to the intelligence and the race of their partner</li>
+<li>Men are more responsive to physical attractiveness.</li>
+<li>The majority of men don’t give much value or importance to women’s intelligence or ambition when it exceeds their own.</li>
+<li>Women tend to prefer men who grew up in affluent neighborhoods.</li>
+<li>Male selectivity is invariant to group size, while female selectivity is strongly increasing in group size.</li>
+</ul>
+<p>We aim to visualize and verify these results and different patterns through various graphs, plots, and different visualization techniques. We also want to analyze and find some underlying or hidden patterns from the dataset which have not been explored yet.</p>
 
 </div>
             </section>

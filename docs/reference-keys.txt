@@ -4,7 +4,6 @@ the-experiment
 data-description
 issues-with-the-data
 data-transformation
-same-unit-for-ratings
 missing-values
 number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots
 heatmap
@@ -12,6 +11,6 @@ missing-patterns-question
 results
 representation-of-paricipants-by-different-categories
 number-of-yes-matches-per-participant
+change-of-feature-perception-with-time
 interactive-component
 conclusion
-data-transformation-1

@@ -7,7 +7,10 @@ library(tidyverse)
 library(patchwork)
 library(RColorBrewer)
 library(GGally)
+<<<<<<< HEAD
 library(dplyr)
+=======
+>>>>>>> b767703b846da09d3db8077ae5b51568aca48934
 ```
 
 ## Representation of paricipants by different categories
@@ -18,7 +21,7 @@ We have chosen four characteristics of the participants: field of study, age, ra
 
 *Note: The field, race, and career codes are summarized in the [data key](https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc).*
 
-```{r, fig.width=12, fig.height=9}
+```{r fig.width=12, fig.height=9}
 df_by_field = df %>% 
   group_by(field_cd) %>% 
   summarise(count = n()) %>% 
@@ -71,30 +74,34 @@ g_by_career = ggplot(df_by_career, aes(x = career_c)) +
   ggtitle("Representation of participants by intended career")
 
 plot = (g_by_field | g_by_age)/(g_by_race | g_by_career)
-plot 
+plot
+
+
+
 ```
 
+
 Here are the inferences from these plots:
-
-**1. For field of study**
-
-We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
+  
+  **1. For field of study**
+  
+  We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
 
 The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).
 
 **2. For age group**
-
-We can observe that most students are between the age 20 and 30, with about 68 people with age around 27. Almost all the participants are between 18 and 39 years of age, with the exception of a few of age 42 and 55.
+  
+  We can observe that most students are between the age 20 and 30, with about 68 people with age around 27. Almost all the participants are between 18 and 39 years of age, with the exception of a few of age 42 and 55.
 
 **3. For race**
-
-We can observe that race 2, which is European/Caucasian-American is the highest represented group here, which has about 4700 participants. Second most highest represented race is 4, i.e., Asian/Pacific Islander/Asian-American with about 2000 participants.
+  
+  We can observe that race 2, which is European/Caucasian-American is the highest represented group here, which has about 4700 participants. Second most highest represented race is 4, i.e., Asian/Pacific Islander/Asian-American with about 2000 participants.
 
 The count for race not specified is the least among all the races. Apart from that, the least represented race is Black/African American with about 450 participants.
 
 **4. For intended career**
-
-Here, we can observe that the intended career of most students is career 2 and 7, i.e., Academic/Research and Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin respectively. They constitute for about 155 and 135 participants respectively. The least represented career field is career 17, which is Architecture. Similar trend was seen in the representation by field of study.
+  
+  Here, we can observe that the intended career of most students is career 2 and 7, i.e., Academic/Research and Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin respectively. They constitute for about 155 and 135 participants respectively. The least represented career field is career 17, which is Architecture. Similar trend was seen in the representation by field of study.
 
 
 ## Number of yes matches per participant
@@ -112,8 +119,8 @@ df_match_total = unique(df_match_total)
 df_match_total$iid = as.factor(df_match_total$iid)
 df_match_total$wave = as.factor(df_match_total$wave)
 df_match_total$gender = factor(df_match_total$gender,
-                                levels = c(0,1),
-                                labels = c("female","male"))
+                               levels = c(0,1),
+                               labels = c("female","male"))
 g_match_total = ggplot(df_match_total, aes(x = yes, y = reorder(iid, yes), color = gender)) +
   geom_point(size = 3) +
   scale_x_continuous(limits = c(0, 15), breaks = seq(0, 15, 5)) +
@@ -123,10 +130,10 @@ g_match_total = ggplot(df_match_total, aes(x = yes, y = reorder(iid, yes), color
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_line(colour = "grey60", linetype = "dashed")) +
-    xlab("Number of yes matches") +
-    ylab("Participant ID number") +
-    ggtitle("Number of yes matches per person faceted by wave",
-            subtitle = "For waves 10-21 (color-coded by gender)")
+  xlab("Number of yes matches") +
+  ylab("Participant ID number") +
+  ggtitle("Number of yes matches per person faceted by wave",
+          subtitle = "For waves 10-21 (color-coded by gender)")
 
 g_match_total
 ```
@@ -135,28 +142,114 @@ Here, we can observe that the maximum number of yes matches of participants in w
 
 Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.
 
-## Analysing correlation between the chosen variables
+## Change of feature perception with time
 
-One of the important questions we want to address is visualizing whether the features in the dataset exhibit correlation among themselves or with the target variable that tells whether the pair matched or not. This is important as it will help us come up with blatant patterns observed in features that help in formulations of simple if-then rules. 
-For the purposes of this visualization, we have narrowed down comparison of ratings to a specific question that were asked prior to the event - Distribute a score of 100 among the five attributes in the order of importance that you would like to see in your potential date.
-  
-This question is interesting to inspect if the attributes of what people look for in their potential partners bear any correlation among themselves and also with the actual number of people they agreed to match with.
+Here, our objective is to find that if a participant's perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: *What you look for in the opposite sex.*
 
-```{r fig.width=12, fig.height=40}
-columns = c("iid", "age", "race", "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")
+Now, this question was asked to the same people multiple times. We specifically choose three times. The times we chose were: 
 
-df_distinct = df %>% group_by(iid, age, race, attr1_1, sinc1_1, intel1_1, fun1_1, amb1_1) %>% summarise(total_matches=sum(match))
+1) Asked before the speed dating experiment
 
-ggpairs(df_distinct[c(columns,  "total_matches")], lower=list(combo=wrap("facethist")))+
-  theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),) +
-  ggtitle("Pair plot for attributes and total number of people agreed to match")
+2) Asked the day after the speed dating experiment
+
+3) Asked 3-4 weeks after the speed dating experiment
+
+To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). Again, we used waves 10-21 for this plot.
+
+We did this for each of the five features: Attractiveness, Sincerity, Intelligence, Fun, and Ambition. We normalized the values of each variable in the plots using the `uniminmax` scale. We did not use splines because we believe we lost information if we include it.
+
+Here are the plots:
+
+```{r fig.width=10, fig.height=10}
+col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
+df_a = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                            "attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                            "attr1_3", "sinc1_3", "intel1_3", "fun1_3", "amb1_3")]
+
+df_a <- df_a[which(df_a$wave >= 10),]
+df_a$iid = as.factor(df_a$iid)
+
+df_1_a = df_a %>% 
+  select(iid, attr1_1, attr1_2, attr1_3, match)
+df_1_a = unique(df_1_a)
+
+g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+  xlab("Variables") +
+  ylab("Normalized ratings/match values") +
+  ggtitle("Perception of Attractiveness with time")
+
+
+
+
+df_1_b = df_a %>% 
+  select(iid, sinc1_1, sinc1_2, sinc1_3, match)
+df_1_b = unique(df_1_b)
+
+g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+  xlab("Variables") +
+  ylab("Normalized ratings/match values") +
+  ggtitle("Perception of Sincerity with time")
+
+
+
+df_1_c = df_a %>% 
+  select(iid, intel1_1, intel1_2, intel1_3, match)
+df_1_c = unique(df_1_c)
+
+g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+  xlab("Variables") +
+  ylab("Normalized ratings/match values") +
+  ggtitle("Perception of Intelligence with time")
+
+
+
+df_1_d = df_a %>% 
+  select(iid, fun1_1, fun1_2, fun1_3, match)
+df_1_d = unique(df_1_d)
+
+g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+  xlab("Variables") +
+  ylab("Normalized ratings/match values") +
+  ggtitle("Perception of Fun with time")
+
+
+
+df_1_e = df_a %>% 
+  select(iid, amb1_1, amb1_2, amb1_3, match)
+df_1_e = unique(df_1_e)
+
+g_1_e = ggparcoord(df_1_e, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75) +
+  xlab("Variables") +
+  ylab("Normalized ratings/match values") +
+  ggtitle("Perception of Ambition with time")
+
+g_1_123 = (g_1_a + g_1_b)/(g_1_c + g_1_d)/g_1_e
+g_1_123
 ```
 
-Some of the interesting inferences we can make regarding the plots are,
+Here are the interpretations from the above plot:
 
-* The distribution of most of the attributes are close to normal except for ambition with seems to be right skewed. A relatively high number of participants have given a low priority to ambition of their potential partners as a deciding factor.
-* While most of the features are weakly negatively correlated almost exhibiting no correlation at all, the pair of feature sincerity, attractiveness and sincerity, intelligence are negatively correlated by the greatest amount. This tells us that people who gave a high preference to sincerity gave a low preference to intelligence and attractiveness and the other set of people weighed attractiveness and intelligence over sincerity.
-* The age of the participants are mostly between 20 and 30, while one senior participant over 50 did not match with anyone, evident by the anomaly of the farthest point in the age vs total_matches plot.
-* The trend that is seen in all the plots of attributes of attractiveness, sincerity, intelligence, fun and ambition is that, as the rating or the priority of certain feature increases, the number of matches goes down, for a few points. This is justifiable with the points that are to the farthest right at the bottom. This is expected as participants who have a really high expectation on one feature might not find someone suitable to meet their high expectations on that feature.
-* It is interesting to note that the same plot of features vs total matches also exhibits some anomaly. There seems to be one point in all these plots that have a relatively medium level rating/priority while the number of matches is pretty high. This can be verified by the top most point to the left of the plots. There were some participants who are estimated to have based their criteria of matching on factors others that the ones that were rated on. This can be infered as they have a relatively high number of matches than their peers who matched less, given the same priority for those features.
+1) For Attractiveness
+
+Since most lines go slightly upwards from `attr1_1` to `attr1_2`, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From `attr1_2` to `attr1_3`, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks.
+
+2) For Sincerity
+
+Since most lines go upwards from `sinc1_1` to `sinc1_2`, we can say that people give more importance to the sincerity of the other person the next day. From `sinc1_2` to `sinc1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner.
+
+3) For Intelligence
+
+Most lines go upwards from `intel1_1` to `intel1_2`, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From `intel1_2` to `intel1_3`, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner's intelligence.
+
+4) For Fun
+
+There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` to `fun1_3` since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from `fun1_1` to `fun1_3`. Here too, the ratings of people with zero rating remained steady.
+
+5) For Ambition
+
+Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`.
+
+
+
+
+>>>>>>> b767703b846da09d3db8077ae5b51568aca48934

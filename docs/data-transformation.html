@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data transformation | Data Transformation</title>
-  <meta name="description" content="Chapter 3 Data transformation | Data Transformation" />
+  <title>Chapter 3 Data transformation | Speed Dating Analysis and Visualization</title>
+  <meta name="description" content="Chapter 3 Data transformation | Speed Dating Analysis and Visualization" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data transformation | Data Transformation" />
+  <meta property="og:title" content="Chapter 3 Data transformation | Speed Dating Analysis and Visualization" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data transformation | Data Transformation" />
+  <meta name="twitter:title" content="Chapter 3 Data transformation | Speed Dating Analysis and Visualization" />
   
   
   
 
-<meta name="author" content="Group 17" />
+<meta name="author" content="Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi" />
 
 
-<meta name="date" content="2021-11-29" />
+<meta name="date" content="2021-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -80,10 +80,7 @@
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-description"><i class="fa fa-check"></i><b>2.2</b> Data Description</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues-with-the-data"><i class="fa fa-check"></i><b>2.3</b> Issues with the data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#same-unit-for-ratings"><i class="fa fa-check"></i><b>3.1</b> Same unit for ratings</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots"><i class="fa fa-check"></i><b>4.1</b> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</a></li>
@@ -94,10 +91,10 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.3</b> Change of feature perception with time</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
-<li class="chapter" data-level="8" data-path="data-transformation-1.html"><a href="data-transformation-1.html"><i class="fa fa-check"></i><b>8</b> Data Transformation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -109,7 +106,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Transformation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Speed Dating Analysis and Visualization</a>
           </h1>
         </div>
 
@@ -119,12 +116,60 @@
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
-<p>Here is the process on how we transformed our data. Link to the the file doing the same is</p>
-<div id="same-unit-for-ratings" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Same unit for ratings</h2>
-<p>As mentioned in the previous chapter, the ratings in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they are in 100 point allocations. To use a common unit, we converted the 10 scale ratings to 100 point percentages by multiplying them by 10</p>
+<p>Here is the process on how we transformed our data.</p>
+<p>Firstly, since there were a lot of problems with waves up to 9, we decided to exclude it from our analysis. We found most of our results using waves 10-21. However, some results related to entire populations and hence used data for all waves.</p>
+<p>Moreover, there are too many variables recorded in the experiment. We picked a few important ones for our analysis. We chose 12 important variables along with 3 variables which answered survey questions for each wave. The 12 important variables we chose are:</p>
+<p><em>1. iid: unique subject number, grouped by wave id gender</em></p>
+<p><em>2. pid: partner’s iid number</em></p>
+<p><em>3. gender: Female = 0, Male = 1</em></p>
+<p><em>4. match: 1 = yes, 0 = no</em></p>
+<p><em>5. age: age of subject</em></p>
+<p><em>6. field: field of study</em></p>
+<p><em>7. race: Black/African American = 1,</em>
+<em>European/Caucasian-American = 2,</em>
+<em>Latino/Hispanic American = 3,</em>
+<em>Asian/Pacific Islander/Asian-American = 4,</em>
+<em>Native American = 5,</em>
+<em>Other = 6</em></p>
+<p><em>8. from: Where are you from originally (before coming to Columbia)? </em></p>
+<p><em>9. income: Median household income based on zipcode</em></p>
+<p><em>10. goal: What is your primary goal in participating in this event? </em>
+<em>Seemed like a fun night out = 1,</em>
+<em>To meet new people = 2,</em>
+<em>To get a date = 3,</em>
+<em>Looking for a serious relationship = 4,</em>
+<em>To say I did it = 5,</em>
+<em>Other = 6</em></p>
+<p><em>11. career: What is your intended career?</em></p>
+<p><em>12. wave: wave number</em></p>
+<p>These are the common variables we chose to analyze missing values. There were several questions in this experiment, but we chose three in specific, which were most relevant to our project and analyzed missing values for all three questions separately.</p>
+<p>The three questions are:</p>
+<p><strong>Question 1_1:</strong></p>
+<p><strong>We want to know what you look for in the opposite sex.</strong></p>
+<p><em>13. attr1_1: Attractive</em></p>
+<p><em>14. sinc1_1: Sincere</em></p>
+<p><em>15. intel1_1: Intelligent</em></p>
+<p><em>16. fun1_1: Fun</em></p>
+<p><em>17. amb1_1: Ambitious</em></p>
+<p>These are the 5 other variables of question 1_1.</p>
+<p><strong>Question 2_1:</strong></p>
+<p><strong>What do you think the opposite sex looks for in a date?</strong></p>
+<p><em>13. att2_1: Attractive</em></p>
+<p><em>14. sinc2_1: Sincere</em></p>
+<p><em>15. intel2_1: Intelligent</em></p>
+<p><em>16. fun2_1: Fun</em></p>
+<p><em>17. amb2_1: Ambitious</em></p>
+<p>These are the 5 other variables of question 2_1.</p>
+<p><strong>Question 4_1:</strong></p>
+<p><strong>Now we want to know what you think MOST of your fellow men/women look for in the opposite sex</strong></p>
+<p><em>13. attr4_1: Attractive</em></p>
+<p><em>14. sinc4_1: Sincere</em></p>
+<p><em>15. intel4_1: Intelligent</em></p>
+<p><em>16. fun4_1: Fun</em></p>
+<p><em>17. amb4_1: Ambitious</em></p>
+<p>These are the 5 other variables of question 4_1.</p>
+<p>The file with the code for the transformation is <a href="https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R">here</a>.</p>
 
-</div>
 </div>
             </section>
 

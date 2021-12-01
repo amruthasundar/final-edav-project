@@ -1,7 +1,98 @@
 # Data transformation
 
-Here is the process on how we transformed our data. Link to the the file doing the same is 
+Here is the process on how we transformed our data.
 
-## Same unit for ratings
+Firstly, since there were a lot of problems with waves up to 9, we decided to exclude it from our analysis. We found most of our results using waves 10-21. However, some results related to entire populations and hence used data for all waves.
 
-As mentioned in the previous chapter, the ratings in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they are in 100 point allocations. To use a common unit, we converted the 10 scale ratings to 100 point percentages by multiplying them by 10
+Moreover, there are too many variables recorded in the experiment. We picked a few important ones for our analysis. We chose 12 important variables along with 3 variables which answered survey questions for each wave. The 12 important variables we chose are:
+
+*1. iid: unique subject number, grouped by wave id gender*
+
+*2. pid: partner’s iid number*
+
+*3. gender:	Female = 0,	Male = 1*
+
+*4. match: 1 = yes, 0 = no*
+
+*5. age: age of subject*
+
+*6. field: field of study*
+
+*7. race: Black/African American = 1,*
+	    *European/Caucasian-American = 2,*
+    	*Latino/Hispanic American = 3,*
+    	*Asian/Pacific Islander/Asian-American = 4,*
+    	*Native American = 5,*
+    	*Other = 6*
+    	
+*8. from: Where are you from originally (before coming to Columbia)? *
+
+*9. income: Median household income based on zipcode*
+
+*10. goal: What is your primary goal in participating in this event? *
+	    *Seemed like a fun night out = 1,*
+    	*To meet new people = 2,*
+    	*To get a date = 3,*
+    	*Looking for a serious relationship = 4,*
+    	*To say I did it = 5,*
+    	*Other = 6*
+
+*11. career: What is your intended career?*
+
+*12. wave: wave number*
+
+These are the common variables we chose to analyze missing values. There were several questions in this experiment, but we chose three in specific, which were most relevant to our project and analyzed missing values for all three questions separately.
+
+The three questions are:
+
+**Question 1_1:**
+
+**We want to know what you look for in the opposite sex.**
+
+*13. attr1_1: Attractive*
+
+*14. sinc1_1: Sincere*
+
+*15. intel1_1: Intelligent*
+
+*16. fun1_1: Fun*
+
+*17. amb1_1: Ambitious*
+
+These are the 5 other variables of question 1_1.
+
+
+**Question 2_1:**
+
+**What do you think the opposite sex looks for in a date?**
+
+*13. att2_1: Attractive*
+
+*14. sinc2_1: Sincere*
+
+*15. intel2_1: Intelligent*
+
+*16. fun2_1: Fun*
+
+*17. amb2_1: Ambitious*
+
+These are the 5 other variables of question 2_1.
+
+
+**Question 4_1:**
+
+**Now we want to know what you think MOST of your fellow men/women look for in the opposite sex**
+
+*13. attr4_1: Attractive*
+
+*14. sinc4_1: Sincere*
+
+*15. intel4_1: Intelligent*
+
+*16. fun4_1: Fun*
+
+*17. amb4_1: Ambitious*
+
+These are the 5 other variables of question 4_1.
+
+The file with the code for the transformation is [here](https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R).

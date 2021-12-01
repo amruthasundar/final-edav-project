@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Results | Data Transformation</title>
-  <meta name="description" content="Chapter 5 Results | Data Transformation" />
+  <title>Chapter 5 Results | Speed Dating Analysis and Visualization</title>
+  <meta name="description" content="Chapter 5 Results | Speed Dating Analysis and Visualization" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Results | Data Transformation" />
+  <meta property="og:title" content="Chapter 5 Results | Speed Dating Analysis and Visualization" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Results | Data Transformation" />
+  <meta name="twitter:title" content="Chapter 5 Results | Speed Dating Analysis and Visualization" />
   
   
   
 
-<meta name="author" content="Group 17" />
+<meta name="author" content="Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi" />
 
 
-<meta name="date" content="2021-11-29" />
+<meta name="date" content="2021-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -80,10 +80,7 @@
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-description"><i class="fa fa-check"></i><b>2.2</b> Data Description</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues-with-the-data"><i class="fa fa-check"></i><b>2.3</b> Issues with the data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#same-unit-for-ratings"><i class="fa fa-check"></i><b>3.1</b> Same unit for ratings</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots"><i class="fa fa-check"></i><b>4.1</b> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</a></li>
@@ -94,10 +91,10 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.3</b> Change of feature perception with time</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
-<li class="chapter" data-level="8" data-path="data-transformation-1.html"><a href="data-transformation-1.html"><i class="fa fa-check"></i><b>8</b> Data Transformation</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -109,7 +106,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Transformation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Speed Dating Analysis and Visualization</a>
           </h1>
         </div>
 
@@ -124,7 +121,7 @@
 <p>First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.</p>
 <p>We have chosen four characteristics of the participants: field of study, age, race, and intended career. Here are the bar plots for the same.</p>
 <p><em>Note: The field, race, and career codes are summarized in the <a href="https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc">data key</a>.</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-164-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="1152" /></p>
 <p>Here are the inferences from these plots:</p>
 <p><strong>1. For field of study</strong></p>
 <p>We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.</p>
@@ -140,9 +137,44 @@
 <div id="number-of-yes-matches-per-participant" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Number of yes matches per participant</h2>
 <p>In the original experiment, the variable <code>match</code> is the target variable. This indicates if the person was matched to the other person or not. We can use a Cleveland dot plot to show the number of yes matches each participant got. As mentioned before, we are using waves 10-21. Moreover, we faceted them by waves and color coded by the gender so we can also understand patterns among genders and within individual waves.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-165-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="1152" /></p>
 <p>Here, we can observe that the maximum number of yes matches of participants in waves 10 and 13 is always less than 5. Also, the highest number of matches for waves 20 and 18 is 3. Waves 11, 14, 15, 18 and 21 have a wide variety of matches for different people.</p>
 <p>Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.</p>
+</div>
+<div id="change-of-feature-perception-with-time" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Change of feature perception with time</h2>
+<p>Here, our objective is to find that if a participant’s perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: <em>What you look for in the opposite sex.</em></p>
+<p>Now, this question was asked to the same people multiple times. We specifically choose three times. The times we chose were:</p>
+<ol style="list-style-type: decimal">
+<li><p>Asked before the speed dating experiment</p></li>
+<li><p>Asked the day after the speed dating experiment</p></li>
+<li><p>Asked 3-4 weeks after the speed dating experiment</p></li>
+</ol>
+<p>To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). Again, we used waves 10-21 for this plot.</p>
+<p>We did this for each of the five features: Attractiveness, Sincerity, Intelligence, Fun, and Ambition. We normalized the values of each variable in the plots using the <code>uniminmax</code> scale. We did not use splines because we believe we lost information if we include it.</p>
+<p>Here are the plots:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="960" /></p>
+<p>Here are the interpretations from the above plot:</p>
+<ol style="list-style-type: decimal">
+<li>For Attractiveness</li>
+</ol>
+<p>Since most lines go slightly upwards from <code>attr1_1</code> to <code>attr1_2</code>, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From <code>attr1_2</code> to <code>attr1_3</code>, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>For Sincerity</li>
+</ol>
+<p>Since most lines go upwards from <code>sinc1_1</code> to <code>sinc1_2</code>, we can say that people give more importance to the sincerity of the other person the next day. From <code>sinc1_2</code> to <code>sinc1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>For Intelligence</li>
+</ol>
+<p>Most lines go upwards from <code>intel1_1</code> to <code>intel1_2</code>, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From <code>intel1_2</code> to <code>intel1_3</code>, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner’s intelligence.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>For Fun</li>
+</ol>
+<p>There does not seem to be a pattern from <code>fun1_1</code> to <code>fun1_2</code> or from <code>fun1_2</code> to <code>fun1_3</code> since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from <code>fun1_1</code> to <code>fun1_3</code>. Here too, the ratings of people with zero rating remained steady.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>For Ambition</li>
+</ol>
+<p>Since most lines go upwards from <code>amb1_1</code> to <code>amb1_2</code>, we can say that people give more importance to the ambition of the other person the next day. From <code>amb1_2</code> to <code>amb1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from <code>amb1_1</code> to <code>amb1_3</code>.</p>
 
 </div>
 </div>
