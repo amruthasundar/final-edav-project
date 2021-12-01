@@ -80,10 +80,7 @@
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-description"><i class="fa fa-check"></i><b>2.2</b> Data Description</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues-with-the-data"><i class="fa fa-check"></i><b>2.3</b> Issues with the data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#same-unit-for-ratings"><i class="fa fa-check"></i><b>3.1</b> Same unit for ratings</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots"><i class="fa fa-check"></i><b>4.1</b> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</a></li>
@@ -94,6 +91,7 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.3</b> Change of feature perception with time</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -119,138 +117,70 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
-<p>First, we analyzed our data set to on groups or subsets of our data for which we could analyze missing data. Our data has 8378 observations and 195 variables, with lots of missing values. The speed dating experiment was done in 21 waves.
-To pick subsets of our data, we chose 11 important variables along with 5 variables which answered survey questions for each wave. The 12 important variables we chose are:</p>
-<p><em>1. iid: unique subject number, grouped by wave id gender</em></p>
-<p><em>2. pid: partner’s iid number</em></p>
-<p><em>3. gender: Female = 0, Male = 1</em></p>
-<p><em>4. match: 1 = yes, 0 = no</em></p>
-<p><em>5. age: age of subject</em></p>
-<p><em>6. field: field of study</em></p>
-<p><em>7. race: Black/African American = 1,</em>
-<em>European/Caucasian-American = 2,</em>
-<em>Latino/Hispanic American = 3,</em>
-<em>Asian/Pacific Islander/Asian-American = 4,</em>
-<em>Native American = 5,</em>
-<em>Other = 6</em></p>
-<p><em>8. from: Where are you from originally (before coming to Columbia)? </em></p>
-<p><em>9. income: Median household income based on zipcode</em></p>
-<p><em>10. goal: What is your primary goal in participating in this event? </em>
-<em>Seemed like a fun night out = 1,</em>
-<em>To meet new people = 2,</em>
-<em>To get a date = 3,</em>
-<em>Looking for a serious relationship = 4,</em>
-<em>To say I did it = 5,</em>
-<em>Other = 6</em></p>
-<p><em>11. career: What is your intended career?</em></p>
-<p><em>12. wave: wave number</em></p>
-<p>These are the common variables we chose to analyze missing values. There were several questions in this experiment,
-but we chose five in specific, which were most relevant to our project and analyzed missing values for all five
-questions separately.</p>
-<p>The five questions are:</p>
-<p><strong>Question 1_1:</strong></p>
-<p><strong>We want to know what you look for in the opposite sex.</strong></p>
-<p><em>13. attr1_1: Attractive</em></p>
-<p><em>14. sinc1_1: Sincere</em></p>
-<p><em>15. intel1_1: Intelligent</em></p>
-<p><em>16. fun1_1: Fun</em></p>
-<p><em>17. amb1_1: Ambitious</em></p>
-<p>These are the 5 other variables of question 1_1.</p>
-<p><strong>Question 2_1:</strong></p>
-<p><strong>What do you think the opposite sex looks for in a date?</strong></p>
-<p><em>13. att2_1: Attractive</em></p>
-<p><em>14. sinc2_1: Sincere</em></p>
-<p><em>15. intel2_1: Intelligent</em></p>
-<p><em>16. fun2_1: Fun</em></p>
-<p><em>17. amb2_1: Ambitious</em></p>
-<p>These are the 5 other variables of question 2_1.</p>
-<p><strong>Question 3_1:</strong></p>
-<p><strong>How do you think you measure up?</strong></p>
-<p><em>13. attr3_1: Attractive</em></p>
-<p><em>14. sinc3_1: Sincere</em></p>
-<p><em>15. intel3_1: Intelligent</em></p>
-<p><em>16. fun3_1: Fun</em></p>
-<p><em>17. amb3_1: Ambitious</em></p>
-<p>These are the 5 other variables of question 3_1.</p>
-<p><strong>Question 4_1:</strong></p>
-<p><strong>Now we want to know what you think MOST of your fellow men/women look for in the opposite sex</strong></p>
-<p><em>13. attr4_1: Attractive</em></p>
-<p><em>14. sinc4_1: Sincere</em></p>
-<p><em>15. intel4_1: Intelligent</em></p>
-<p><em>16. fun4_1: Fun</em></p>
-<p><em>17. amb4_1: Ambitious</em></p>
-<p>These are the 5 other variables of question 4_1.</p>
-<p><strong>Question 5_1:</strong></p>
-<p><strong>And finally, how do you think others perceive you?</strong></p>
-<p><em>13. attr5_1: Attractive</em></p>
-<p><em>14. sinc5_1: Sincere</em></p>
-<p><em>15. intel5_1: Intelligent</em></p>
-<p><em>16. fun5_1: Fun</em></p>
-<p><em>17. amb5_1: Ambitious</em></p>
-<p>These are the 5 other variables of question 5_1.</p>
+<p>For the missing values chapter, we chose slightly more variables than the ones mentioned in the previous chapters. This is to represent a more general version of the missing value patterns in the data set.</p>
 <div id="number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</h2>
 <p>First, we plotted a barplot of the maximum number of missing answers given (for variables 13 - 17) per wave for each question. This helps us understand which waves had people that had a considerable amount of missing values for each question.</p>
 <p><strong>For Question 1_1:</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><strong>For Question 1_1</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>We can observe that in waves 2, 3, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 1_1. In wave 5, the maximum number of missing attributes is 1, so everyone rated at least 4 of 5 attributes. In all other waves, all attributes were answered by everyone.</p>
 <p><strong>For Question 2_1:</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><strong>For Question 2_1</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Same as question 1_1, we can observe that in waves 2, 3, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 2_1. In wave 5, the maximum number of missing attributes is 1, so everyone rated at least 4 of 5 attributes. In all other waves, all attributes were answered by everyone.</p>
 <p><strong>For Question 3_1:</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><strong>For Question 3_1</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>We can observe that in waves 2, 3, 6, 13, 14, 15 and 16; there are people who did not answer any of the 5 attributes in question 3_1. In all other waves, all attributes were answered by everyone. Here, the maximum number of missing answers given are all or none.</p>
 <p><strong>For Question 4_1:</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p><strong>For Question 4_1</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>We can observe that in waves 1, 2, 3, 4, 5, 6, 13, and 14; there are people who did not answer any of the 5 attributes in question 4_1. In all other waves, all attributes were answered by everyone. Here too, the maximum number of missing answers given are all or none.</p>
 <p><strong>For Question 5_1:</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p><strong>For Question 5_1</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>We can observe that in waves 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, and 16; there are people who did not answer any of the 5 attributes in question 5_1. In all other waves, all attributes were answered by everyone. Here too, the maximum number of missing answers given are all or none.</p>
 </div>
 <div id="heatmap" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Heatmap</h2>
 <p>The above plots are only furnishing information regarding the count of missing values. We can drill down to check missing values by wave. Heatmaps are one way to visualize the details of missing columns. Below plots show an example of heatmaps for several questions across a single wave.</p>
 <p><strong>For Question 1_1 and wave 5</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><strong>For Question 1_1 and wave 6</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p><strong>For Question 2_1 and wave 5</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><strong>For Question 2_1 and wave 6</strong>
-<img src="finalproj_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="missing-patterns-question" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Missing patterns question</h2>
 <p>Since we have 8378 observations, we used row percentages instead of row count in our missing values plot. Below are the plots for missing values per question.</p>
 <p><strong>For question 1_1:</strong></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>We can observe that we have 9 missing value patterns in the data for question 1_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.</p>
 <p>Moreover, we observe that about 14% of the rows have a missing value for ambitious, which is the highest percentage of missing rows for question 1_1. The second most missing column is age, with slightly lower than 14% of the rows missing it; followed by fun, with about 13% of the rows missing it.</p>
 <p><strong>For question 2_1:</strong></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>We can observe that we have 8 missing value patterns in the data for question 2_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.</p>
 <p>Moreover, we observe that about 14% of the rows have a missing value for age, which is the highest percentage of missing rows for question 2_1. The second most missing column is ambitious, with about 13% of the rows missing it; followed by fun, with about 12% of the rows missing it.</p>
 <p><strong>For question 3_1:</strong></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>We can observe that we have 7 missing value patterns in the data for question 3_1. We can see that almost above 90% of the observations come under the complete cases pattern. The second most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race. The third most observed pattern is that there is missing values only for age.</p>
 <p>Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 13.5% of the rows, which is the highest percentage of missing rows for question 3_1. The second most missing column is age, with about 12.5% of the rows missing it; followed by goal, with about 10% of the rows missing it.</p>
 <p><strong>For question 4_1:</strong></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>We can observe that we have 8 missing value patterns in the data for question 4_1. We can see that almost above 75% of the observations come under the complete cases pattern. About 20% of the observations have missing values for for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious.</p>
 <p>The second most observed pattern is that there is missing values for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious. The third most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race.</p>
 <p>Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 19% of the rows, which is the highest percentage of missing rows for question 4_1. The second most missing column is age, with about 1% of the rows missing it; followed by goal, with less than 1% of the rows missing it.</p>
 <p><strong>For question 5_1:</strong></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>We can observe that we have 8 missing value patterns in the data for question 5_1. We can see that almost 58% of the observations come under the complete cases pattern. About 20% of the observations have missing values for for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious.</p>
 <p>The second most observed pattern is that there is missing values for all five attributes, i.e., attractiveness, sincerity, intelligence, fun, and ambitious. The third most observed pattern is that there is missing values for attractiveness, sincerity, intelligence, fun, ambitious, age, goal, and race.</p>
 <p>Moreover, we observe that all five attributes, attractiveness, sincerity, intelligence, fun, and ambitious are missing in about 20% of the rows, which is the highest percentage of missing rows for question 5_1. The second most missing column is age, with about 1% of the rows missing it; followed by goal, with less than 1% of the rows missing it.</p>

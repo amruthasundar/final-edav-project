@@ -68,7 +68,7 @@ All the data collected was given in a single CSV file with 195 columns and 8373 
 
 We noticed that in different waves, the data 
 
-For example, the ratings asked in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they were asked for a 100 point allocation instead. Some questions required distribute the 100 points among the six attributes. This made the units different for different questions.
+For example, the ratings asked in waves 6-9 were ratings on a scale from 1 to 10. For all other waves, they were asked for a 100 point allocation instead. Some questions required distribute the 100 points among the six attributes. This made the units different for different questions. Also, some questions were introduced after the 9th wave, and hence has all values missing for waves 1-9.
 
-Moreover, some questions did not have the option of rating for Shared Interests, while some did. This brought a mismatch in the number of columns (answers) per question.
-
+Moreover, some questions did not have the option of rating for Shared Interests, while some did. This brought a mismatch in the number of columns (answers) per question. Also, some questions relating to final decisions were sensitive and hence data on those questions were never published. Hence
+we had to make use of the data that was available.
