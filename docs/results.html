@@ -24,7 +24,7 @@
 <meta name="author" content="Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,10 +91,17 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.3</b> Change of feature perception with time</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#analysing-correlation-between-the-chosen-variables"><i class="fa fa-check"></i><b>5.3</b> Analysing correlation between the chosen variables</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.4</b> Change of feature perception with time</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="8" data-path="results-1.html"><a href="results-1.html"><i class="fa fa-check"></i><b>8</b> Results</a></li>
+<li class="chapter" data-level="9" data-path="next-day.html"><a href="next-day.html"><i class="fa fa-check"></i><b>9</b> Next Day</a>
+<ul>
+<li class="chapter" data-level="9.0.1" data-path="next-day.html"><a href="next-day.html#srividya-part"><i class="fa fa-check"></i><b>9.0.1</b> SRIVIDYA PART</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="subsetting-dataset.html"><a href="subsetting-dataset.html"><i class="fa fa-check"></i><b>10</b> Subsetting Dataset</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -121,7 +128,7 @@
 <p>First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.</p>
 <p>We have chosen four characteristics of the participants: field of study, age, race, and intended career. Here are the bar plots for the same.</p>
 <p><em>Note: The field, race, and career codes are summarized in the <a href="https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc">data key</a>.</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="1152" /></p>
 <p>Here are the inferences from these plots:</p>
 <p><strong>1. For field of study</strong></p>
 <p>We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.</p>
@@ -137,44 +144,50 @@
 <div id="number-of-yes-matches-per-participant" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Number of yes matches per participant</h2>
 <p>In the original experiment, the variable <code>match</code> is the target variable. This indicates if the person was matched to the other person or not. We can use a Cleveland dot plot to show the number of yes matches each participant got. As mentioned before, we are using waves 10-21. Moreover, we faceted them by waves and color coded by the gender so we can also understand patterns among genders and within individual waves.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="1152" /></p>
 <p>Here, we can observe that the maximum number of yes matches of participants in waves 10 and 13 is always less than 5. Also, the highest number of matches for waves 20 and 18 is 3. Waves 11, 14, 15, 18 and 21 have a wide variety of matches for different people.</p>
 <p>Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.</p>
 </div>
-<div id="change-of-feature-perception-with-time" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Change of feature perception with time</h2>
-<p>Here, our objective is to find that if a participant’s perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: <em>What you look for in the opposite sex.</em></p>
+<div id="analysing-correlation-between-the-chosen-variables" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Analysing correlation between the chosen variables</h2>
+<p>One of the important questions we want to address is visualizing whether the features in the dataset exhibit correlation among themselves or with the target variable that tells whether the pair matched or not. This is important as it will help us come up with blatant patterns observed in features that help in formulations of simple if-then rules.
+For the purposes of this visualization, we have narrowed down comparison of ratings to a specific question that were asked prior to the event - Distribute a score of 100 among the five attributes in the order of importance that you would like to see in your potential date.</p>
+<p>This question is interesting to inspect if the attributes of what people look for in their potential partners bear any correlation among themselves and also with the actual number of people they agreed to match with.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="1152" /></p>
+<p>Some of the interesting inferences we can make regarding the plots are,</p>
+<ul>
+<li>The distribution of most of the attributes are close to normal except for ambition with seems to be right skewed. A relatively high number of participants have given a low priority to ambition of their potential partners as a deciding factor.</li>
+<li>While most of the features are weakly negatively correlated almost exhibiting no correlation at all, the pair of feature sincerity, attractiveness and sincerity, intelligence are negatively correlated by the greatest amount. This tells us that people who gave a high preference to sincerity gave a low preference to intelligence and attractiveness and the other set of people weighed attractiveness and intelligence over sincerity.</li>
+<li>The age of the participants are mostly between 20 and 30, while one senior participant over 50 did not match with anyone, evident by the anomaly of the farthest point in the age vs total_matches plot.</li>
+<li>The trend that is seen in all the plots of attributes of attractiveness, sincerity, intelligence, fun and ambition is that, as the rating or the priority of certain feature increases, the number of matches goes down, for a few points. This is justifiable with the points that are to the farthest right at the bottom. This is expected as participants who have a really high expectation on one feature might not find someone suitable to meet their high expectations on that feature.</li>
+<li>It is interesting to note that the same plot of features vs total matches also exhibits some anomaly. There seems to be one point in all these plots that have a relatively medium level rating/priority while the number of matches is pretty high. This can be verified by the top most point to the left of the plots. There were some participants who are estimated to have based their criteria of matching on factors others that the ones that were rated on. This can be infered as they have a relatively high number of matches than their peers who matched less, given the same priority for those features.</li>
+</ul>
+</div>
+<div id="change-of-feature-perception-with-time" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Change of feature perception with time</h2>
+<p>Here, our objective is to find that if a participant’s perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey:</p>
+<p><strong>What you look for in the opposite sex?</strong></p>
 <p>Now, this question was asked to the same people multiple times. We specifically choose three times. The times we chose were:</p>
 <ol style="list-style-type: decimal">
 <li><p>Asked before the speed dating experiment</p></li>
 <li><p>Asked the day after the speed dating experiment</p></li>
 <li><p>Asked 3-4 weeks after the speed dating experiment</p></li>
 </ol>
-<p>To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). Again, we used waves 10-21 for this plot.</p>
+<p>To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). We color coded them by gender to find more inferences. Again, we used waves 10-21 for this plot.</p>
 <p>We did this for each of the five features: Attractiveness, Sincerity, Intelligence, Fun, and Ambition. We normalized the values of each variable in the plots using the <code>uniminmax</code> scale. We did not use splines because we believe we lost information if we include it.</p>
 <p>Here are the plots:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="960" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="960" /></p>
 <p>Here are the interpretations from the above plot:</p>
-<ol style="list-style-type: decimal">
-<li>For Attractiveness</li>
-</ol>
-<p>Since most lines go slightly upwards from <code>attr1_1</code> to <code>attr1_2</code>, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From <code>attr1_2</code> to <code>attr1_3</code>, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>For Sincerity</li>
-</ol>
-<p>Since most lines go upwards from <code>sinc1_1</code> to <code>sinc1_2</code>, we can say that people give more importance to the sincerity of the other person the next day. From <code>sinc1_2</code> to <code>sinc1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>For Intelligence</li>
-</ol>
-<p>Most lines go upwards from <code>intel1_1</code> to <code>intel1_2</code>, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From <code>intel1_2</code> to <code>intel1_3</code>, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner’s intelligence.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>For Fun</li>
-</ol>
-<p>There does not seem to be a pattern from <code>fun1_1</code> to <code>fun1_2</code> or from <code>fun1_2</code> to <code>fun1_3</code> since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from <code>fun1_1</code> to <code>fun1_3</code>. Here too, the ratings of people with zero rating remained steady.</p>
-<ol start="5" style="list-style-type: decimal">
-<li>For Ambition</li>
-</ol>
-<p>Since most lines go upwards from <code>amb1_1</code> to <code>amb1_2</code>, we can say that people give more importance to the ambition of the other person the next day. From <code>amb1_2</code> to <code>amb1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from <code>amb1_1</code> to <code>amb1_3</code>.</p>
+<p><strong>1) For Attractiveness</strong></p>
+<p>Since most lines go slightly upwards from <code>attr1_1</code> to <code>attr1_2</code>, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From <code>attr1_2</code> to <code>attr1_3</code>, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks. In general, the importance of attractiveness usually keeps increasing for males more, while there is no pattern for females. However, the increase of importance for females is more drastic in females.</p>
+<p><strong>2) For Sincerity</strong></p>
+<p>Since most lines go upwards from <code>sinc1_1</code> to <code>sinc1_2</code>, we can say that people give more importance to the sincerity of the other person the next day. From <code>sinc1_2</code> to <code>sinc1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the sincerity of the partner. For females, the importance of sincerity increases the day after the experiment, but reduces drastically in 3-4 weeks. For males, their sincerity importance level remained steady with time.</p>
+<p><strong>3) For Intelligence</strong></p>
+<p>Most lines go upwards from <code>intel1_1</code> to <code>intel1_2</code>, some go downward, and some remain steady (especially the one with zero rating). Generally speaking, we can say that people give more intelligence to the sincerity right after the speed dating experiment. From <code>intel1_2</code> to <code>intel1_3</code>, most lines remain steady, many go downward, and some go upward indicating that as most people remain around at similar levels or remain indifferent of their partner’s intelligence. For most males, the importance of intelligence increased after the experiment and remained steady afterward. For most females, it first increased too and then decreased.</p>
+<p><strong>4) For Fun</strong></p>
+<p>There does not seem to be a pattern from <code>fun1_1</code> to <code>fun1_2</code> or from <code>fun1_2</code> to <code>fun1_3</code> since many lines go upward and downward both times. Moreover, the variation in the range of ratings keep increasing from <code>fun1_1</code> to <code>fun1_3</code>. Here too, the ratings of people with zero rating remained steady. No pattern is observed for particular genders.</p>
+<p><strong>5) For Ambition</strong></p>
+<p>Since most lines go upwards from <code>amb1_1</code> to <code>amb1_2</code>, we can say that people give more importance to the ambition of the other person the next day. From <code>amb1_2</code> to <code>amb1_3</code>, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from <code>amb1_1</code> to <code>amb1_3</code>. For females, the importance of ambition increased after the experiment, but decreased again in 3-4 weeks. For males, there seems to be an even distribution of people with increasing and decreasing importance.</p>
 
 </div>
 </div>

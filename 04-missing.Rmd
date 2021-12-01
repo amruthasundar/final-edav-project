@@ -1,9 +1,4 @@
-```{r libraries}
-# , warning = FALSE, message = FALSE, echo = TRUE, include = FALSE
-# knitr::opts_chunk$set(warning = FALSE, 
-#                       message = FALSE,
-#                       echo = TRUE,
-#                       include = FALSE)
+```{r}
 # Libraries
 library(tidyverse)
 library(patchwork)
@@ -17,7 +12,7 @@ library(Lock5withR)
 
 For the missing values chapter, we chose slightly more variables than the ones mentioned in the previous chapters. This is to represent a more general version of the missing value patterns in the data set.
  
-```{r read_data}
+```{r}
 df = read.csv("Speed Dating Data.csv")
 
 col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
