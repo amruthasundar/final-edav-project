@@ -7,10 +7,7 @@ library(tidyverse)
 library(patchwork)
 library(RColorBrewer)
 library(GGally)
-<<<<<<< HEAD
 library(dplyr)
-=======
->>>>>>> b767703b846da09d3db8077ae5b51568aca48934
 ```
 
 ## Representation of paricipants by different categories
