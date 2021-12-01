@@ -11,6 +11,7 @@ heatmap
 missing-patterns-question
 results
 representation-of-paricipants-by-different-categories
+number-of-yes-matches-per-participant
 interactive-component
 conclusion
 data-transformation-1

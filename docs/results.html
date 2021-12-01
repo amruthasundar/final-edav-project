@@ -93,6 +93,7 @@
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#representation-of-paricipants-by-different-categories"><i class="fa fa-check"></i><b>5.1</b> Representation of paricipants by different categories</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-yes-matches-per-participant"><i class="fa fa-check"></i><b>5.2</b> Number of yes matches per participant</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -123,26 +124,25 @@
 <p>First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.</p>
 <p>We have chosen four characteristics of the participants: field of study, age, race, and intended career. Here are the bar plots for the same.</p>
 <p><em>Note: The field, race, and career codes are summarized in the <a href="https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc">data key</a>.</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-59-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-164-1.png" width="1152" /></p>
 <p>Here are the inferences from these plots:</p>
-<ol style="list-style-type: decimal">
-<li>For field of study</li>
-</ol>
+<p><strong>1. For field of study</strong></p>
 <p>We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.</p>
 <p>The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).</p>
-<ol start="2" style="list-style-type: decimal">
-<li>For age group</li>
-</ol>
+<p><strong>2. For age group</strong></p>
 <p>We can observe that most students are between the age 20 and 30, with about 68 people with age around 27. Almost all the participants are between 18 and 39 years of age, with the exception of a few of age 42 and 55.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>For race</li>
-</ol>
+<p><strong>3. For race</strong></p>
 <p>We can observe that race 2, which is European/Caucasian-American is the highest represented group here, which has about 4700 participants. Second most highest represented race is 4, i.e., Asian/Pacific Islander/Asian-American with about 2000 participants.</p>
 <p>The count for race not specified is the least among all the races. Apart from that, the least represented race is Black/African American with about 450 participants.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>For intended career</li>
-</ol>
+<p><strong>4. For intended career</strong></p>
 <p>Here, we can observe that the intended career of most students is career 2 and 7, i.e., Academic/Research and Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin respectively. They constitute for about 155 and 135 participants respectively. The least represented career field is career 17, which is Architecture. Similar trend was seen in the representation by field of study.</p>
+</div>
+<div id="number-of-yes-matches-per-participant" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Number of yes matches per participant</h2>
+<p>In the original experiment, the variable <code>match</code> is the target variable. This indicates if the person was matched to the other person or not. We can use a Cleveland dot plot to show the number of yes matches each participant got. As mentioned before, we are using waves 10-21. Moreover, we faceted them by waves and color coded by the gender so we can also understand patterns among genders and within individual waves.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-165-1.png" width="1152" /></p>
+<p>Here, we can observe that the maximum number of yes matches of participants in waves 10 and 13 is always less than 5. Also, the highest number of matches for waves 20 and 18 is 3. Waves 11, 14, 15, 18 and 21 have a wide variety of matches for different people.</p>
+<p>Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.</p>
 
 </div>
 </div>

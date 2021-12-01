@@ -5,6 +5,7 @@ df = read.csv("Speed Dating Data.csv")
 
 library(tidyverse)
 library(patchwork)
+library(RColorBrewer)
 ```
 
 ## Representation of paricipants by different categories
@@ -68,32 +69,66 @@ g_by_career = ggplot(df_by_career, aes(x = career_c)) +
   ggtitle("Representation of participants by intended career")
 
 plot = (g_by_field | g_by_age)/(g_by_race | g_by_career)
-plot
+plot 
 ```
 
 Here are the inferences from these plots:
 
-1. For field of study
+**1. For field of study**
 
 We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.
 
 The 17th field of study, which is Architecture, constitutes about less than 1% of the participants. This is the least represented group in terms of field of study. Before that, comes field 12 (undecided), before which comes field 18 (other).
 
-2. For age group
+**2. For age group**
 
 We can observe that most students are between the age 20 and 30, with about 68 people with age around 27. Almost all the participants are between 18 and 39 years of age, with the exception of a few of age 42 and 55.
 
-3. For race
+**3. For race**
 
 We can observe that race 2, which is European/Caucasian-American is the highest represented group here, which has about 4700 participants. Second most highest represented race is 4, i.e., Asian/Pacific Islander/Asian-American with about 2000 participants.
 
 The count for race not specified is the least among all the races. Apart from that, the least represented race is Black/African American with about 450 participants.
 
-4. For intended career
+**4. For intended career**
 
 Here, we can observe that the intended career of most students is career 2 and 7, i.e., Academic/Research and Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin respectively. They constitute for about 155 and 135 participants respectively. The least represented career field is career 17, which is Architecture. Similar trend was seen in the representation by field of study.
 
 
+## Number of yes matches per participant
 
+In the original experiment, the variable `match` is the target variable. This indicates if the person was matched to the other person or not. We can use a Cleveland dot plot to show the number of yes matches each participant got. As mentioned before, we are using waves 10-21. Moreover, we faceted them by waves and color coded by the gender so we can also understand patterns among genders and within individual waves.
 
+```{r fig.width=12, fig.height=40}
+df_match_total = df %>% 
+  filter(wave %in% (10:21)) %>% 
+  select(iid, match, wave, gender) %>% 
+  group_by(iid) %>% 
+  mutate(yes = sum(match))
 
+df_match_total = unique(df_match_total)
+df_match_total$iid = as.factor(df_match_total$iid)
+df_match_total$wave = as.factor(df_match_total$wave)
+df_match_total$gender = factor(df_match_total$gender,
+                                levels = c(0,1),
+                                labels = c("female","male"))
+g_match_total = ggplot(df_match_total, aes(x = yes, y = reorder(iid, yes), color = gender)) +
+  geom_point(size = 3) +
+  scale_x_continuous(limits = c(0, 15), breaks = seq(0, 15, 5)) +
+  facet_grid(rows = vars(wave), scales = "free_y", space = "free_y") +
+  scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme_bw() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_line(colour = "grey60", linetype = "dashed")) +
+    xlab("Number of yes matches") +
+    ylab("Participant ID number") +
+    ggtitle("Number of yes matches per person faceted by wave",
+            subtitle = "For waves 10-21 (color-coded by gender)")
+
+g_match_total
+```
+
+Here, we can observe that the maximum number of yes matches of participants in waves 10 and 13 is always less than 5. Also, the highest number of matches for waves 20 and 18 is 3. Waves 11, 14, 15, 18 and 21 have a wide variety of matches for different people.
+
+Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.
