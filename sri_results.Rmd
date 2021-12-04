@@ -553,44 +553,6 @@ scale_fill_manual(values = getPalette_10(colourCount))
 
 ```
 
-
-```{r read_data}
-df_1 = read.csv("Speed Dating Data.csv")
-col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
-```
-
-# Subsetting Dataset 
-
-```{r}
-
-df_1_work <- df_1[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
-                            "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
-                            "attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
-                            "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2")]
-
-df_1_work <- df_1_work[ which(df_1_work$wave >= 10),]
-
-```
-
-```{r}
-
-df_1_pre <- df_1_work[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
-                            "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1")]
-
-df_1_pre <- df_1_pre[ which(df_1_pre$wave >= 10),]
-
-```
-
-
-```{r}
-
-df_1_post <- df_1_work[c(col_common, "attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
-                            "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2")]
-
-df_1_post <- df_1_post[ which(df_1_post$wave >= 10),]
-
-```
-
 ```{r}
 
 df_box_pre <- df_1_pre[c("gender","attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
