@@ -1,5 +1,20 @@
 # Results
 
+```{r libraries}
+# , warning = FALSE, message = FALSE, echo = TRUE, include = FALSE
+# knitr::opts_chunk$set(warning = FALSE, 
+#                       message = FALSE,
+#                       echo = TRUE,
+#                       include = FALSE)
+# Libraries
+library(tidyverse)
+library(patchwork)
+library(repr)
+library(ggnewscale)
+library(RColorBrewer)
+library(Lock5withR)
+library(dplyr)
+```
 
 **Question 1_1:**
 
