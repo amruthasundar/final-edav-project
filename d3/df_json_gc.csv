@@ -1,11 +1,49 @@
 "source","target","value"
-"female","a research position",5
-"female","academia",21
-"female","academic",67
-"female","academic research",10
-"female","academics",10
-"female","acting",22
-"female","actress",66
-"female","art educator and artist",21
-"female","artist",18
-"female","asset management",5
+"male","consulting",155
+"male","lawyer",146
+"male","professor",106
+"female","lawyer",102
+"male","finance",88
+"male","research",52
+"male","academic",51
+"female","professor",45
+"female","who knows",42
+"female","undecided",40
+"male","academia",40
+"male","banker",29
+"male","scientist",27
+"male","trader",27
+"female","finance",26
+"female","actress",22
+"male","management",22
+"female","dietician",21
+"female","researcher",21
+"female","scientist",21
+"female","business",20
+"female","historian",20
+"male","ceo",20
+"male","hero",20
+"male","make money",20
+"male","researcher",20
+"male","undecided",20
+"female","filmmaker",19
+"female","academic",18
+"female","teacher",18
+"male","writer",18
+"female","unknown",15
+"male","acadeic",15
+"male","film",15
+"female","educator",14
+"female","attorney",10
+"female","comedienne",10
+"female","economist",10
+"female","writer",10
+"male","attorney",10
+"male","banking",10
+"male","medicine",10
+"male","tax lawyer",10
+"male","trading",10
+"female","consulting",9
+"female","president",9
+"male","lobbyist",6
+"female","teaching",5

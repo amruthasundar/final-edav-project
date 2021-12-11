@@ -1,11 +1,55 @@
 "source","target","value"
-"1","academic research",10
-"1","banking",22
-"1","biotech/business",20
-"1","country analysis/research/credit analysis",20
-"1","diplomat / int'l civil servant",18
-"1","educator",9
-"1","enterpreneur",21
-"1","epidemiologist",17
-"1","film directing",19
-"1","governor",18
+"European/Caucasian-American","consulting",126
+"European/Caucasian-American","lawyer",94
+"European/Caucasian-American","professor",75
+"European/Caucasian-American","academic",69
+"European/Caucasian-American","finance",60
+"European/Caucasian-American","undecided",60
+"Asian/Pacific Islander/Asian-American","finance",54
+"Black/African American","lawyer",52
+"European/Caucasian-American","research",52
+"Asian/Pacific Islander/Asian-American","lawyer",48
+"European/Caucasian-American","scientist",48
+"Asian/Pacific Islander/Asian-American","professor",36
+"European/Caucasian-American","banker",29
+"Other","lawyer",28
+"Latino/Hispanic American","lawyer",26
+"European/Caucasian-American","actress",22
+"European/Caucasian-American","management",22
+"Latino/Hispanic American","professor",22
+"Asian/Pacific Islander/Asian-American","dietician",21
+"Asian/Pacific Islander/Asian-American","researcher",21
+"Black/African American","who knows",21
+"European/Caucasian-American","who knows",21
+"Latino/Hispanic American","academia",21
+"European/Caucasian-American","business",20
+"European/Caucasian-American","ceo",20
+"European/Caucasian-American","hero",20
+"European/Caucasian-American","historian",20
+"European/Caucasian-American","make money",20
+"European/Caucasian-American","researcher",20
+"Latino/Hispanic American","consulting",20
+"European/Caucasian-American","academia",19
+"European/Caucasian-American","filmmaker",19
+"Asian/Pacific Islander/Asian-American","consulting",18
+"European/Caucasian-American","teacher",18
+"European/Caucasian-American","trader",18
+"European/Caucasian-American","writer",18
+"Other","professor",18
+"European/Caucasian-American","unknown",15
+"Other","acadeic",15
+"Other","film",15
+"European/Caucasian-American","educator",14
+"Asian/Pacific Islander/Asian-American","banking",10
+"European/Caucasian-American","economist",10
+"European/Caucasian-American","medicine",10
+"European/Caucasian-American","tax lawyer",10
+"European/Caucasian-American","trading",10
+"Latino/Hispanic American","attorney",10
+"Latino/Hispanic American","writer",10
+"Other","attorney",10
+"Other","comedienne",10
+"Asian/Pacific Islander/Asian-American","president",9
+"Other","trader",9
+"European/Caucasian-American","lobbyist",6
+"European/Caucasian-American","teaching",5
