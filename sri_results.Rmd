@@ -174,9 +174,9 @@ p1 <- df_bar_f_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fi
   geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
   scale_x_discrete("Attributes", labels = c("mean_attr1_1" = "Attractive", "mean_sinc1_1" = "Sincerity", "mean_intel1_1" = 
                                               "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
   theme_gray(10) +
-  theme(legend.position = "none") +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - Before Experiment")
@@ -186,9 +186,9 @@ p2 <- df_bar_f_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, f
   geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
   scale_x_discrete("Attributes", labels = c("mean_attr1_2" = "Attractive", "mean_sinc1_2" = "Sincerity", "mean_intel1_2" = 
                                               "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
   theme_gray(10) + 
-  theme(legend.position = "none") +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - After Experiment")
@@ -202,9 +202,9 @@ p4<- df_bar_m_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fil
   geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
   scale_x_discrete("Attributes", labels = c("mean_attr1_1" = "Attractive", "mean_sinc1_1" = "Sincerity", "mean_intel1_1" = 
                                               "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
   theme_gray(10) +
-  theme(legend.position = "none") +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - Before Experiment")
@@ -214,9 +214,9 @@ p5 <- df_bar_m_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, f
   geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
   scale_x_discrete("Attributes", labels = c("mean_attr1_2" = "Attractive", "mean_sinc1_2" = "Sincerity", "mean_intel1_2" = 
                                               "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
   theme_gray(10) +
-  theme(legend.position = "none") + 
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - After Experiment")
@@ -436,54 +436,57 @@ p1 <- ggplot(data = df_bar_pre_plt_f) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
+                                                                        "fellow women rating")) +
   theme_gray(10) +
   theme(legend.title=element_blank()) + 
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
-  ggtitle("Female")
+  ggtitle("Female - Before Experiment")
 
-p2 <- ggplot(data = df_bar_pre_plt_m) +
+p2 <- ggplot(data = df_bar_post_plt_f) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
+                                                                        "fellow women rating")) +
   theme_gray(10) +
   theme(legend.title=element_blank()) + 
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
-  ggtitle("Male")
+  ggtitle("Female - After Experiment")
 
 p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
 
-annotate_figure(p3, top = textGrob("Attribute Importance Before Experiment",gp=gpar(fontsize=15)))
+annotate_figure(p3, top = textGrob("Attribute Importance for Female",gp=gpar(fontsize=15)))
 
-
-p4 <- ggplot(data = df_bar_post_plt_f) +
+p4 <- ggplot(data = df_bar_pre_plt_m) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
+                                                                        "fellow men rating")) +
   theme_gray(10) +
   theme(legend.title=element_blank()) + 
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
-  ggtitle("Female")
+  ggtitle("Male - Before Experiment")
 
 p5 <- ggplot(data = df_bar_post_plt_m) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
+                                                                        "fellow men rating")) +
   theme_gray(10) +
   theme(legend.title=element_blank()) + 
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
-  ggtitle("Male")
+  ggtitle("Male - After Experiment")
 
 p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 
-annotate_figure(p6, top = textGrob("Attribute Importance After Experiment",gp=gpar(fontsize=15)))
+annotate_figure(p6, top = textGrob("Attribute Importance for Male",gp=gpar(fontsize=15)))
 ```
 
 ```{r}
@@ -745,7 +748,8 @@ p1 <-  ggplot(data = df_box_pre_plt_f, aes(x = Attribute, y = value, fill = plot
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
                                                     "Fun", "amb" = "Ambition")) +
-        scale_fill_brewer(palette = "Pastel1") +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
         theme_gray(10) +
         theme(legend.title=element_blank()) + 
         ylab("Ratings out of 10") + 
@@ -756,7 +760,8 @@ p2 <-  ggplot(data = df_box_pre_plt_m, aes(x = Attribute, y = value, fill = plot
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
                                                     "Fun", "amb" = "Ambition")) +
-        scale_fill_brewer(palette = "Pastel1") +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
         theme_gray(10) +
         theme(legend.title=element_blank()) + 
         ylab("Ratings out of 10") + 
@@ -771,7 +776,8 @@ p4 <-  ggplot(data = df_box_post_plt_f, aes(x = Attribute, y = value, fill = plo
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
                                                     "Fun", "amb" = "Ambition")) +
-        scale_fill_brewer(palette = "Pastel1") +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
         theme_gray(10) +
         theme(legend.title=element_blank()) + 
         ylab("Ratings out of 10") + 
@@ -782,7 +788,8 @@ p5 <-  ggplot(data = df_box_post_plt_m, aes(x = Attribute, y = value, fill = plo
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
                                                     "Fun", "amb" = "Ambition")) +
-        scale_fill_brewer(palette = "Pastel1") +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
         theme_gray(10) +
         theme(legend.title=element_blank()) + 
         ylab("Ratings out of 100") + 
@@ -793,141 +800,3 @@ p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 
 annotate_figure(p6, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
 ```
-
-
-```{r}
-
-df = read.csv("Speed Dating Data.csv")
-
-```
-
-```{r}
-
-df_json_fc <- df[c("field","career")]
-
-df_json_fc$field <- tolower(df_json_fc$field)
-df_json_fc$career <- tolower(df_json_fc$career)
-
-df_json_fc <- df_json_fc %>%
-                group_by(field,career) %>%
-                  tally()
-
-df_json_fc <- subset(df_json_fc, df_json_fc$field != df_json_fc$career)
-df_json_fc <- subset(df_json_fc, df_json_fc$career != "??") 
-df_json_fc <- subset(df_json_fc, df_json_fc$career != "?") 
-df_json_fc <- subset(df_json_fc, df_json_fc$career != "") 
-
-df_json_fc <- df_json_fc[1:10,]
-
-colnames(df_json_fc) <- c("source","target","value")
-write.csv(df_json_fc,"df_json_fc.csv", row.names = FALSE)
-
-```
-
-```{r}
-
-df_json_gc <- df[c("gender","career")]
-
-df_json_gc <- df_json_gc %>% 
-  mutate(gender = ifelse(as.character(gender) == "0", "female", "male"))
-
-df_json_gc$gender <- tolower(df_json_gc$gender)
-df_json_gc$career <- tolower(df_json_gc$career)
-
-df_json_gc <- df_json_gc %>%
-                group_by(gender,career) %>%
-                  tally()
-
-df_json_gc <- subset(df_json_gc, df_json_gc$gender != df_json_gc$career) 
-df_json_gc <- subset(df_json_gc, df_json_gc$career != "??") 
-df_json_gc <- subset(df_json_gc, df_json_gc$career != "?") 
-df_json_gc <- subset(df_json_gc, df_json_gc$career != "") 
-
-df_json_gc <- df_json_gc[1:10,]
-
-colnames(df_json_gc) <- c("source","target","value")
-write.csv(df_json_gc,"df_json_gc.csv", row.names = FALSE)
-
-```
-
-```{r}
-
-df_json_rc <- df[c("race","career")]
-
-df_json_rc$race <- tolower(df_json_rc$race)
-df_json_rc$career <- tolower(df_json_rc$career)
-
-df_json_rc <- df_json_rc %>%
-                group_by(race,career) %>%
-                  tally()
-
-df_json_rc <- subset(df_json_rc, df_json_rc$race != df_json_rc$career)
-df_json_rc <- subset(df_json_rc, df_json_rc$career != "??") 
-df_json_rc <- subset(df_json_rc, df_json_rc$career != "?") 
-df_json_rc <- subset(df_json_rc, df_json_rc$career != "") 
-
-df_json_rc <- df_json_rc[1:10,]
-
-colnames(df_json_rc) <- c("source","target","value")
-write.csv(df_json_rc,"df_json_rc.csv", row.names = FALSE)
-
-```
-
-```{r}
-
-df_json_frc <- df[c("from","career")]
-
-df_json_frc$from <- tolower(df_json_frc$from)
-df_json_frc$career <- tolower(df_json_frc$career)
-
-df_json_frc <- df_json_frc %>%
-                group_by(from,career) %>%
-                  tally()
-
-df_json_frc <- subset(df_json_frc, df_json_frc$from != df_json_frc$career)
-df_json_frc <- df_json_frc[1:20,]
-
-colnames(df_json_frc) <- c("source","target","value")
-write.csv(df_json_frc,"df_json_frc.csv", row.names = FALSE)
-
-```
-
-```{r}
-
-df_json_cf <- df[c( "career","field","iid")]
-
-df_json_gf <- df[c( "gender","field","iid")]
-
-df_json_rf <- df[c( "race","field","iid")]
-
-df_json_frf <- df[c( "from","field","iid")]
-
-
-df_json_cg <- df[c( "career","gender","iid")]
-
-df_json_fg <- df[c( "field","gender","iid")]
-
-df_json_rg <- df[c( "race","gender","iid")]
-
-df_json_frg <- df[c( "from","gender","iid")]
-
-
-df_json_cr <- df[c( "career","race","iid")]
-
-df_json_fr <- df[c( "field","race","iid")]
-
-df_json_gr <- df[c( "gender","race","iid")]
-
-df_json_frr <- df[c( "from","race","iid")]
-
-
-df_json_cfr <- df[c( "career","from","iid")]
-
-df_json_ffr <- df[c( "field","from","iid")]
-
-df_json_gfr <- df[c( "gender","from","iid")]
-
-df_json_rfr <- df[c( "race","from","iid")]
-
-```
-
