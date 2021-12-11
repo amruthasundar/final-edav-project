@@ -54,8 +54,6 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
 <script>
 
   function pr() {
-
-
     var x = "df_json_"+ document.getElementById('src').value + document.getElementById('tar').value + ".csv";
     document.getElementById("result").innerHTML = x;
     d3.select("#sankey").select("svg").select("g").selectAll("g").remove()
@@ -63,7 +61,7 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
   }
 
   function plotAlluvial(x) {
-    d3.csv(x, function(error, data) {
+    d3.csv("https://raw.githubusercontent.com/amruthasundar/final-edav-project/main/d3/"+x, function(error, data) {
     //set up graph in same style as original example but empty
     graph = {"nodes" : [], "links" : []};
       

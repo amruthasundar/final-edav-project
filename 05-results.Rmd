@@ -1,8 +1,6 @@
 # Results
 
 ```{r}
-df = read.csv("Speed Dating Data.csv")
-
 library(tidyverse)
 library(patchwork)
 library(RColorBrewer)
@@ -13,6 +11,10 @@ library(Lock5withR)
 library(vcd)
 library(gridExtra)
 
+```
+
+```{r read_data}
+df = read.csv("Speed Dating Data.csv")
 ```
 
 ## Representation of paricipants by different categories
@@ -225,7 +227,7 @@ grid.arrange(amb, attr, nrow=1)
 ```
 
 Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,
-
+  
 * Race 2 - Majority of the participants are from Race 2 and the distribution of importance for ambition is split from 0 to 20. The same 
 
 ## Change of feature perception with time
@@ -854,8 +856,8 @@ scale_fill_manual(values = getPalette_10(colourCount))
 ```
 
 
-```{r read_data}
-df_1 = read.csv("Speed Dating Data.csv")
+```{r}
+df_1 = df
 col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
 ```
 

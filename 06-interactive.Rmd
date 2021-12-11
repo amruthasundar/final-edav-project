@@ -1,3 +1,7 @@
 # Interactive component
 
 
+```{r, echo=FALSE}
+print("inside tools")
+htmltools::includeHTML("d3/d3_alluvial.html")
+```
