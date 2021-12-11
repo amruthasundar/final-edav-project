@@ -33,7 +33,7 @@
   
 <link rel="prev" href="results.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,7 +119,6 @@
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
-<pre><code>## [1] &quot;inside tools&quot;</code></pre>
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/2000/svg"
 xmlns:xlink="https://www.w3.org/1999/xlink" >
@@ -602,7 +601,7 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
 var units = "Widgets";
 
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 1200 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 900 - margin.top - margin.bottom;
 
 var formatNumber = d3.format(",.0f"),    // zero decimal places
@@ -619,8 +618,8 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
 
 // Set the sankey diagram properties
 var sankey = d3.sankey()
-    .nodeWidth(8)
-    .nodePadding(27)
+    .nodeWidth(20)
+    .nodePadding(15)
     .size([width, height]);
 
 var path = sankey.link();
