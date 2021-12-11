@@ -3,7 +3,6 @@
 xmlns:xlink="https://www.w3.org/1999/xlink" >
 <meta charset="utf-8">
 <head>
-<title>SANKEY Experiment</title>
 
 <script src="https://d3js.org//d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -26,7 +25,7 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
   </head>
 <body>
   
-  <form  method="get", style="text-align: center;">
+  <form  method="get">
     <select name="src" id="src">
       <option value="f">Field</option>
       <option value="g">Gender</option>
@@ -35,7 +34,7 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
       <option value="c">Career</option>
     </select>
     
-    &nbsp;
+    &emsp;
 
     <select name="tar" id="tar">
       <option value="f">Field</option>
@@ -45,23 +44,18 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
       <option value="c">Career</option>
     </select>
     
-    &nbsp;
+    &emsp;
 
-    Alluvial: <span id="result"></span>
-    
-    &nbsp;
+    <!--Alluvial: <span id="result"></span>-->
 
     <input type="button" value="Plot" onClick="pr()">
   </form>
  
   
-<div id="sankey", style="text-align: center;">
+<div id="sankey">
 
 <script>
 
-  //////////////////////////////////////////////////////////////////////////////////////
-  
-  
   d3.sankey = function() {
   var sankey = {},
       nodeWidth = 24,
@@ -487,7 +481,7 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
 var units = "Widgets";
 
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 750 - margin.left - margin.right,
+    width = 500 - margin.left - margin.right,
     height = 900 - margin.top - margin.bottom;
 
 var formatNumber = d3.format(",.0f"),    // zero decimal places
