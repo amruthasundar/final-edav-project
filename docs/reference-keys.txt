@@ -19,3 +19,8 @@ results-1
 next-day
 srividya-part
 subsetting-dataset
+analyzing-the-interesting-variables-from-correlation-plots
+view-attributes-by-race-and-age
+subsetting-dataset-1
+srividya-part-1
+analysis-of-decision-making-on-categorical-variable---race

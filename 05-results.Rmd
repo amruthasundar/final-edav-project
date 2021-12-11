@@ -7,7 +7,12 @@ library(tidyverse)
 library(patchwork)
 library(RColorBrewer)
 library(GGally)
-library(dplyr)
+library(repr)
+library(ggnewscale)
+library(Lock5withR)
+library(vcd)
+library(gridExtra)
+
 ```
 
 ## Representation of paricipants by different categories
@@ -165,6 +170,64 @@ Some of the interesting inferences we can make regarding the plots are,
 * The trend that is seen in all the plots of attributes of attractiveness, sincerity, intelligence, fun and ambition is that, as the rating or the priority of certain feature increases, the number of matches goes down, for a few points. This is justifiable with the points that are to the farthest right at the bottom. This is expected as participants who have a really high expectation on one feature might not find someone suitable to meet their high expectations on that feature.
 * It is interesting to note that the same plot of features vs total matches also exhibits some anomaly. There seems to be one point in all these plots that have a relatively medium level rating/priority while the number of matches is pretty high. This can be verified by the top most point to the left of the plots. There were some participants who are estimated to have based their criteria of matching on factors others that the ones that were rated on. This can be infered as they have a relatively high number of matches than their peers who matched less, given the same priority for those features.
 
+## Analysis of decision making on categorical variable - Race
+
+One of the factors of taken into consideration for understanding the requirements of participant's expectation with their partners is the Race. Each participant is required to report a rating out of 10 for their potential partner to be of the same race as them. This visualization is to analyze whether the actual decision of the partcipants is influenced by any other factors that overpowers them to match with their dates from Race other than their own. 
+
+The following hexmap is a visual of Proportion of Matches that interested the participants from the same Race vs Importance of Race reported before the actual experiment. 
+
+```{r}
+
+filtered_df = df %>% filter(wave %in% (10:21))
+filtered_df['samerace'] = (filtered_df$race==filtered_df$race_o)
+matched_df = filtered_df %>% 
+  filter(match==1) %>% 
+  group_by(iid, samerace, imprace) %>% 
+  summarise(race_match=sum(match)) %>% 
+  filter(samerace==1)
+
+total_match = df %>% group_by(iid) %>% summarise(total_matches=sum(match))
+final_df_count = merge(matched_df, total_match, by='iid', all.x = TRUE)
+final_df_count['race_match_proportion'] = final_df_count['race_match'] / final_df_count['total_matches']
+# take scatter plot of race_match_proportion and imprace
+ggplot(final_df_count, aes(imprace, race_match_proportion)) +
+  geom_hex(bins=8) +
+  scale_fill_gradient(low='#B3ECAD', high='darkslategrey') +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) 
+
+```
+
+The hexmap uncovers some interesting patterns observed from the participants' responses,
+
+* There are instances of participants matching with only participants of different Races irrespective of their response to Importance of same Race. This indicates that Race is clearly not the sole factor for making a decision of matching with people.
+* There is one anomaly at the top right hex cell which has the highest count of people matching with participants of the same Race despite giving a lower priority on importance of same Race.
+* The count of people who have a high importance to matching with the same Race but indeed have agreed to match with the same Race are relatively low. This is indicated by light green hex patches implying a lower frequency of people matching within their own race.
+* The presence of hexagons on the lower proportion of matches within the same race for higher values of importance of Race is intriguing. From this we can infer that participants who were strongly inclined to match with their own Race, changed their mind after the experiment. This gives a clear indicator that other attributes of a person overpowered their mindset of same Race.
+
+## Attribute Rating Analysis by Race  
+
+From the previous plot we inferred that certain attributes are strong enough to change participant's prior perception of importance of Race. Diving further, we want to understand how the attributes are rated for differently across the Race of the participants. This sheds light on how certain group of participants, characteristically from a certain Race, have prioritized attributes in their potential partners. 
+Below is a mosaic plot for two specific features - attractiveness and ambition as independent features and visualized by Race as the dependent variable.
+
+```{r fig.width=15, fig.height=15}
+
+df_distinct$amb1_1 = round(df_distinct$amb1_1+5, -1)
+df_distinct$attr1_1 = round(df_distinct$attr1_1+5, -1)
+
+amb = grid.grabExpr(mosaic(race ~ amb1_1, direction = c("v", "h"), df_distinct, highlighting_fill = c('darkolivegreen4', 'darkolivegreen2', 'darkseagreen3', 'darkslategrey', 'chartreuse3')))
+attr = grid.grabExpr(mosaic(race ~ attr1_1, direction = c("v", "h"), df_distinct, highlighting_fill = c('darkolivegreen4', 'darkolivegreen2', 'darkseagreen3', 'darkslategrey', 'chartreuse3')))
+grid.arrange(amb, attr, nrow=1)
+
+```
+
+Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,
+
+* Race 2 - Majority of the participants are from Race 2 and the distribution of importance for ambition is split from 0 to 20. The same 
+
 ## Change of feature perception with time
 
 Here, our objective is to find that if a participant's perspective (ratings) on which features they are looking for in the opposite sex change with time, especially before and after the speed dating experiment. For this part, we chose one question in particular from the survey: 
@@ -289,60 +352,7 @@ There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` t
 
 Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`. For females, the importance of ambition increased after the experiment, but decreased again in 3-4 weeks. For males, there seems to be an even distribution of people with increasing and decreasing importance.
 
-# Results
-
-```{r libraries}
-# , warning = FALSE, message = FALSE, echo = TRUE, include = FALSE
-# knitr::opts_chunk$set(warning = FALSE, 
-#                       message = FALSE,
-#                       echo = TRUE,
-#                       include = FALSE)
-# Libraries
-library(tidyverse)
-library(patchwork)
-library(repr)
-library(ggnewscale)
-library(RColorBrewer)
-library(Lock5withR)
-library(dplyr)
-```
-**Question 1_1:**
-
-**We want to know what you look for in the opposite sex.**
-
-**Question 2_1:**
-
-**What do you think the opposite sex looks for in a date?**
-
-**Question 4_1:**
-
-**Now we want to know what you think MOST of your fellow men/women look for in the opposite sex**
-
-# Next Day
-
-**Question 1_2:**
-
-**We want to know what you look for in the opposite sex.**
-
-**Question 2_2:**
-
-**What do you think the opposite sex looks for in a date?**
-
-**Question 4_2:**
-
-**Now we want to know what you think MOST of your fellow men/women look for in the opposite sex**
-
-
-
 ### SRIVIDYA PART
-
-```{r read_data}
-df = read.csv("Speed Dating Data.csv")
-col_common = c("iid", "pid", "gender", "match", "age", "field", "race", "from", "income", "goal", "career", "wave")
-# df_1 = df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
-# df_2 = df[c(col_common, "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1")]
-# df_4 = df[c(col_common, "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
-```
 
 # Subsetting Dataset 
 
