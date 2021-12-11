@@ -63,6 +63,7 @@ df_json_gc <- df_json_gc %>%
                   tally()
 
 df_json_gc <- df_json_gc[order(-df_json_gc$n),]
+df_json_gc <- df_json_gc[1:35,]
 
 colnames(df_json_gc) <- c("source","target","value")
 write.csv(df_json_gc,"df_json_gc.csv", row.names = FALSE)
@@ -78,6 +79,7 @@ df_json_rc <- df_json_rc %>%
                   tally()
 
 df_json_rc <- df_json_rc[order(-df_json_rc$n),]
+df_json_rc <- df_json_rc[1:40,]
 
 colnames(df_json_rc) <- c("source","target","value")
 write.csv(df_json_rc,"df_json_rc.csv", row.names = FALSE)
@@ -93,7 +95,7 @@ df_json_frc <- df_json_frc %>%
                   tally()
 
 df_json_frc <- df_json_frc[order(-df_json_frc$n),]
-df_json_frc <- df_json_frc[1:53,]
+df_json_frc <- df_json_frc[1:35,]
 
 colnames(df_json_frc) <- c("source","target","value")
 write.csv(df_json_frc,"df_json_frc.csv", row.names = FALSE)
@@ -157,7 +159,7 @@ df_json_frf <- df_json_frf %>%
                   tally()
 
 df_json_frf <- df_json_frf[order(-df_json_frf$n),]
-df_json_frf <- df_json_frf[1:50,]
+df_json_frf <- df_json_frf[1:35,]
 
 colnames(df_json_frf) <- c("source","target","value")
 write.csv(df_json_frf,"df_json_frf.csv", row.names = FALSE)
@@ -173,6 +175,7 @@ df_json_cg <- df_json_cg %>%
                   tally()
 
 df_json_cg <- df_json_cg[order(-df_json_cg$n),]
+df_json_cg <- df_json_cg[1:40,]
 
 colnames(df_json_cg) <- c("source","target","value")
 write.csv(df_json_cg,"df_json_cg.csv", row.names = FALSE)
@@ -220,7 +223,7 @@ df_json_frg <- df_json_frg %>%
                   tally()
 
 df_json_frg <- df_json_frg[order(-df_json_frg$n),]
-df_json_frg <- df_json_frg[1:50,]
+df_json_frg <- df_json_frg[1:35,]
 
 colnames(df_json_frg) <- c("source","target","value")
 write.csv(df_json_frg,"df_json_frg.csv", row.names = FALSE)
@@ -236,6 +239,7 @@ df_json_cr <- df_json_cr %>%
                   tally()
 
 df_json_cr <- df_json_cr[order(-df_json_cr$n),]
+df_json_cr <- df_json_cr[1:35,]
 
 colnames(df_json_cr) <- c("source","target","value")
 write.csv(df_json_cr,"df_json_cr.csv", row.names = FALSE)
@@ -281,7 +285,7 @@ df_json_frr <- df_json_frr %>%
                   tally()
 
 df_json_frr <- df_json_frr[order(-df_json_frr$n),]
-df_json_frr <- df_json_frr[1:50,]
+df_json_frr <- df_json_frr[1:30,]
 
 colnames(df_json_frr) <- c("source","target","value")
 write.csv(df_json_frr,"df_json_frr.csv", row.names = FALSE)
@@ -297,7 +301,7 @@ df_json_cfr <- df_json_cfr %>%
                   tally()
 
 df_json_cfr <- df_json_cfr[order(-df_json_cfr$n),]
-df_json_cfr <- df_json_cfr[1:53,]
+df_json_cfr <- df_json_cfr[1:35,]
 
 colnames(df_json_cfr) <- c("source","target","value")
 write.csv(df_json_cfr,"df_json_cfr.csv", row.names = FALSE)
@@ -313,7 +317,7 @@ df_json_ffr <- df_json_ffr %>%
                   tally()
 
 df_json_ffr <- df_json_ffr[order(-df_json_ffr$n),]
-df_json_ffr <- df_json_ffr[1:53,]
+df_json_ffr <- df_json_ffr[1:35,]
 
 colnames(df_json_ffr) <- c("source","target","value")
 write.csv(df_json_ffr,"df_json_ffr.csv", row.names = FALSE)
@@ -329,7 +333,7 @@ df_json_gfr <- df_json_gfr %>%
                   tally()
 
 df_json_gfr <- df_json_gfr[order(-df_json_gfr$n),]
-df_json_gfr <- df_json_gfr[1:53,]
+df_json_gfr <- df_json_gfr[1:35,]
 
 colnames(df_json_gfr) <- c("source","target","value")
 write.csv(df_json_gfr,"df_json_gfr.csv", row.names = FALSE)
@@ -345,7 +349,7 @@ df_json_rfr <- df_json_rfr %>%
                   tally()
 
 df_json_rfr <- df_json_rfr[order(-df_json_rfr$n),]
-df_json_rfr <- df_json_rfr[1:53,]
+df_json_rfr <- df_json_rfr[1:30,]
 
 colnames(df_json_rfr) <- c("source","target","value")
 write.csv(df_json_rfr,"df_json_rfr.csv", row.names = FALSE)
