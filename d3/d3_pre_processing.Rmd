@@ -1,0 +1,354 @@
+---
+title: "d3_pre_processing"
+author: "Srividya"
+date: "11/12/2021"
+output: html_document
+---
+
+```{r}
+
+df = read.csv("Speed Dating Data.csv")
+
+df <- df %>% 
+  mutate(gender = ifelse(as.character(gender) == "0", "female", "male"))
+
+df$race[df$race =="1"] <- "Black/African American" 
+df$race[df$race =="2"] <- "European/Caucasian-American" 
+df$race[df$race =="3"] <- "Latino/Hispanic American" 
+df$race[df$race =="4"] <- "Asian/Pacific Islander/Asian-American" 
+df$race[df$race =="5"] <- "Native American" 
+df$race[df$race =="6"] <- "Other" 
+
+df$field <- tolower(df$field)
+df$career <- tolower(df$career)
+df$from <- tolower(df$from)
+
+df$career[df$career =="attorney?"] <- "attorney" 
+df$from[df$from =="nj"] <- "new jersey" 
+df$from[df$from =="nyc"] <- "new york city" 
+
+df <- subset(df, df$field != df$career)
+df <- subset(df, df$career != "??") 
+df <- subset(df, df$career != "?") 
+df <- subset(df, df$career != "")
+df <- subset(df, nchar(as.character(df$career)) <= 10)
+df <- subset(df, nchar(as.character(df$field)) <= 10)
+df <- subset(df, nchar(as.character(df$from)) <= 15)
+
+```
+
+```{r}
+
+df_json_fc <- df[c("field","career")]
+
+df_json_fc <- df_json_fc %>%
+                group_by(field,career) %>%
+                  tally()
+
+
+df_json_fc <- df_json_fc[order(-df_json_fc$n),]
+df_json_fc <- df_json_fc[1:50,]
+
+colnames(df_json_fc) <- c("source","target","value")
+write.csv(df_json_fc,"df_json_fc.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_gc <- df[c("gender","career")]
+
+df_json_gc <- df_json_gc %>%
+                group_by(gender,career) %>%
+                  tally()
+
+df_json_gc <- df_json_gc[order(-df_json_gc$n),]
+
+colnames(df_json_gc) <- c("source","target","value")
+write.csv(df_json_gc,"df_json_gc.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_rc <- df[c("race","career")]
+
+df_json_rc <- df_json_rc %>%
+                group_by(race,career) %>%
+                  tally()
+
+df_json_rc <- df_json_rc[order(-df_json_rc$n),]
+
+colnames(df_json_rc) <- c("source","target","value")
+write.csv(df_json_rc,"df_json_rc.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_frc <- df[c("from","career")]
+
+df_json_frc <- df_json_frc %>%
+                group_by(from,career) %>%
+                  tally()
+
+df_json_frc <- df_json_frc[order(-df_json_frc$n),]
+df_json_frc <- df_json_frc[1:53,]
+
+colnames(df_json_frc) <- c("source","target","value")
+write.csv(df_json_frc,"df_json_frc.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_cf <- df[c( "career","field","iid")]
+
+df_json_cf <- df_json_cf %>%
+                group_by(career,field) %>%
+                  tally()
+
+
+df_json_cf <- df_json_cf[order(-df_json_cf$n),]
+df_json_cf <- df_json_cf[1:50,]
+
+colnames(df_json_cf) <- c("source","target","value")
+write.csv(df_json_cf,"df_json_cf.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_gf <- df[c( "gender","field","iid")]
+
+df_json_gf <- df_json_gf %>%
+                group_by(gender,field) %>%
+                  tally()
+
+
+df_json_gf <- df_json_gf[order(-df_json_gf$n),]
+
+colnames(df_json_gf) <- c("source","target","value")
+write.csv(df_json_gf,"df_json_gf.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_rf <- df[c( "race","field","iid")]
+
+df_json_rf <- df_json_rf %>%
+                group_by(race,field) %>%
+                  tally()
+
+df_json_rf <- df_json_rf[order(-df_json_rf$n),]
+
+colnames(df_json_rf) <- c("source","target","value")
+write.csv(df_json_rf,"df_json_rf.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_frf <- df[c( "from","field","iid")]
+
+df_json_frf <- df_json_frf %>%
+                group_by(from,field) %>%
+                  tally()
+
+df_json_frf <- df_json_frf[order(-df_json_frf$n),]
+df_json_frf <- df_json_frf[1:50,]
+
+colnames(df_json_frf) <- c("source","target","value")
+write.csv(df_json_frf,"df_json_frf.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_cg <- df[c( "career","gender","iid")]
+
+df_json_cg <- df_json_cg %>%
+                group_by(career,gender) %>%
+                  tally()
+
+df_json_cg <- df_json_cg[order(-df_json_cg$n),]
+
+colnames(df_json_cg) <- c("source","target","value")
+write.csv(df_json_cg,"df_json_cg.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_fg <- df[c( "field","gender","iid")]
+
+df_json_fg <- df_json_fg %>%
+                group_by(field,gender) %>%
+                  tally()
+
+df_json_fg <- df_json_fg[order(-df_json_fg$n),]
+
+colnames(df_json_fg) <- c("source","target","value")
+write.csv(df_json_fg,"df_json_fg.csv", row.names = FALSE)
+
+
+```
+
+```{r}
+
+df_json_rg <- df[c( "race","gender","iid")]
+
+df_json_rg <- df_json_rg %>%
+                group_by(race,gender) %>%
+                  tally()
+
+df_json_rg <- df_json_rg[order(-df_json_rg$n),]
+
+colnames(df_json_rg) <- c("source","target","value")
+write.csv(df_json_rg,"df_json_rg.csv", row.names = FALSE)
+
+
+```
+
+```{r}
+
+df_json_frg <- df[c( "from","gender","iid")]
+
+df_json_frg <- df_json_frg %>%
+                group_by(from,gender) %>%
+                  tally()
+
+df_json_frg <- df_json_frg[order(-df_json_frg$n),]
+df_json_frg <- df_json_frg[1:50,]
+
+colnames(df_json_frg) <- c("source","target","value")
+write.csv(df_json_frg,"df_json_frg.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_cr <- df[c( "career","race","iid")]
+
+df_json_cr <- df_json_cr %>%
+                group_by(career,race) %>%
+                  tally()
+
+df_json_cr <- df_json_cr[order(-df_json_cr$n),]
+
+colnames(df_json_cr) <- c("source","target","value")
+write.csv(df_json_cr,"df_json_cr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_fr <- df[c( "field","race","iid")]
+
+df_json_fr <- df_json_fr %>%
+                group_by(field,race) %>%
+                  tally()
+
+df_json_fr <- df_json_fr[order(-df_json_fr$n),]
+
+colnames(df_json_fr) <- c("source","target","value")
+write.csv(df_json_fr,"df_json_fr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_gr <- df[c( "gender","race","iid")]
+
+df_json_gr <- df_json_gr %>%
+                group_by(gender,race) %>%
+                  tally()
+
+df_json_gr <- df_json_gr[order(-df_json_gr$n),]
+
+colnames(df_json_gr) <- c("source","target","value")
+write.csv(df_json_gr,"df_json_gr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_frr <- df[c( "from","race","iid")]
+
+df_json_frr <- df_json_frr %>%
+                group_by(from,race) %>%
+                  tally()
+
+df_json_frr <- df_json_frr[order(-df_json_frr$n),]
+df_json_frr <- df_json_frr[1:50,]
+
+colnames(df_json_frr) <- c("source","target","value")
+write.csv(df_json_frr,"df_json_frr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_cfr <- df[c( "career","from","iid")]
+
+df_json_cfr <- df_json_cfr %>%
+                group_by(career,from) %>%
+                  tally()
+
+df_json_cfr <- df_json_cfr[order(-df_json_cfr$n),]
+df_json_cfr <- df_json_cfr[1:53,]
+
+colnames(df_json_cfr) <- c("source","target","value")
+write.csv(df_json_cfr,"df_json_cfr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_ffr <- df[c( "field","from","iid")]
+
+df_json_ffr <- df_json_ffr %>%
+                group_by(field,from) %>%
+                  tally()
+
+df_json_ffr <- df_json_ffr[order(-df_json_ffr$n),]
+df_json_ffr <- df_json_ffr[1:53,]
+
+colnames(df_json_ffr) <- c("source","target","value")
+write.csv(df_json_ffr,"df_json_ffr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_gfr <- df[c( "gender","from","iid")]
+
+df_json_gfr <- df_json_gfr %>%
+                group_by(gender,from) %>%
+                  tally()
+
+df_json_gfr <- df_json_gfr[order(-df_json_gfr$n),]
+df_json_gfr <- df_json_gfr[1:53,]
+
+colnames(df_json_gfr) <- c("source","target","value")
+write.csv(df_json_gfr,"df_json_gfr.csv", row.names = FALSE)
+
+```
+
+```{r}
+
+df_json_rfr <- df[c( "race","from","iid")]
+
+df_json_rfr <- df_json_rfr %>%
+                group_by(race,from) %>%
+                  tally()
+
+df_json_rfr <- df_json_rfr[order(-df_json_rfr$n),]
+df_json_rfr <- df_json_rfr[1:53,]
+
+colnames(df_json_rfr) <- c("source","target","value")
+write.csv(df_json_rfr,"df_json_rfr.csv", row.names = FALSE)
+```
+
+
