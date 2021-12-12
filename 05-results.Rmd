@@ -10,6 +10,8 @@ library(ggnewscale)
 library(Lock5withR)
 library(vcd)
 library(gridExtra)
+library(grid)
+library(ggpubr)
 
 ```
 
@@ -353,3 +355,732 @@ There does not seem to be a pattern from `fun1_1` to `fun1_2` or from `fun1_2` t
 **5) For Ambition**
 
 Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people give more importance to the ambition of the other person the next day. From `amb1_2` to `amb1_3`, most lines go downward indicating that as most time passes (line 3-4 weeks), most people give less importance to the ambition of the partner. Here too, the ratings of people with zero rating remained steady. Moreover, some drastic increase (about 60% to 100%) and decrease (60% to 0%) of the importance of ambition is observed from `amb1_1` to `amb1_3`. For females, the importance of ambition increased after the experiment, but decreased again in 3-4 weeks. For males, there seems to be an even distribution of people with increasing and decreasing importance.
+
+```{r}
+# Explanation and headings to be filled for these sections
+```
+
+## Subsetting Dataset 
+
+```{r}
+df_work <- df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                            "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1",
+                            "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1",
+                            "attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                            "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2",
+                            "attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2",
+                            "satis_2")]
+df_work <- df_work[ which(df_work$wave >= 10),]
+```
+
+```{r}
+df_pre <- df_work[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                            "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1",
+                            "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
+df_pre <- df_pre[ which(df_pre$wave >= 10),]
+
+
+```
+
+
+```{r}
+df_post <- df_work[c(col_common, "attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                            "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2",
+                            "attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2",
+                            "satis_2")]
+df_post <- df_post[ which(df_post$wave >= 10),]
+
+
+```
+
+```{r}
+df_bar_f_pre <- df_pre[c("iid","gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
+df_bar_f_pre<- df_bar_f_pre[ which(df_bar_f_pre$gender == 0),]
+
+df_bar_f_pre<- df_bar_f_pre %>%
+                      	group_by(iid,gender) %>%
+                      	summarise(mean_attr1_1 = mean(attr1_1),
+                      	          mean_sinc1_1 = mean(sinc1_1),
+                      	          mean_intel1_1 = mean(intel1_1),
+                      	          mean_fun1_1 = mean(fun1_1),
+                      	          mean_amb1_1 = mean(amb1_1))
+
+df_bar_f_pre <- pivot_longer(data = df_bar_f_pre, cols = c("mean_attr1_1", "mean_sinc1_1", "mean_intel1_1", "mean_fun1_1", "mean_amb1_1"))
+df_bar_f_pre$value[is.na(df_bar_f_pre$value)]<-mean(df_bar_f_pre$value,na.rm=TRUE)
+
+
+
+```
+
+```{r}
+df_bar_f_post <- df_post[c("iid","gender","attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2")]
+df_bar_f_post <- df_bar_f_post[ which(df_bar_f_post$gender == 0),]
+df_bar_f_post <- df_bar_f_post %>%
+                      	group_by(iid,gender) %>%
+                      	summarise(mean_attr1_2 = mean(attr1_2),
+                      	          mean_sinc1_2 = mean(sinc1_2),
+                      	          mean_intel1_2 = mean(intel1_2),
+                      	          mean_fun1_2 = mean(fun1_2),
+                      	          mean_amb1_2 = mean(amb1_2))
+
+df_bar_f_post <- pivot_longer(data = df_bar_f_post, cols = c("mean_attr1_2", "mean_sinc1_2", "mean_intel1_2", "mean_fun1_2", "mean_amb1_2"))
+df_bar_f_post$value[is.na(df_bar_f_post$value)]<-mean(df_bar_f_post$value,na.rm=TRUE)
+```
+
+```{r}
+df_bar_m_pre <- df_pre[c("iid","gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1")]
+df_bar_m_pre<- df_bar_m_pre[ which(df_bar_m_pre$gender == 1),]
+df_bar_m_pre<- df_bar_m_pre %>%
+                      	group_by(iid,gender) %>%
+                      	summarise(mean_attr1_1 = mean(attr1_1),
+                      	          mean_sinc1_1 = mean(sinc1_1),
+                      	          mean_intel1_1 = mean(intel1_1),
+                      	          mean_fun1_1 = mean(fun1_1),
+                      	          mean_amb1_1 = mean(amb1_1))
+# d1 <- pivot_longer(!iid, names_to = "colmn_names", values_to = "colmn_val")
+df_bar_m_pre <- pivot_longer(data = df_bar_m_pre, cols = c("mean_attr1_1", "mean_sinc1_1", "mean_intel1_1", "mean_fun1_1", "mean_amb1_1"))
+df_bar_m_pre$value[is.na(df_bar_m_pre$value)]<-mean(df_bar_m_pre$value,na.rm=TRUE)
+```
+
+```{r}
+df_bar_m_post <- df_post[c("iid","gender","attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2")]
+df_bar_m_post <- df_bar_m_post[ which(df_bar_m_post$gender == 1),]
+df_bar_m_post <- df_bar_m_post %>%
+                      	group_by(iid,gender) %>%
+                      	summarise(mean_attr1_2 = mean(attr1_2),
+                      	          mean_sinc1_2 = mean(sinc1_2),
+                      	          mean_intel1_2 = mean(intel1_2),
+                      	          mean_fun1_2 = mean(fun1_2),
+                      	          mean_amb1_2 = mean(amb1_2))
+# d1 <- pivot_longer(!iid, names_to = "colmn_names", values_to = "colmn_val")
+df_bar_m_post <- pivot_longer(data = df_bar_m_post, cols = c("mean_attr1_2", "mean_sinc1_2", "mean_intel1_2", "mean_fun1_2", "mean_amb1_2"))
+df_bar_m_post$value[is.na(df_bar_m_post$value)]<-mean(df_bar_m_post$value,na.rm=TRUE)
+```
+
+```{r}
+# bar plots for gender female pre
+p1 <- df_bar_f_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fill = name)) +
+  geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("mean_attr1_1" = "Attractive", "mean_sinc1_1" = "Sincerity", "mean_intel1_1" = 
+                                              "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
+  theme_gray(10) +
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Female - Before Experiment")
+
+# bar plots for gender Female post
+p2 <- df_bar_f_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fill = name)) +
+  geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("mean_attr1_2" = "Attractive", "mean_sinc1_2" = "Sincerity", "mean_intel1_2" = 
+                                              "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
+  theme_gray(10) + 
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Female - After Experiment")
+
+p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p3, top = textGrob("Importance of different Attributes for each Gender Group",gp=gpar(fontsize=15)))
+
+# bar plots for gender Male pre
+p4<- df_bar_m_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fill = name)) +
+  geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("mean_attr1_1" = "Attractive", "mean_sinc1_1" = "Sincerity", "mean_intel1_1" = 
+                                              "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
+  theme_gray(10) +
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Male - Before Experiment")
+
+# bar plots for gender Male post
+p5 <- df_bar_m_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fill = name)) +
+  geom_bar(stat = 'summary', fun = 'mean', color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("mean_attr1_2" = "Attractive", "mean_sinc1_2" = "Sincerity", "mean_intel1_2" = 
+                                              "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
+                                                                        "fun","intelligence","sincerity")) +
+  theme_gray(10) +
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Male - After Experiment")
+
+p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p6, top = textGrob("Importance of different Attributes for each Gender Group",gp=gpar(fontsize=15)))
+
+```
+
+```{r}
+df_bar_pre <- df_pre[c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                                          "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1",
+                                          "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1")]
+for(i in 1:ncol(df_bar_pre)){
+  df_bar_pre[is.na(df_bar_pre[,i]), i] <- mean(df_bar_pre[,i], na.rm = TRUE)
+}
+df_bar_pre <- df_bar_pre %>% 
+                    group_by(gender) %>%
+                      summarise(across(everything(), mean))
+```
+
+
+```{r}
+df_bar_pre_f <- df_bar_pre[ which(df_bar_pre$gender == 0),]
+df_bar_pre_f <- select(df_bar_pre_f,-c("gender","attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1"))
+df_bar_pre_f_1 <- df_bar_pre[ which(df_bar_pre$gender == 1),]
+df_bar_pre_f_1 <- select(df_bar_pre_f_1,-c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                                                    "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1"))
+df_bar_pre_f <- cbind(df_bar_pre_f, attr4_1 = df_bar_pre_f_1$attr4_1 , 
+                                    sinc4_1 = df_bar_pre_f_1$sinc4_1 , 
+                                    intel4_1 = df_bar_pre_f_1$intel4_1, 
+                                    fun4_1 = df_bar_pre_f_1$fun4_1, 
+                                    amb4_1 = df_bar_pre_f_1$amb4_1)
+df_bar_pre_f <- pivot_longer(data = df_bar_pre_f, 
+                             cols = c("attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                                          "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1",
+                                          "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1"))
+df_bar_pre_f$Attribute <- substr(df_bar_pre_f$name, 0, 3)
+df_bar_pre_plt_f <- df_bar_pre_f%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+```{r}
+df_bar_pre_m <- df_bar_pre[ which(df_bar_pre$gender == 1),]
+df_bar_pre_m <- select(df_bar_pre_m,-c("gender","attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1"))
+df_bar_pre_m_1 <- df_bar_pre[ which(df_bar_pre$gender == 0),]
+df_bar_pre_m_1 <- select(df_bar_pre_m_1,-c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                                                    "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1"))
+df_bar_pre_m <- cbind(df_bar_pre_m, attr4_1 = df_bar_pre_m_1$attr4_1 , 
+                                    sinc4_1 = df_bar_pre_m_1$sinc4_1 , 
+                                    intel4_1 = df_bar_pre_m_1$intel4_1, 
+                                    fun4_1 = df_bar_pre_m_1$fun4_1, 
+                                    amb4_1 = df_bar_pre_m_1$amb4_1)
+df_bar_pre_m <- pivot_longer(data = df_bar_pre_m, 
+                             cols = c("attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
+                                          "attr2_1", "sinc2_1", "intel2_1", "fun2_1", "amb2_1",
+                                          "attr4_1", "sinc4_1", "intel4_1", "fun4_1", "amb4_1"))
+df_bar_pre_m$Attribute <- substr(df_bar_pre_m$name, 0, 3)
+df_bar_pre_plt_m <- df_bar_pre_m%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+
+```
+
+
+```{r}
+df_bar_post <- df_post[c("gender","attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                                          "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2",
+                                          "attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2")]
+for(i in 1:ncol(df_bar_post)){
+  df_bar_post[is.na(df_bar_post[,i]), i] <- mean(df_bar_post[,i], na.rm = TRUE)
+}
+df_bar_post <- df_bar_post %>% 
+                    group_by(gender) %>%
+                      summarise(across(everything(), mean))
+```
+
+
+```{r}
+df_bar_post_f <- df_bar_post[ which(df_bar_pre$gender == 0),]
+df_bar_post_f <- select(df_bar_post_f,-c("gender","attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2"))
+df_bar_post_f_1 <- df_bar_post[ which(df_bar_post$gender == 1),]
+df_bar_post_f_1 <- select(df_bar_post_f_1,-c("gender","attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                                                    "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2"))
+df_bar_post_f <- cbind(df_bar_post_f, attr4_2 = df_bar_post_f_1$attr4_2 , 
+                                    sinc4_2 = df_bar_post_f_1$sinc4_2 , 
+                                    intel4_2 = df_bar_post_f_1$intel4_2, 
+                                    fun4_2 = df_bar_post_f_1$fun4_2, 
+                                    amb4_2 = df_bar_post_f_1$amb4_2)
+df_bar_post_f <- pivot_longer(data = df_bar_post_f, 
+                             cols = c("attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                                          "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2",
+                                          "attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2"))
+df_bar_post_f$Attribute <- substr(df_bar_post_f$name, 0, 3)
+df_bar_post_plt_f <- df_bar_post_f%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+```{r}
+df_bar_post_m <- df_bar_post[ which(df_bar_pre$gender == 1),]
+df_bar_post_m <- select(df_bar_post_m,-c("gender","attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2"))
+df_bar_post_m_1 <- df_bar_post[ which(df_bar_pre$gender == 0),]
+df_bar_post_m_1 <- select(df_bar_post_m_1,-c("gender","attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                                                    "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2"))
+df_bar_post_m <- cbind(df_bar_post_m, attr4_2 = df_bar_post_m_1$attr4_2 , 
+                                    sinc4_2 = df_bar_post_m_1$sinc4_2 , 
+                                    intel4_2 = df_bar_post_m_1$intel4_2, 
+                                    fun4_2 = df_bar_post_m_1$fun4_2, 
+                                    amb4_2 = df_bar_post_m_1$amb4_2)
+df_bar_post_m <- pivot_longer(data = df_bar_post_m, 
+                             cols = c("attr1_2", "sinc1_2", "intel1_2", "fun1_2", "amb1_2",
+                                          "attr2_2", "sinc2_2", "intel2_2", "fun2_2", "amb2_2",
+                                          "attr4_2", "sinc4_2", "intel4_2", "fun4_2", "amb4_2"))
+df_bar_post_m$Attribute <- substr(df_bar_post_m$name, 0, 3)
+df_bar_post_plt_m <- df_bar_post_m%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+
+```{r}
+df_bar_pre_plt_f$plot_v[df_bar_pre_plt_f$plot_v=="attr1_1" | 
+                         df_bar_pre_plt_f$plot_v=="sinc1_1" |
+                         df_bar_pre_plt_f$plot_v=="intel1_1" |
+                         df_bar_pre_plt_f$plot_v=="fun1_1" |
+                         df_bar_pre_plt_f$plot_v=="amb1_1" ]<- "1_1" 
+
+df_bar_pre_plt_f$plot_v[df_bar_pre_plt_f$plot_v=="attr2_1" | 
+                         df_bar_pre_plt_f$plot_v=="sinc2_1" |
+                         df_bar_pre_plt_f$plot_v=="intel2_1" |
+                         df_bar_pre_plt_f$plot_v=="fun2_1" |
+                         df_bar_pre_plt_f$plot_v=="amb2_1" ]<- "2_1" 
+
+df_bar_pre_plt_f$plot_v[df_bar_pre_plt_f$plot_v=="attr4_1" | 
+                         df_bar_pre_plt_f$plot_v=="sinc4_1" |
+                         df_bar_pre_plt_f$plot_v=="intel4_1" |
+                         df_bar_pre_plt_f$plot_v=="fun4_1" |
+                         df_bar_pre_plt_f$plot_v=="amb4_1" ]<- "4_1" 
+
+#--------------------------------------------------------------------------#
+
+df_bar_pre_plt_m$plot_v[df_bar_pre_plt_m$plot_v=="attr1_1" | 
+                         df_bar_pre_plt_m$plot_v=="sinc1_1" |
+                         df_bar_pre_plt_m$plot_v=="intel1_1" |
+                         df_bar_pre_plt_m$plot_v=="fun1_1" |
+                         df_bar_pre_plt_m$plot_v=="amb1_1" ]<- "1_1" 
+
+df_bar_pre_plt_m$plot_v[df_bar_pre_plt_m$plot_v=="attr2_1" | 
+                         df_bar_pre_plt_m$plot_v=="sinc2_1" |
+                         df_bar_pre_plt_m$plot_v=="intel2_1" |
+                         df_bar_pre_plt_m$plot_v=="fun2_1" |
+                         df_bar_pre_plt_m$plot_v=="amb2_1" ]<- "2_1" 
+
+df_bar_pre_plt_m$plot_v[df_bar_pre_plt_m$plot_v=="attr4_1" | 
+                         df_bar_pre_plt_m$plot_v=="sinc4_1" |
+                         df_bar_pre_plt_m$plot_v=="intel4_1" |
+                         df_bar_pre_plt_m$plot_v=="fun4_1" |
+                         df_bar_pre_plt_m$plot_v=="amb4_1" ]<- "4_1" 
+
+#--------------------------------------------------------------------------#
+
+df_bar_post_plt_f$plot_v[df_bar_post_plt_f$plot_v=="attr1_2" | 
+                         df_bar_post_plt_f$plot_v=="sinc1_2" |
+                         df_bar_post_plt_f$plot_v=="intel1_2" |
+                         df_bar_post_plt_f$plot_v=="fun1_2" |
+                         df_bar_post_plt_f$plot_v=="amb1_2" ]<- "1_2" 
+
+df_bar_post_plt_f$plot_v[df_bar_post_plt_f$plot_v=="attr2_2" | 
+                         df_bar_post_plt_f$plot_v=="sinc2_2" |
+                         df_bar_post_plt_f$plot_v=="intel2_2" |
+                         df_bar_post_plt_f$plot_v=="fun2_2" |
+                         df_bar_post_plt_f$plot_v=="amb2_2" ]<- "2_2" 
+
+df_bar_post_plt_f$plot_v[df_bar_post_plt_f$plot_v=="attr4_2" | 
+                         df_bar_post_plt_f$plot_v=="sinc4_2" |
+                         df_bar_post_plt_f$plot_v=="intel4_2" |
+                         df_bar_post_plt_f$plot_v=="fun4_2" |
+                         df_bar_post_plt_f$plot_v=="amb4_2" ]<- "4_2" 
+
+#--------------------------------------------------------------------------#
+
+df_bar_post_plt_m$plot_v[df_bar_post_plt_m$plot_v=="attr1_2" | 
+                         df_bar_post_plt_m$plot_v=="sinc1_2" |
+                         df_bar_post_plt_m$plot_v=="intel1_2" |
+                         df_bar_post_plt_m$plot_v=="fun1_2" |
+                         df_bar_post_plt_m$plot_v=="amb1_2" ]<- "1_2" 
+
+df_bar_post_plt_m$plot_v[df_bar_post_plt_m$plot_v=="attr2_2" | 
+                         df_bar_post_plt_m$plot_v=="sinc2_2" |
+                         df_bar_post_plt_m$plot_v=="intel2_2" |
+                         df_bar_post_plt_m$plot_v=="fun2_2" |
+                         df_bar_post_plt_m$plot_v=="amb2_2" ]<- "2_2" 
+
+df_bar_post_plt_m$plot_v[df_bar_post_plt_m$plot_v=="attr4_2" | 
+                         df_bar_post_plt_m$plot_v=="sinc4_2" |
+                         df_bar_post_plt_m$plot_v=="intel4_2" |
+                         df_bar_post_plt_m$plot_v=="fun4_2" |
+                         df_bar_post_plt_m$plot_v=="amb4_2" ]<- "4_2" 
+
+```
+
+
+```{r}
+
+p1 <- ggplot(data = df_bar_pre_plt_f) +
+  geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
+                                            "amb" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
+                                                                        "fellow women rating")) +
+  theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Female - Before Experiment")
+
+p2 <- ggplot(data = df_bar_post_plt_f) +
+  geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
+                                            "amb" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
+                                                                        "fellow women rating")) +
+  theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Female - After Experiment")
+
+p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p3, top = textGrob("Attribute Importance for Female",gp=gpar(fontsize=15)))
+
+p4 <- ggplot(data = df_bar_pre_plt_m) +
+  geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
+                                            "amb" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
+                                                                        "fellow men rating")) +
+  theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Male - Before Experiment")
+
+p5 <- ggplot(data = df_bar_post_plt_m) +
+  geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
+  scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
+                                            "amb" = "Ambition")) + 
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
+                                                                        "fellow men rating")) +
+  theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Ratings out of 100") + 
+  xlab("Atrributes") + 
+  ggtitle("Male - After Experiment")
+
+p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p6, top = textGrob("Attribute Importance for Male",gp=gpar(fontsize=15)))
+```
+
+```{r}
+df_satis <- df_post[c("iid","gender","match", "satis_2")]
+df_satis_f <- df_satis[ which(df_satis$gender == 0),]
+df_satis_f_1 <- df_satis_f %>%
+              group_by(iid) %>%
+                summarise(no_matches = sum(match),
+                          satisfied = median(satis_2))
+
+df_satis_f_1 <- subset (df_satis_f_1 , select = -iid)
+df_satis_f_1<-data.frame(table(df_satis_f_1))
+df_satis_f_1$Freq<-as.factor(df_satis_f_1$Freq)
+df_satis_f_1$no_matches<-as.character(df_satis_f_1$no_matches) %>% as.numeric()
+df_satis_f_1$satisfied<-as.character(df_satis_f_1$satisfied) %>% as.numeric()
+
+df_satis <- df_post[c("iid","gender","match", "satis_2")]
+df_satis_m <- df_satis[ which(df_satis$gender == 1),]
+df_satis_m_1 <- df_satis_m %>%
+              group_by(iid) %>%
+                summarise(no_matches = sum(match),
+                          satisfied = median(satis_2))
+
+df_satis_m_1 <- subset (df_satis_m_1 , select = -iid)
+df_satis_m_1<-data.frame(table(df_satis_m_1))
+df_satis_m_1$Freq<-as.factor(df_satis_m_1$Freq)
+df_satis_m_1$no_matches<-as.character(df_satis_m_1$no_matches) %>% as.numeric()
+df_satis_m_1$satisfied<-as.character(df_satis_m_1$satisfied) %>% as.numeric()
+
+```
+
+```{r}
+
+# plot using ggplot
+getPalette_10 = colorRampPalette(brewer.pal(9, "Greens"))
+
+ggplot(df_satis_f_1,aes(x=no_matches,y=satisfied)) +
+  geom_tile(aes(fill=Freq))+
+  scale_fill_manual(values = (getPalette_10(25)[-1:-7]))+
+  #theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Satisfaction score out of 10") + 
+  xlab("number of Matches") + 
+  ggtitle("Satisfaction score vs no. of matches for Female")
+
+
+ggplot(df_satis_m_1,aes(x=no_matches,y=satisfied)) +
+  geom_tile(aes(fill=Freq)) +
+  scale_fill_manual(values = (getPalette_10(25)[-1:-7]))+
+  #theme_gray(10) +
+  theme(legend.title=element_blank()) + 
+  ylab("Satisfaction score out of 10") + 
+  xlab("number of Matches") + 
+  ggtitle("Satisfaction score vs no. of matches for Male")
+
+
+
+```
+
+## Subsetting Dataset 
+
+```{r}
+df_1 = df
+df_1_work <- df_1[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
+                            "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
+                            "attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
+                            "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2",
+                            "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o")]
+df_1_work <- df_1_work[ which(df_1_work$wave >= 10),]
+```
+
+```{r}
+df_1_pre <- df_1_work[c(col_common, "attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
+                            "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
+                            "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o")]
+df_1_pre <- df_1_pre[ which(df_1_pre$wave >= 10),]
+```
+
+
+```{r}
+df_1_post <- df_1_work[c(col_common, "attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
+                            "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2",
+                            "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o")]
+df_1_post <- df_1_post[ which(df_1_post$wave >= 10),]
+```
+
+```{r}
+df_box_pre <- df_1_pre[c("gender","attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
+                                          "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o")]
+for(i in 1:ncol(df_box_pre)){
+  df_box_pre[is.na(df_box_pre[,i]), i] <- mean(df_box_pre[,i], na.rm = TRUE)
+}
+```
+
+
+```{r}
+df_box_pre_f <- df_box_pre[ which(df_box_pre$gender == 0),]
+df_box_pre_f <- select(df_box_pre_f,-c("gender"))
+df_box_pre_f <- pivot_longer(data = df_box_pre_f, 
+                             cols = c("attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
+                                          "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o"))
+df_box_pre_f$Attribute <- substr(df_box_pre_f$name, 0, 3)
+df_box_pre_plt_f <- df_box_pre_f%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+```{r}
+df_box_pre_m <- df_box_pre[ which(df_box_pre$gender == 1),]
+df_box_pre_m <- select(df_box_pre_m,-c("gender"))
+df_box_pre_m <- pivot_longer(data = df_box_pre_m, 
+                             cols = c("attr3_1", "sinc3_1", "intel3_1", "fun3_1", "amb3_1",
+                                          "attr5_1", "sinc5_1", "intel5_1", "fun5_1", "amb5_1",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o"))
+df_box_pre_m$Attribute <- substr(df_box_pre_m$name, 0, 3)
+df_box_pre_plt_m <- df_box_pre_m%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+
+```{r}
+df_box_post <- df_1_post[c("gender","attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
+                                          "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o")]
+for(i in 1:ncol(df_box_post)){
+  df_box_post[is.na(df_box_post[,i]), i] <- mean(df_box_post[,i], na.rm = TRUE)
+}
+```
+
+
+```{r}
+df_box_post_f <- df_box_post[ which(df_box_pre$gender == 0),]
+df_box_post_f <- select(df_box_post_f,-c("gender"))
+df_box_post_f <- pivot_longer(data = df_box_post_f, 
+                             cols = c("attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
+                                          "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o"))
+df_box_post_f$Attribute <- substr(df_box_post_f$name, 0, 3)
+df_box_post_plt_f <- df_box_post_f%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+```{r}
+df_box_post_m <- df_box_post[ which(df_box_pre$gender == 1),]
+df_box_post_m <- select(df_box_post_m,-c("gender"))
+df_box_post_m <- pivot_longer(data = df_box_post_m, 
+                             cols = c("attr3_2", "sinc3_2", "intel3_2", "fun3_2", "amb3_2",
+                                          "attr5_2", "sinc5_2", "intel5_2", "fun5_2", "amb5_2",
+                                          "attr_o", "sinc_o", "intel_o", "fun_o", "amb_o"))
+df_box_post_m$Attribute <- substr(df_box_post_m$name, 0, 3)
+df_box_post_plt_m <- df_box_post_m%>% 
+  gather(Attr, plot_v, -c(Attribute, value)) %>%
+    mutate(Attribute = factor(Attribute, 
+                        levels = c("att", "sin", "int", "fun", "amb"))) %>%
+      arrange(Attribute)
+```
+
+
+```{r}
+df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr3_1" | 
+                         df_box_pre_plt_f$plot_v=="sinc3_1" |
+                         df_box_pre_plt_f$plot_v=="intel3_1" |
+                         df_box_pre_plt_f$plot_v=="fun3_1" |
+                         df_box_pre_plt_f$plot_v=="amb3_1" ]<- "3_1" 
+
+df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr5_1" | 
+                         df_box_pre_plt_f$plot_v=="sinc5_1" |
+                         df_box_pre_plt_f$plot_v=="intel5_1" |
+                         df_box_pre_plt_f$plot_v=="fun5_1" |
+                         df_box_pre_plt_f$plot_v=="amb5_1" ]<- "5_1" 
+
+df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr_o" | 
+                         df_box_pre_plt_f$plot_v=="sinc_o" |
+                         df_box_pre_plt_f$plot_v=="intel_o" |
+                         df_box_pre_plt_f$plot_v=="fun_o" |
+                         df_box_pre_plt_f$plot_v=="amb_o" ]<- "_o" 
+
+#--------------------------------------------------------------------------#
+
+df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr3_1" | 
+                         df_box_pre_plt_m$plot_v=="sinc3_1" |
+                         df_box_pre_plt_m$plot_v=="intel3_1" |
+                         df_box_pre_plt_m$plot_v=="fun3_1" |
+                         df_box_pre_plt_m$plot_v=="amb3_1" ]<- "3_1" 
+
+df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr5_1" | 
+                         df_box_pre_plt_m$plot_v=="sinc5_1" |
+                         df_box_pre_plt_m$plot_v=="intel5_1" |
+                         df_box_pre_plt_m$plot_v=="fun5_1" |
+                         df_box_pre_plt_m$plot_v=="amb5_1" ]<- "5_1" 
+
+df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr_o" | 
+                         df_box_pre_plt_m$plot_v=="sinc_o" |
+                         df_box_pre_plt_m$plot_v=="intel_o" |
+                         df_box_pre_plt_m$plot_v=="fun_o" |
+                         df_box_pre_plt_m$plot_v=="amb_o" ]<- "_o" 
+
+#--------------------------------------------------------------------------#
+
+df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr3_2" | 
+                         df_box_post_plt_f$plot_v=="sinc3_2" |
+                         df_box_post_plt_f$plot_v=="intel3_2" |
+                         df_box_post_plt_f$plot_v=="fun3_2" |
+                         df_box_post_plt_f$plot_v=="amb3_2" ]<- "3_2" 
+
+df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr5_2" | 
+                         df_box_post_plt_f$plot_v=="sinc5_2" |
+                         df_box_post_plt_f$plot_v=="intel5_2" |
+                         df_box_post_plt_f$plot_v=="fun5_2" |
+                         df_box_post_plt_f$plot_v=="amb5_2" ]<- "5_2" 
+
+df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr_o" | 
+                         df_box_post_plt_f$plot_v=="sinc_o" |
+                         df_box_post_plt_f$plot_v=="intel_o" |
+                         df_box_post_plt_f$plot_v=="fun_o" |
+                         df_box_post_plt_f$plot_v=="amb_o" ]<- "_o" 
+
+#--------------------------------------------------------------------------#
+
+df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr3_2" | 
+                         df_box_post_plt_m$plot_v=="sinc3_2" |
+                         df_box_post_plt_m$plot_v=="intel3_2" |
+                         df_box_post_plt_m$plot_v=="fun3_2" |
+                         df_box_post_plt_m$plot_v=="amb3_2" ]<- "3_2" 
+
+df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr5_2" | 
+                         df_box_post_plt_m$plot_v=="sinc5_2" |
+                         df_box_post_plt_m$plot_v=="intel5_2" |
+                         df_box_post_plt_m$plot_v=="fun5_2" |
+                         df_box_post_plt_m$plot_v=="amb5_2" ]<- "5_2" 
+
+df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr_o" | 
+                         df_box_post_plt_m$plot_v=="sinc_o" |
+                         df_box_post_plt_m$plot_v=="intel_o" |
+                         df_box_post_plt_m$plot_v=="fun_o" |
+                         df_box_post_plt_m$plot_v=="amb_o" ]<- "_o" 
+
+```
+
+
+```{r}
+
+p1 <-  ggplot(data = df_box_pre_plt_f, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
+        geom_boxplot() +
+        scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
+                                                    "Fun", "amb" = "Ambition")) +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
+        theme_gray(10) +
+        theme(legend.title=element_blank()) + 
+        ylab("Ratings out of 10") + 
+        xlab("Atrributes") + 
+        ggtitle("Female - Before Experiment")
+
+p2 <-  ggplot(data = df_box_pre_plt_m, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
+        geom_boxplot() +
+        scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
+                                                    "Fun", "amb" = "Ambition")) +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
+        theme_gray(10) +
+        theme(legend.title=element_blank()) + 
+        ylab("Ratings out of 10") + 
+        xlab("Atrributes") + 
+        ggtitle("Male - Before Experiment")
+
+p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p3, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
+
+p4 <-  ggplot(data = df_box_post_plt_f, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
+        geom_boxplot() +
+        scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
+                                                    "Fun", "amb" = "Ambition")) +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
+        theme_gray(10) +
+        theme(legend.title=element_blank()) + 
+        ylab("Ratings out of 10") + 
+        xlab("Atrributes") + 
+        ggtitle("Female - After Experiment")
+
+p5 <-  ggplot(data = df_box_post_plt_m, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
+        geom_boxplot() +
+        scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
+                                                    "Fun", "amb" = "Ambition")) +
+        scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
+                                                                        "Assumed Perception")) +
+        theme_gray(10) +
+        theme(legend.title=element_blank()) + 
+        ylab("Ratings out of 100") + 
+        xlab("Atrributes") + 
+        ggtitle("Male - After Experiment")
+
+p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(p6, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
+```
