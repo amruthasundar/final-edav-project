@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-sources.html"/>
 <link rel="next" href="missing-values.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -80,7 +80,11 @@
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-description"><i class="fa fa-check"></i><b>2.2</b> Data Description</a></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues-with-the-data"><i class="fa fa-check"></i><b>2.3</b> Issues with the data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#for-static-plots"><i class="fa fa-check"></i><b>3.1</b> For static plots</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#for-interactive-plots"><i class="fa fa-check"></i><b>3.2</b> For interactive plots</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots"><i class="fa fa-check"></i><b>4.1</b> Number of missing attributes for each wave per question - Bar plots and Cleaveland Plots</a></li>
@@ -133,6 +137,8 @@
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
+<div id="for-static-plots" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> For static plots</h2>
 <p>Here is the process on how we transformed our data.</p>
 <p>Firstly, since there were a lot of problems with waves up to 9, we decided to exclude it from our analysis. We found most of our results using waves 10-21. However, some results related to entire populations and hence used data for all waves.</p>
 <p>Moreover, there are too many variables recorded in the experiment. We picked a few important ones for our analysis. We chose 12 important variables along with 3 variables which answered survey questions for each wave. The 12 important variables we chose are:</p>
@@ -185,8 +191,15 @@
 <p><em>16. fun4_1: Fun</em></p>
 <p><em>17. amb4_1: Ambitious</em></p>
 <p>These are the 5 other variables of question 4_1.</p>
-<p>The file with the code for the transformation is <a href="https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R">here</a>.</p>
+<p>The file with the code for the transformation is can be found at <a href="https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R" class="uri">https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R</a>.</p>
+</div>
+<div id="for-interactive-plots" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> For interactive plots</h2>
+<p>For the interactive plot, we made alluvial plots with two axes (representing two distinct characteristics of the students participating). We chose five characteristic features of the students: <em>field, gender, race, from and career.</em> For each of these, we can view the flow of people on what characteristics they belong to. For the aforementioned columns too, we chose a specific subset of observations to best represent our visualization (in terms of random selection of sample and best look). The steps for the pre processing is mentioned here:</p>
+<p>First, since we expected the students’ field and intended career will be the same most of the time, we plotted only the ones where their career and field were not the same text field. Also, some people entered <code>?</code> or <code>??</code> for their career, so we removed those observations. Also, to make things look clean, we removed the cases where the text entered in the field and career were more than 10 characters. For the <code>from</code> column, we removed the observations with more than 15 characters.</p>
+<p>The code for this part of the pre processing can be found here: <a href="https://github.com/amruthasundar/final-edav-project/blob/main/d3/d3_pre_processing.Rmd" class="uri">https://github.com/amruthasundar/final-edav-project/blob/main/d3/d3_pre_processing.Rmd</a>.</p>
 
+</div>
 </div>
             </section>
 

@@ -1,5 +1,7 @@
 # Data transformation
 
+
+## For static plots
 Here is the process on how we transformed our data.
 
 Firstly, since there were a lot of problems with waves up to 9, we decided to exclude it from our analysis. We found most of our results using waves 10-21. However, some results related to entire populations and hence used data for all waves.
@@ -95,4 +97,21 @@ These are the 5 other variables of question 2_1.
 
 These are the 5 other variables of question 4_1.
 
-The file with the code for the transformation is [here](https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R).
+The file with the code for the transformation is can be found at https://github.com/amruthasundar/final-edav-project/blob/main/_data_transformation.R.
+
+
+## For interactive plots
+
+For the interactive plot, we made alluvial plots with two axes (representing two distinct characteristics of the students participating). We chose five characteristic features of the students: *field, gender, race, from and career.* For each of these, we can view the flow of people on what characteristics they belong to. For the aforementioned columns too, we chose a specific subset of observations to best represent our visualization (in terms of random selection of sample and best look). The steps for the pre processing is mentioned here:
+
+First, since we expected the students' field and intended career will be the same most of the time, we plotted only the ones where their career and field were not the same text field. Also, some people entered `?` or `??` for their career, so we removed those observations. Also, to make things look clean, we removed the cases where the text entered in the field and career were more than 10 characters. For the `from` column, we removed the observations with more than 15 characters.
+
+The code for this part of the pre processing can be found here: https://github.com/amruthasundar/final-edav-project/blob/main/d3/d3_pre_processing.Rmd.
+
+
+
+
+
+
+
+

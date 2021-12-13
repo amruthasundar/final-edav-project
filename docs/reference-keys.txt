@@ -4,6 +4,8 @@ the-experiment
 data-description
 issues-with-the-data
 data-transformation
+for-static-plots
+for-interactive-plots
 missing-values
 number-of-missing-attributes-for-each-wave-per-question---bar-plots-and-cleaveland-plots
 heatmap
