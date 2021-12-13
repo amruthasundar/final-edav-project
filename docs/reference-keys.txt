@@ -12,11 +12,13 @@ results
 representation-of-paricipants-by-different-categories
 number-of-yes-matches-per-participant
 analysing-correlation-between-the-chosen-variables
-analysis-of-decision-making-on-categorical-variable---race
+analysis-of-decision-making-on-race
 attribute-rating-analysis-by-race
 change-of-feature-perception-with-time
-subsetting-dataset
-subsetting-dataset-1
+importance-of-attributes-for-each-gender-group
+perception-of-different-groups-of-people-regarding-importance-of-attributes
+satisfaction-score-vs.-number-of-matches
+actual-vs.-personal-perception
 interactive-component
 conclusion
 at-the-outset

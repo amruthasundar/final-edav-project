@@ -174,13 +174,13 @@ Some of the interesting inferences we can make regarding the plots are,
 * The trend that is seen in all the plots of attributes of attractiveness, sincerity, intelligence, fun and ambition is that, as the rating or the priority of certain feature increases, the number of matches goes down, for a few points. This is justifiable with the points that are to the farthest right at the bottom. This is expected as participants who have a really high expectation on one feature might not find someone suitable to meet their high expectations on that feature.
 * It is interesting to note that the same plot of features vs total matches also exhibits some anomaly. There seems to be one point in all these plots that have a relatively medium level rating/priority while the number of matches is pretty high. This can be verified by the top most point to the left of the plots. There were some participants who are estimated to have based their criteria of matching on factors others that the ones that were rated on. This can be infered as they have a relatively high number of matches than their peers who matched less, given the same priority for those features.
 
-## Analysis of decision making on categorical variable - Race
+## Analysis of decision making on Race
 
 One of the factors of taken into consideration for understanding the requirements of participant's expectation with their partners is the Race. Each participant is required to report a rating out of 10 for their potential partner to be of the same race as them. This visualization is to analyze whether the actual decision of the partcipants is influenced by any other factors that overpowers them to match with their dates from Race other than their own. 
 
 The following hexmap is a visual of Proportion of Matches that interested the participants from the same Race vs Importance of Race reported before the actual experiment. 
 
-```{r}
+```{r fig.width=8, fig.height=8}
 
 filtered_df = df %>% filter(wave %in% (10:21))
 filtered_df['samerace'] = (filtered_df$race==filtered_df$race_o)
@@ -201,7 +201,10 @@ ggplot(final_df_count, aes(imprace, race_match_proportion)) +
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) 
+        axis.line = element_line(colour = "black")) +
+  xlab("Importance the partner's race (1-10 rating)") +
+  ylab("Proportion of yes matches for the same race") +
+  ggtitle("Analysis of decision making on Race")
 
 ```
 
@@ -217,7 +220,7 @@ The hexmap uncovers some interesting patterns observed from the participants' re
 From the previous plot we inferred that certain attributes are strong enough to change participant's prior perception of importance of Race. Diving further, we want to understand how the attributes are rated for differently across the Race of the participants. This sheds light on how certain group of participants, characteristically from a certain Race, have prioritized attributes in their potential partners. 
 Below is a mosaic plot for two specific features - attractiveness and ambition as independent features and visualized by Race as the dependent variable.
 
-```{r fig.width=15, fig.height=15}
+```{r fig.width=15, fig.height=10, warning=FALSE}
 
 df_distinct$amb1_1 = round(df_distinct$amb1_1+5, -1)
 df_distinct$attr1_1 = round(df_distinct$attr1_1+5, -1)
@@ -515,6 +518,7 @@ p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 annotate_figure(p6, top = textGrob("Importance of different Attributes for each Gender Group",gp=gpar(fontsize=15)))
 
 ```
+
 Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes.
 
 It can be observed from the 1st plot that that most women before the Speed Dating Experiment rated Intelligence as most important attribute followed by Sincerity then Attractiveness. Whereas after the experiment women rated Attractiveness as the most important attribute followed by Intelligence then Sincerity.
@@ -523,7 +527,8 @@ It can be observed from the 2nd plot that most men before the Speed Dating Exper
 
 For both gender groups it can be observed that Ambition has been rated as the least important attribute. To female, the top three attributes are Intelligence, Sincerity and Attractiveness, while to male, they were Attractiveness, Intelligence and Fun. Also, it can be observed that men tended to have more distinctive preference whereas women’s preference appeared to be more even.
 
-# Perception of people regarding importance of attributes
+
+## Perception of different groups of people regarding importance of attributes
 
 ```{r}
 df_bar_pre <- df_pre[c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
@@ -798,7 +803,7 @@ It can be observed from the plot that men consider Attractiveness to be the most
 Overall, it can be observed that women’s perception of what men consider about each attribute is very accurate whereas men’s perception of what women might consider as important attributes is inaccurate (It can be seen in the difference between the pink bar and blue bar).
 
 
-# Heatmaps
+## Satisfaction score vs. number of matches
 
 ```{r}
 df_satis <- df_post[c("iid","gender","match", "satis_2")]
@@ -846,21 +851,27 @@ ggplot(df_satis_f_1,aes(x=no_matches,y=satisfied)) +
 
 ggplot(df_satis_m_1,aes(x=no_matches,y=satisfied)) +
   geom_tile(aes(fill=Freq)) +
-  scale_fill_manual(values = (getPalette_10(25)[-1:-7]))+
-  #theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  scale_fill_manual(values = (getPalette_10(25)[-1:-7])) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Satisfaction score out of 10") + 
-  xlab("number of Matches") + 
+  xlab("Number of yes matches") + 
   ggtitle("Satisfaction score vs no. of matches for Male")
 
 ```
+
+
 We plotted a heatmap to see the how the number of matches and the satisfaction score are distributed for the participants. The number of matches signifies the number of people they want to go on a 2nd date with and the satisfaction score signifies how satisfied they are with the experiment. We are calculating the frequency for the pairs of number of matches and satisfaction score. And plotting a heatmap to see what is the highest frequency pair. 
 
 From the first heatmap plotted for the females we can see that there are many people with 1 match and satisfaction score more than 5. Similar observations can be seen in the 2nd heatmap as well which is plotted for the males. 
 
 Overall, we can observe that people with lesser number of matches are more satisfied with the experiment. We can also infer than there are no females with 9, 11,12,13 number of matches. The data is left skewed as there are more people with 5 or lesser number of matches. Hence the plot is darker towards the left-hand side. We can also see that there are more people with satisfaction score of 5 or higher.
 
-# Box plots
+
+## Actual vs. Personal perception
 
 ```{r}
 df_1 = df
@@ -1099,8 +1110,11 @@ p5 <-  ggplot(data = df_box_post_plt_m, aes(x = Attribute, y = value, fill = plo
                                                     "Fun", "amb" = "Ambition")) +
         scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
                                                                         "Assumed Perception")) +
-        theme_gray(10) +
-        theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
         ylab("Ratings out of 100") + 
         xlab("Atrributes") + 
         ggtitle("Male - After Experiment")
@@ -1109,8 +1123,15 @@ p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 
 annotate_figure(p6, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
 ```
+
+
 The participants were asked to rate themselves over the five attributes (Attractiveness, Sincerity, Intelligence, Fun and Ambition) on a scale of 1- 10 (1 being awful and 10 being great) they were also asked to rate their partners over these 5 attributes after each four-minute first date and were also asked how do they think others perceive them. The data for these questions is stored in questions 3_1, attr_o and 5_1 respectively. The participants were asked the same questions after the experiment as well the results for the questions are stored in 3_2 and 5_2 respectively.
 
 We plotted box plots of the data to compare people’s actual rating vs self-perception vs what the participants assumed they would potentially receive.  It can be observed while comparing self-ratings and the actual ratings, that the participants did generally overestimate themselves. The attribute that they overestimated the most was fun while the one that overestimated the least was intelligence. Females overestimated the attribute sincerity, most of the women rated themselves 9/10 where as most women received a score of 7/10. Whereas men overestimated the fun attribute most of the men rated themselves 8/10 but most received a score of 6.5/10.
 
 It can also be seen from the results that most women increased their self-rating for the attributes after the experiment except from sincerity whereas most men decreased their self-rating for sincerity and fun. When comparing their assumed partner’s ratings and the actual ratings, we saw that while the participants knew that they were underestimated, the ratings they perceived were even lower than they thought over every attribute.
+
+```{r}
+
+```
+
