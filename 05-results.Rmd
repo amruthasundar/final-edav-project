@@ -515,6 +515,13 @@ p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 annotate_figure(p6, top = textGrob("Importance of different Attributes for each Gender Group",gp=gpar(fontsize=15)))
 
 ```
+Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes.
+
+It can be observed from the 1st plot that that most women before the Speed Dating Experiment rated Intelligence as most important attribute followed by Sincerity then Attractiveness. Whereas after the experiment women rated Attractiveness as the most important attribute followed by Intelligence then Sincerity.
+
+It can be observed from the 2nd plot that most men before the Speed Dating Experiment rated Attractiveness as most important attribute followed by Intelligence then Fun. Even after the Experiment men rated Attractiveness as the most important attribute followed by Fun then Intelligence.
+
+For both gender groups it can be observed that Ambition has been rated as the least important attribute. To female, the top three attributes are Intelligence, Sincerity and Attractiveness, while to male, they were Attractiveness, Intelligence and Fun. Also, it can be observed that men tended to have more distinctive preference whereas women’s preference appeared to be more even.
 
 ```{r}
 df_bar_pre <- df_pre[c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
