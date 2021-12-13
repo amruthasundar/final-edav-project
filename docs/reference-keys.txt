@@ -18,12 +18,13 @@ analysis-of-decision-making-on-race
 attribute-rating-analysis-by-race
 change-of-feature-perception-with-time
 importance-of-attributes-for-each-gender-group
-perception-of-different-groups-of-people-regarding-importance-of-attributes
+comparison-of-perception-of-impotance-of-attributes-for-each-gender-group
 satisfaction-score-vs.-number-of-matches
-actual-vs.-personal-perception
+actual-rating-received-vs-personal-perception-vs-assumed-perception
 interactive-component
 conclusion
 at-the-outset
+comparing-inferences-from-visualization-with-results-from-paper
 final-remarks
 structuring-of-dataset
 intrinsic-property-in-decision-making

@@ -100,20 +100,21 @@
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#attribute-rating-analysis-by-race"><i class="fa fa-check"></i><b>5.5</b> Attribute Rating Analysis by Race</a></li>
 <li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#change-of-feature-perception-with-time"><i class="fa fa-check"></i><b>5.6</b> Change of feature perception with time</a></li>
 <li class="chapter" data-level="5.7" data-path="results.html"><a href="results.html#importance-of-attributes-for-each-gender-group"><i class="fa fa-check"></i><b>5.7</b> Importance of attributes for each gender group</a></li>
-<li class="chapter" data-level="5.8" data-path="results.html"><a href="results.html#perception-of-different-groups-of-people-regarding-importance-of-attributes"><i class="fa fa-check"></i><b>5.8</b> Perception of different groups of people regarding importance of attributes</a></li>
+<li class="chapter" data-level="5.8" data-path="results.html"><a href="results.html#comparison-of-perception-of-impotance-of-attributes-for-each-gender-group"><i class="fa fa-check"></i><b>5.8</b> Comparison of Perception of Impotance of Attributes for each gender group</a></li>
 <li class="chapter" data-level="5.9" data-path="results.html"><a href="results.html#satisfaction-score-vs.-number-of-matches"><i class="fa fa-check"></i><b>5.9</b> Satisfaction score vs. number of matches</a></li>
-<li class="chapter" data-level="5.10" data-path="results.html"><a href="results.html#actual-vs.-personal-perception"><i class="fa fa-check"></i><b>5.10</b> Actual vs. Personal perception</a></li>
+<li class="chapter" data-level="5.10" data-path="results.html"><a href="results.html#actual-rating-received-vs-personal-perception-vs-assumed-perception"><i class="fa fa-check"></i><b>5.10</b> Actual Rating received vs Personal Perception vs Assumed Perception</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#at-the-outset"><i class="fa fa-check"></i><b>7.1</b> At the Outset</a></li>
-<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#final-remarks"><i class="fa fa-check"></i><b>7.2</b> Final Remarks</a>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#comparing-inferences-from-visualization-with-results-from-paper"><i class="fa fa-check"></i><b>7.2</b> Comparing inferences from visualization with results from paper</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusion.html"><a href="conclusion.html#final-remarks"><i class="fa fa-check"></i><b>7.3</b> Final Remarks</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="conclusion.html"><a href="conclusion.html#structuring-of-dataset"><i class="fa fa-check"></i><b>7.2.1</b> Structuring of Dataset</a></li>
-<li class="chapter" data-level="7.2.2" data-path="conclusion.html"><a href="conclusion.html#intrinsic-property-in-decision-making"><i class="fa fa-check"></i><b>7.2.2</b> Intrinsic Property in decision making</a></li>
-<li class="chapter" data-level="7.2.3" data-path="conclusion.html"><a href="conclusion.html#biased-sample"><i class="fa fa-check"></i><b>7.2.3</b> Biased sample</a></li>
-<li class="chapter" data-level="7.2.4" data-path="conclusion.html"><a href="conclusion.html#future-work"><i class="fa fa-check"></i><b>7.2.4</b> Future work</a></li>
+<li class="chapter" data-level="7.3.1" data-path="conclusion.html"><a href="conclusion.html#structuring-of-dataset"><i class="fa fa-check"></i><b>7.3.1</b> Structuring of Dataset</a></li>
+<li class="chapter" data-level="7.3.2" data-path="conclusion.html"><a href="conclusion.html#intrinsic-property-in-decision-making"><i class="fa fa-check"></i><b>7.3.2</b> Intrinsic Property in decision making</a></li>
+<li class="chapter" data-level="7.3.3" data-path="conclusion.html"><a href="conclusion.html#biased-sample"><i class="fa fa-check"></i><b>7.3.3</b> Biased sample</a></li>
+<li class="chapter" data-level="7.3.4" data-path="conclusion.html"><a href="conclusion.html#future-work"><i class="fa fa-check"></i><b>7.3.4</b> Future work</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -195,6 +196,7 @@ For the purposes of this visualization, we have narrowed down comparison of rati
 <p>From the previous plot we inferred that certain attributes are strong enough to change participant’s prior perception of importance of Race. Diving further, we want to understand how the attributes are rated for differently across the Race of the participants. This sheds light on how certain group of participants, characteristically from a certain Race, have prioritized attributes in their potential partners.
 Below is a mosaic plot for two specific features - attractiveness and ambition as independent features and visualized by Race as the dependent variable.</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="1440" /></p>
+<p>NOTE: The reason for not following a palette/gradient colour scheme for mosaic plots is to easily distinguish the depend variable for smaller count indicated by smaller rectangles to the right.</p>
 <p>Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,</p>
 <ul>
 <li>Race 1 - Seems to have a nearly equal distribution across all the bins for attractiveness while only upto importance of 20 for ambition.</li>
@@ -232,18 +234,18 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 <div id="importance-of-attributes-for-each-gender-group" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Importance of attributes for each gender group</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<p>NOTE: The colours for the plots help in easy visualization of the order of the importance of attributes before and after the experiment.</p>
 <p>Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes.</p>
 <p>It can be observed from the 1st plot that that most women before the Speed Dating Experiment rated Intelligence as most important attribute followed by Sincerity then Attractiveness. Whereas after the experiment women rated Attractiveness as the most important attribute followed by Intelligence then Sincerity.</p>
 <p>It can be observed from the 2nd plot that most men before the Speed Dating Experiment rated Attractiveness as most important attribute followed by Intelligence then Fun. Even after the Experiment men rated Attractiveness as the most important attribute followed by Fun then Intelligence.</p>
 <p>For both gender groups it can be observed that Ambition has been rated as the least important attribute. To female, the top three attributes are Intelligence, Sincerity and Attractiveness, while to male, they were Attractiveness, Intelligence and Fun. Also, it can be observed that men tended to have more distinctive preference whereas women’s preference appeared to be more even.</p>
 </div>
-<div id="perception-of-different-groups-of-people-regarding-importance-of-attributes" class="section level2" number="5.8">
-<h2><span class="header-section-number">5.8</span> Perception of different groups of people regarding importance of attributes</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+<div id="comparison-of-perception-of-impotance-of-attributes-for-each-gender-group" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Comparison of Perception of Impotance of Attributes for each gender group</h2>
 <p>Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes. They were also asked to rate what they think opposite sex would rate and what fellow women/men would rate how important the attributes are.</p>
 <p>We get this information from the questions 1_1, 2_1, 4_1 for the data before experiment and 1_2, 2_2, 4_2 for the data after experiment. We plotted the average rating given by individual vs the rating given by opposite sex vs the rating of what fellow women/men would rate the attributes.</p>
 <p>It can be observed from the plot that most women do not consider Attractiveness to be an important attribute but think that fellow women consider Attractiveness to be an important attribute. Similarly, even men think that women consider Attractiveness to be most important attribute but in real life women consider Intelligence to be the most important attribute.</p>
-<p>It can be observed from the plot that men consider Attractiveness to be the most important attribute and also perceive that the fellow men also have same perception that Attractiveness is the most important attribute. It can also be observed that the women’s perception of what men think the most important attribute is correct as most women gave high rating for what men might rate for each attribute.</p>
+<p>It can be observed from the plot that men consider Attractiveness to be the most important attribute and also perceive that the fellow men also have same perception that Attractiveness is the most important attribute. It can also be observed that the women’s perception of what men think the most important attribute is correct as most women gave high rating for what men might rate for each attribute. We can also see that men don’t give much importance to their partner’s intelligence or ambition when it exceeds their own.</p>
 <p>Overall, it can be observed that women’s perception of what men consider about each attribute is very accurate whereas men’s perception of what women might consider as important attributes is inaccurate (It can be seen in the difference between the pink bar and blue bar).</p>
 </div>
 <div id="satisfaction-score-vs.-number-of-matches" class="section level2" number="5.9">
@@ -253,8 +255,8 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 <p>From the first heatmap plotted for the females we can see that there are many people with 1 match and satisfaction score more than 5. Similar observations can be seen in the 2nd heatmap as well which is plotted for the males.</p>
 <p>Overall, we can observe that people with lesser number of matches are more satisfied with the experiment. We can also infer than there are no females with 9, 11,12,13 number of matches. The data is left skewed as there are more people with 5 or lesser number of matches. Hence the plot is darker towards the left-hand side. We can also see that there are more people with satisfaction score of 5 or higher.</p>
 </div>
-<div id="actual-vs.-personal-perception" class="section level2" number="5.10">
-<h2><span class="header-section-number">5.10</span> Actual vs. Personal perception</h2>
+<div id="actual-rating-received-vs-personal-perception-vs-assumed-perception" class="section level2" number="5.10">
+<h2><span class="header-section-number">5.10</span> Actual Rating received vs Personal Perception vs Assumed Perception</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
 <p>The participants were asked to rate themselves over the five attributes (Attractiveness, Sincerity, Intelligence, Fun and Ambition) on a scale of 1- 10 (1 being awful and 10 being great) they were also asked to rate their partners over these 5 attributes after each four-minute first date and were also asked how do they think others perceive them. The data for these questions is stored in questions 3_1, attr_o and 5_1 respectively. The participants were asked the same questions after the experiment as well the results for the questions are stored in 3_2 and 5_2 respectively.</p>
 <p>We plotted box plots of the data to compare people’s actual rating vs self-perception vs what the participants assumed they would potentially receive. It can be observed while comparing self-ratings and the actual ratings, that the participants did generally overestimate themselves. The attribute that they overestimated the most was fun while the one that overestimated the least was intelligence. Females overestimated the attribute sincerity, most of the women rated themselves 9/10 where as most women received a score of 7/10. Whereas men overestimated the fun attribute most of the men rated themselves 8/10 but most received a score of 6.5/10.</p>

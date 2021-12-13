@@ -6,6 +6,12 @@ Speed Dating Experiment conducted by the Business school of Columbia in 2006 has
 
 While most of the questions and inferences have been addressed, we want to dedicate this sections to some concluding remarks that this project has helped us draft about the dataset and the experiment as a whole.
 
+## Comparing inferences from visualization with results from paper
+
+After analysis and visualization of the data from the experiment we could verify some the main conclusion from the experiment. From the plots in [chap 5.7](https://amruthasundar.github.io/final-edav-project/results.html#importance-of-attributes-for-each-gender-group) we can verify that women do generally give more importance to the intelligence of their partner and men are more responsive to physical attractiveness. And from [chap 5.8](https://amruthasundar.github.io/final-edav-project/results.html#perception-of-different-groups-of-people-regarding-importance-of-attributes) we can see that the majority of men don’t give much value or importance to women’s intelligence or ambition when it exceeds their own.
+
+Finally we could like to infer from the plots that attractiveness is the major attribute that people consider and ambition is the least important attribute when it comes to dating. Before the experiment people rated attractiveness, intelligence sincerity, fun and ambition as the order or importance of attributes to go on a date. However after the experiment the ranking changed to attractiveness, fun, intelligence, sincerity and ambition. Most people except their partners to be smart and sincere, but once we know each other (i.e. in this case after the experiment) people gave other attributes also fairly more importance than before.
+
 ## Final Remarks
 
 ### Structuring of Dataset

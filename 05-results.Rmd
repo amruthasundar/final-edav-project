@@ -35,7 +35,7 @@ df_by_field = df %>%
 
 df_by_field$field_cd = as.factor(df_by_field$field_cd)
 
-g_by_field = ggplot(df_by_field, aes(x = field_cd, y = per)) +
+g_by_field = ggplot(df_by_field, aes(x = reorder(field_cd, -per), y = per)) +
   geom_bar(stat = "identity", color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
   xlab("Field of Study") +
   ylab("Percentage of participants") +
@@ -60,6 +60,11 @@ df_by_race = df %>%
 
 df_by_race$race = as.factor(df_by_race$race)
 
+df_by_race <- within(df_by_race, 
+                   race <- factor(race, 
+                                      levels=names(sort(table(race), 
+                                                        decreasing=TRUE))))
+
 g_by_race = ggplot(df_by_race, aes(x = race)) +
   geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9, binwidth = 5) +
   xlab("Race") +
@@ -72,6 +77,11 @@ df_by_career = df %>%
 
 df_by_career = unique(df_by_career)
 df_by_career$career_c = as.factor(df_by_career$career_c)
+
+df_by_career <- within(df_by_career, 
+                   career_c <- factor(career_c, 
+                                      levels=names(sort(table(career_c), 
+                                                        decreasing=TRUE))))
 
 g_by_career = ggplot(df_by_career, aes(x = career_c)) +
   geom_bar(color = "#77D86C", fill = "#B3ECAD", alpha = 0.9) +
@@ -231,12 +241,14 @@ grid.arrange(amb, attr, nrow=1)
 
 ```
 
+NOTE: The reason for not following a palette/gradient colour scheme for mosaic plots is to easily distinguish the depend variable for smaller count indicated by smaller rectangles to the right.
+
 Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,
   
 * Race 1 - Seems to have a nearly equal distribution across all the bins for attractiveness while only upto importance of 20 for ambition.
 * Race 2 and Race 4- Majority of the participants are from Race 2 followed by Race 4 and the distribution of importance for ambition is split from 0 to 20. While the distribution of ratings for attractiveness is spread across a range of 0-100. This is a clear indication that Race 2 and Race 4 values attractiveness over ambition and is likely to be comprised over the younger population who value attractiveness more than anything.
 * Race 3 - Apparently has a greater distribution spanning until rating of 30-40 for ambition for a smaller set of population while attractiveness is equally distributed throughout. We suspect that Race 3 could comprise of a small set of higher age groups that are mature enough to value ambitiion in addition to attractiveness.
-* Race 5 - Follows a trend reverse in the direction of ratings in relation to the others, i.e, Ambition and Attractiveness is valued with almost equal distribution spanning from 10 - 60. Although the higher values seem to have characteristically low sized rectangles, they are unique as there are instances where participants exist who find both these disparate attributes important. We can infer that they might either contain an good representation of male and female ratio or a good representation of the comprehensive age groups. 
+* Race 5 - Follows a trend reverse in the direction of ratings in relation to the others, i.e, Ambition and Attractiveness is valued with almost equal distribution spanning from 10 - 60. Although the higher values seem to have characteristically low sized rectangles, they are unique as there are instances where participants exist who find both these disparate attributes important. We can infer that they might either contain an good representation of male and female ratio or a good representation of the comprehensive age groups.     
 
 ## Change of feature perception with time
 
@@ -275,12 +287,12 @@ df_1_a = unique(df_1_a)
 
 g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  scale_x_discrete("Timeline", labels = c("attr1_1" = "Before Exp.", "attr1_2" = "Next Day", "attr1_3" = "3-4 weeks")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         axis.line = element_line(colour = "black")) +
-  xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Attractiveness with time")
 
@@ -295,12 +307,12 @@ df_1_b = unique(df_1_b)
 
 g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  scale_x_discrete("Timeline", labels = c("sinc1_1" = "Before Exp.", "sinc1_2" = "Next Day", "sinc1_3" = "3-4 weeks")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         axis.line = element_line(colour = "black")) +
-  xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Sincerity with time")
 
@@ -314,12 +326,12 @@ df_1_c = unique(df_1_c)
 
 g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  scale_x_discrete("Timeline", labels = c("intel1_1" = "Before Exp.", "intel1_2" = "Next Day", "intel1_3" = "3-4 weeks")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         axis.line = element_line(colour = "black")) +
-  xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Intelligence with time")
 
@@ -333,12 +345,12 @@ df_1_d = unique(df_1_d)
 
 g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  scale_x_discrete("Timeline", labels = c("fun1_1" = "Before Exp.", "fun1_2" = "Next Day", "fun1_3" = "3-4 weeks")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         axis.line = element_line(colour = "black")) +
-  xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Fun with time")
 
@@ -352,12 +364,12 @@ df_1_e = unique(df_1_e)
 
 g_1_e = ggparcoord(df_1_e, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  scale_x_discrete("Timeline", labels = c("amb1_1" = "Before Exp.", "amb1_2" = "Next Day", "amb1_3" = "3-4 weeks")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         axis.line = element_line(colour = "black")) +
-  xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Ambition with time")
 
@@ -563,6 +575,8 @@ annotate_figure(p6, top = textGrob("Importance of different Attributes for each 
 
 ```
 
+NOTE: The colours for the plots help in easy visualization of the order of the importance of attributes before and after the experiment.
+
 Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes.
 
 It can be observed from the 1st plot that that most women before the Speed Dating Experiment rated Intelligence as most important attribute followed by Sincerity then Attractiveness. Whereas after the experiment women rated Attractiveness as the most important attribute followed by Intelligence then Sincerity.
@@ -572,7 +586,7 @@ It can be observed from the 2nd plot that most men before the Speed Dating Exper
 For both gender groups it can be observed that Ambition has been rated as the least important attribute. To female, the top three attributes are Intelligence, Sincerity and Attractiveness, while to male, they were Attractiveness, Intelligence and Fun. Also, it can be observed that men tended to have more distinctive preference whereas women’s preference appeared to be more even.
 
 
-## Perception of different groups of people regarding importance of attributes
+## Comparison of Perception of Impotance of Attributes for each gender group
 
 ```{r}
 df_bar_pre <- df_pre[c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
@@ -783,8 +797,7 @@ p1 <- ggplot(data = df_bar_pre_plt_f) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
-                                                                        "fellow women rating")) +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "Male perceived Rating", "Perceived fellow female rating")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
@@ -798,8 +811,7 @@ p2 <- ggplot(data = df_bar_post_plt_f) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
-                                                                        "fellow women rating")) +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "Male perceived Rating", "Perceived fellow female rating")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
@@ -811,14 +823,11 @@ p2 <- ggplot(data = df_bar_post_plt_f) +
 
 p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
 
-annotate_figure(p3, top = textGrob("Attribute Importance for Female",gp=gpar(fontsize=15)))
-
 p4 <- ggplot(data = df_bar_pre_plt_m) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
-                                                                        "fellow men rating")) +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("Male Rating", "Female perceived Rating", "Perceived fellow male rating")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
@@ -832,8 +841,7 @@ p5 <- ggplot(data = df_bar_post_plt_m) +
   geom_bar(aes(x = Attribute, y = value, fill = plot_v), stat = "identity", position = position_dodge(), color = "#000000") +
   scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = "Fun", 
                                             "amb" = "Ambition")) + 
-  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
-                                                                        "fellow men rating")) +
+  scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("Male Rating", "Female perceived Rating", "Perceived fellow male rating")) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
@@ -845,7 +853,6 @@ p5 <- ggplot(data = df_bar_post_plt_m) +
 
 p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 
-annotate_figure(p6, top = textGrob("Attribute Importance for Male",gp=gpar(fontsize=15)))
 ```
 
 Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes. They were also asked to rate what they think opposite sex would rate and what fellow women/men would rate how important the attributes are.
@@ -854,7 +861,7 @@ We get this information from the questions 1_1, 2_1, 4_1 for the data before exp
 
 It can be observed from the plot that most women do not consider Attractiveness to be an important attribute but think that fellow women consider Attractiveness to be an important attribute. Similarly, even men think that women consider Attractiveness to be most important attribute but in real life women consider Intelligence to be the most important attribute.
 
-It can be observed from the plot that men consider Attractiveness to be the most important attribute and also perceive that the fellow men also have same perception that Attractiveness is the most important attribute. It can also be observed that the women’s perception of what men think the most important attribute is correct as most women gave high rating for what men might rate for each attribute.
+It can be observed from the plot that men consider Attractiveness to be the most important attribute and also perceive that the fellow men also have same perception that Attractiveness is the most important attribute. It can also be observed that the women’s perception of what men think the most important attribute is correct as most women gave high rating for what men might rate for each attribute. We can also see that men don't give much importance to their partner's intelligence or ambition when it exceeds their own. 
 
 Overall, it can be observed that women’s perception of what men consider about each attribute is very accurate whereas men’s perception of what women might consider as important attributes is inaccurate (It can be seen in the difference between the pink bar and blue bar).
 
@@ -930,7 +937,7 @@ From the first heatmap plotted for the females we can see that there are many pe
 Overall, we can observe that people with lesser number of matches are more satisfied with the experiment. We can also infer than there are no females with 9, 11,12,13 number of matches. The data is left skewed as there are more people with 5 or lesser number of matches. Hence the plot is darker towards the left-hand side. We can also see that there are more people with satisfaction score of 5 or higher.
 
 
-## Actual vs. Personal perception
+## Actual Rating received vs Personal Perception vs Assumed Perception
 
 ```{r}
 df_1 = df
@@ -1045,84 +1052,68 @@ df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr3_1" |
                          df_box_pre_plt_f$plot_v=="intel3_1" |
                          df_box_pre_plt_f$plot_v=="fun3_1" |
                          df_box_pre_plt_f$plot_v=="amb3_1" ]<- "3_1" 
-
 df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr5_1" | 
                          df_box_pre_plt_f$plot_v=="sinc5_1" |
                          df_box_pre_plt_f$plot_v=="intel5_1" |
                          df_box_pre_plt_f$plot_v=="fun5_1" |
                          df_box_pre_plt_f$plot_v=="amb5_1" ]<- "5_1" 
-
 df_box_pre_plt_f$plot_v[df_box_pre_plt_f$plot_v=="attr_o" | 
                          df_box_pre_plt_f$plot_v=="sinc_o" |
                          df_box_pre_plt_f$plot_v=="intel_o" |
                          df_box_pre_plt_f$plot_v=="fun_o" |
                          df_box_pre_plt_f$plot_v=="amb_o" ]<- "_o" 
-
 #--------------------------------------------------------------------------#
-
 df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr3_1" | 
                          df_box_pre_plt_m$plot_v=="sinc3_1" |
                          df_box_pre_plt_m$plot_v=="intel3_1" |
                          df_box_pre_plt_m$plot_v=="fun3_1" |
                          df_box_pre_plt_m$plot_v=="amb3_1" ]<- "3_1" 
-
 df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr5_1" | 
                          df_box_pre_plt_m$plot_v=="sinc5_1" |
                          df_box_pre_plt_m$plot_v=="intel5_1" |
                          df_box_pre_plt_m$plot_v=="fun5_1" |
                          df_box_pre_plt_m$plot_v=="amb5_1" ]<- "5_1" 
-
 df_box_pre_plt_m$plot_v[df_box_pre_plt_m$plot_v=="attr_o" | 
                          df_box_pre_plt_m$plot_v=="sinc_o" |
                          df_box_pre_plt_m$plot_v=="intel_o" |
                          df_box_pre_plt_m$plot_v=="fun_o" |
                          df_box_pre_plt_m$plot_v=="amb_o" ]<- "_o" 
-
 #--------------------------------------------------------------------------#
-
 df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr3_2" | 
                          df_box_post_plt_f$plot_v=="sinc3_2" |
                          df_box_post_plt_f$plot_v=="intel3_2" |
                          df_box_post_plt_f$plot_v=="fun3_2" |
                          df_box_post_plt_f$plot_v=="amb3_2" ]<- "3_2" 
-
 df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr5_2" | 
                          df_box_post_plt_f$plot_v=="sinc5_2" |
                          df_box_post_plt_f$plot_v=="intel5_2" |
                          df_box_post_plt_f$plot_v=="fun5_2" |
                          df_box_post_plt_f$plot_v=="amb5_2" ]<- "5_2" 
-
 df_box_post_plt_f$plot_v[df_box_post_plt_f$plot_v=="attr_o" | 
                          df_box_post_plt_f$plot_v=="sinc_o" |
                          df_box_post_plt_f$plot_v=="intel_o" |
                          df_box_post_plt_f$plot_v=="fun_o" |
                          df_box_post_plt_f$plot_v=="amb_o" ]<- "_o" 
-
 #--------------------------------------------------------------------------#
-
 df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr3_2" | 
                          df_box_post_plt_m$plot_v=="sinc3_2" |
                          df_box_post_plt_m$plot_v=="intel3_2" |
                          df_box_post_plt_m$plot_v=="fun3_2" |
                          df_box_post_plt_m$plot_v=="amb3_2" ]<- "3_2" 
-
 df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr5_2" | 
                          df_box_post_plt_m$plot_v=="sinc5_2" |
                          df_box_post_plt_m$plot_v=="intel5_2" |
                          df_box_post_plt_m$plot_v=="fun5_2" |
                          df_box_post_plt_m$plot_v=="amb5_2" ]<- "5_2" 
-
 df_box_post_plt_m$plot_v[df_box_post_plt_m$plot_v=="attr_o" | 
                          df_box_post_plt_m$plot_v=="sinc_o" |
                          df_box_post_plt_m$plot_v=="intel_o" |
                          df_box_post_plt_m$plot_v=="fun_o" |
                          df_box_post_plt_m$plot_v=="amb_o" ]<- "_o" 
-
 ```
 
 
 ```{r}
-
 p1 <-  ggplot(data = df_box_pre_plt_f, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
@@ -1137,7 +1128,6 @@ p1 <-  ggplot(data = df_box_pre_plt_f, aes(x = Attribute, y = value, fill = plot
         ylab("Ratings out of 10") + 
         xlab("Atrributes") + 
         ggtitle("Female - Before Experiment")
-
 p2 <-  ggplot(data = df_box_pre_plt_m, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
@@ -1153,9 +1143,6 @@ p2 <-  ggplot(data = df_box_pre_plt_m, aes(x = Attribute, y = value, fill = plot
         xlab("Atrributes") + 
         ggtitle("Male - Before Experiment")
 
-p3 <- ggarrange(p1, p2, ncol=2, common.legend = TRUE, legend="bottom")
-
-annotate_figure(p3, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
 
 p4 <-  ggplot(data = df_box_post_plt_f, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
         geom_boxplot() +
@@ -1171,7 +1158,6 @@ p4 <-  ggplot(data = df_box_post_plt_f, aes(x = Attribute, y = value, fill = plo
         ylab("Ratings out of 10") + 
         xlab("Atrributes") + 
         ggtitle("Female - After Experiment")
-
 p5 <-  ggplot(data = df_box_post_plt_m, aes(x = Attribute, y = value, fill = plot_v), color = "#000000") +
         geom_boxplot() +
         scale_x_discrete("Attributes", labels = c("att" = "Attractive", "sin" = "Sincerity", "int" = "Intelligence", "fun" = 
@@ -1187,11 +1173,12 @@ p5 <-  ggplot(data = df_box_post_plt_m, aes(x = Attribute, y = value, fill = plo
         xlab("Atrributes") + 
         ggtitle("Male - After Experiment")
 
-p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
+p3 <- ggarrange(p1, p4, ncol=2, common.legend = TRUE, legend="bottom")
+p3
 
-annotate_figure(p6, top = textGrob("Actual Perception of Others vs Personal Perception",gp=gpar(fontsize=15)))
+p6 <- ggarrange(p2, p5, ncol=2, common.legend = TRUE, legend="bottom")
+p6
 ```
-
 
 The participants were asked to rate themselves over the five attributes (Attractiveness, Sincerity, Intelligence, Fun and Ambition) on a scale of 1- 10 (1 being awful and 10 being great) they were also asked to rate their partners over these 5 attributes after each four-minute first date and were also asked how do they think others perceive them. The data for these questions is stored in questions 3_1, attr_o and 5_1 respectively. The participants were asked the same questions after the experiment as well the results for the questions are stored in 3_2 and 5_2 respectively.
 
@@ -1199,7 +1186,4 @@ We plotted box plots of the data to compare people’s actual rating vs self-per
 
 It can also be seen from the results that most women increased their self-rating for the attributes after the experiment except from sincerity whereas most men decreased their self-rating for sincerity and fun. When comparing their assumed partner’s ratings and the actual ratings, we saw that while the participants knew that they were underestimated, the ratings they perceived were even lower than they thought over every attribute.
 
-```{r}
-
-```
 
