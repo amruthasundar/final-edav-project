@@ -360,7 +360,7 @@ Since most lines go upwards from `amb1_1` to `amb1_2`, we can say that people gi
 # Explanation and headings to be filled for these sections
 ```
 
-## Subsetting Dataset 
+## Importance of attributes for each gender group
 
 ```{r}
 df_work <- df[c(col_common, "attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
@@ -522,6 +522,8 @@ It can be observed from the 1st plot that that most women before the Speed Datin
 It can be observed from the 2nd plot that most men before the Speed Dating Experiment rated Attractiveness as most important attribute followed by Intelligence then Fun. Even after the Experiment men rated Attractiveness as the most important attribute followed by Fun then Intelligence.
 
 For both gender groups it can be observed that Ambition has been rated as the least important attribute. To female, the top three attributes are Intelligence, Sincerity and Attractiveness, while to male, they were Attractiveness, Intelligence and Fun. Also, it can be observed that men tended to have more distinctive preference whereas women’s preference appeared to be more even.
+
+# Perception of people regarding importance of attributes
 
 ```{r}
 df_bar_pre <- df_pre[c("gender","attr1_1", "sinc1_1", "intel1_1", "fun1_1", "amb1_1",
@@ -795,6 +797,9 @@ It can be observed from the plot that men consider Attractiveness to be the most
 
 Overall, it can be observed that women’s perception of what men consider about each attribute is very accurate whereas men’s perception of what women might consider as important attributes is inaccurate (It can be seen in the difference between the pink bar and blue bar).
 
+
+# Heatmaps
+
 ```{r}
 df_satis <- df_post[c("iid","gender","match", "satis_2")]
 df_satis_f <- df_satis[ which(df_satis$gender == 0),]
@@ -848,11 +853,14 @@ ggplot(df_satis_m_1,aes(x=no_matches,y=satisfied)) +
   xlab("number of Matches") + 
   ggtitle("Satisfaction score vs no. of matches for Male")
 
-
-
 ```
+We plotted a heatmap to see the how the number of matches and the satisfaction score are distributed for the participants. The number of matches signifies the number of people they want to go on a 2nd date with and the satisfaction score signifies how satisfied they are with the experiment. We are calculating the frequency for the pairs of number of matches and satisfaction score. And plotting a heatmap to see what is the highest frequency pair. 
 
-## Subsetting Dataset 
+From the first heatmap plotted for the females we can see that there are many people with 1 match and satisfaction score more than 5. Similar observations can be seen in the 2nd heatmap as well which is plotted for the males. 
+
+Overall, we can observe that people with lesser number of matches are more satisfied with the experiment. We can also infer than there are no females with 9, 11,12,13 number of matches. The data is left skewed as there are more people with 5 or lesser number of matches. Hence the plot is darker towards the left-hand side. We can also see that there are more people with satisfaction score of 5 or higher.
+
+# Box plots
 
 ```{r}
 df_1 = df
