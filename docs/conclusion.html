@@ -24,7 +24,7 @@
 <meta name="author" content="Amrutha Varshini Sundar, Srividya Inampudi and, Parv Joshi" />
 
 
-<meta name="date" content="2021-12-11" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -99,7 +99,17 @@
 <li class="chapter" data-level="5.8" data-path="results.html"><a href="results.html#subsetting-dataset-1"><i class="fa fa-check"></i><b>5.8</b> Subsetting Dataset</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#at-the-outset"><i class="fa fa-check"></i><b>7.1</b> At the Outset</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#final-remarks"><i class="fa fa-check"></i><b>7.2</b> Final Remarks</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="conclusion.html"><a href="conclusion.html#structuring-of-dataset"><i class="fa fa-check"></i><b>7.2.1</b> Structuring of Dataset</a></li>
+<li class="chapter" data-level="7.2.2" data-path="conclusion.html"><a href="conclusion.html#intrinsic-property-in-decision-making"><i class="fa fa-check"></i><b>7.2.2</b> Intrinsic Property in decision making</a></li>
+<li class="chapter" data-level="7.2.3" data-path="conclusion.html"><a href="conclusion.html#biased-sample"><i class="fa fa-check"></i><b>7.2.3</b> Biased sample</a></li>
+<li class="chapter" data-level="7.2.4" data-path="conclusion.html"><a href="conclusion.html#future-work"><i class="fa fa-check"></i><b>7.2.4</b> Future work</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -121,7 +131,31 @@
             <section class="normal" id="section-">
 <div id="conclusion" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Conclusion</h1>
+<div id="at-the-outset" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> At the Outset</h2>
+<p>Speed Dating Experiment conducted by the Business school of Columbia in 2006 has been the base for this data analysis and visualization project. One of the driving factors for choosing this <a href="https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/867/fisman%20iyengar.pdf">paper</a> has been the paucity of visualizations that form an intuitive and simple proof of stated results. This book is an attempt to provide explanations for some of the results put forth in the paper by leveraging the tools of data analysis and visualization in R. The process is exhaustive of beginning with understanding the dataset, cleaning and transformation of the raw data to a queriable format proceeded by analysis of missing data and static visualizations of constructed questions and a proof of a few results stated in the paper. What’s more, we have concluded with an interactive visualization of Alluvial flow diagram that gives an overall picture of participant’s preferences over other categorical attributes that were cumbersome to be included in the earlier static visuals.</p>
+<p>While most of the questions and inferences have been addressed, we want to dedicate this sections to some concluding remarks that this project has helped us draft about the dataset and the experiment as a whole.</p>
+</div>
+<div id="final-remarks" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Final Remarks</h2>
+<div id="structuring-of-dataset" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Structuring of Dataset</h3>
+<p>The raw dataset is pretty intimidating with 190+ columns and about 8000 different records. While we have employed techniques to tackle with this high dimensional dataset, we believe that the experiment could have been better structured in recording values. There are instances where some of the dimensions are missing for an entire logical partition of the experiment which is termed as the wave. This is a misnomer to someone who looks at the entire dataset which subjectively gives an impression that the values have been deliberately missing. Instances where the entire column is missing for a wave doesn’t provide an interesting results even in visulizations. We believe that paritioning the dataset into different files and include columns that were actually recorded would have been more meaningful.</p>
+</div>
+<div id="intrinsic-property-in-decision-making" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Intrinsic Property in decision making</h3>
+<p>A trend that we have observed from the Results of the visualizations are, participant’s actual decision on matching with the participant’s she/he met with are different from their previous perception of their expectations of an ideal partner. We have observed instances where the importance that was placed upon a specific attribute of their ideal partner before the experiment has resulted in positive matches despite the missing proportionality of that attribute in their dates. This hints to an existence of intrinsic and possibly qualitative property of a person that influences the decision making and which can’t be accounted for as a quantitative measure.</p>
+</div>
+<div id="biased-sample" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Biased sample</h3>
+<p>The sample of the experiment has focused upon students from the Columbia University with a high density in the age group of 18-30. There are relatively lesser representation of other groups like the mid-age. This can add some bias to generalizations or inferences made for the entire male vs female decision process. There could be certain commonalities in students particularly from Columbia and within an age group that precludes from making an inference that affects the human population on gender differences in decision making. A more balanced representation of the experiment set would have been preferable. One way to get around this bias is to make inferences specific to the denser age group.</p>
+</div>
+<div id="future-work" class="section level3" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Future work</h3>
+<p>The experiment focuses on the interactions between participants’ for a duration of 4 minutes. Extrapolating this further, we could capture the details of participants’ who were involved in a mutual match after a longer period of interaction time. The new results can uncover answers to questions of whether the affect of decision making from interacting for 4 minutes was indeed accurately reflected in the opinions after a longer period of exposure to each other. This sheds light into the aspects of split second decision making during Speed Dating vs prolonged and thoughtful decision making after a longer period of exposure for males against females.</p>
 
+</div>
+</div>
 </div>
             </section>
 

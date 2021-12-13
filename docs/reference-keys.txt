@@ -19,3 +19,9 @@ subsetting-dataset
 subsetting-dataset-1
 interactive-component
 conclusion
+at-the-outset
+final-remarks
+structuring-of-dataset
+intrinsic-property-in-decision-making
+biased-sample
+future-work

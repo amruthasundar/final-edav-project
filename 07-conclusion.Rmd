@@ -1,2 +1,22 @@
 # Conclusion
 
+## At the Outset
+
+Speed Dating Experiment conducted by the Business school of Columbia in 2006 has been the base for this data analysis and visualization project. One of the driving factors for choosing this [paper](https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/867/fisman%20iyengar.pdf) has been the paucity of visualizations that form an intuitive and simple proof of stated results. This book is an attempt to provide explanations for some of the results put forth in the paper by leveraging the tools of data analysis and visualization in R. The process is exhaustive of beginning with understanding the dataset, cleaning and transformation of the raw data to a queriable format proceeded by analysis of missing data and static visualizations of constructed questions and a proof of a few results stated in the paper. What's more, we have concluded with an interactive visualization of Alluvial flow diagram that gives an overall picture of participant's preferences over other categorical attributes that were  cumbersome to be included in the earlier static visuals.
+
+While most of the questions and inferences have been addressed, we want to dedicate this sections to some concluding remarks that this project has helped us draft about the dataset and the experiment as a whole.
+
+## Final Remarks
+
+### Structuring of Dataset
+The raw dataset is pretty intimidating with 190+ columns and about 8000 different records. While we have employed techniques to tackle with this high dimensional dataset, we believe that the experiment could have been better structured in recording values. There are instances where some of the dimensions are missing for an entire logical partition of the experiment which is termed as the wave. This is a misnomer to someone who looks at the entire dataset which subjectively gives an impression that the values have been deliberately missing. Instances where the entire column is missing for a wave doesn't provide an interesting results even in visulizations. We believe that paritioning the dataset into different files and include columns that were actually recorded would have been more meaningful.
+
+### Intrinsic Property in decision making
+A trend that we have observed from the Results of the visualizations are, participant's actual decision on matching with the participant's she/he met with are different from their previous perception of their expectations of an ideal partner. We have observed instances where the importance that was placed upon a specific attribute of their ideal partner before the experiment has resulted in positive matches despite the missing proportionality of that attribute in their dates. This hints to an existence of intrinsic and possibly qualitative property of a person that influences the decision making and which can't be accounted for as a quantitative measure.
+
+### Biased sample
+The sample of the experiment has focused upon students from the Columbia University with a high density in the age group of 18-30. There are relatively lesser representation of other groups like the mid-age. This can add some bias to generalizations or inferences made for the entire male vs female decision process. There could be certain commonalities in students particularly from Columbia and within an age group that precludes from making an inference that affects the human population on gender differences in decision making. A more balanced representation of the experiment set would have been preferable. One way to get around this bias is to make inferences specific to the denser age group.
+
+### Future work 
+The experiment focuses on the interactions between participants' for a duration of 4 minutes. Extrapolating this further, we could capture the details of participants' who were involved in a mutual match after a longer period of interaction time. The new results can uncover answers to questions of whether the affect of decision making from interacting for 4 minutes was indeed accurately reflected in the opinions after a longer period of exposure to each other. This sheds light into the aspects of split second decision making during Speed Dating vs prolonged and thoughtful  decision making after a longer period of exposure for males against females. 
+
