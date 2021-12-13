@@ -33,7 +33,7 @@
   
 <link rel="prev" href="results.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -549,7 +549,8 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
         .attr("d", path)
         .style("stroke-width", function(d) { return Math.max(1, d.dy); })
         .style("fill","none")
-        .style("stroke", "#a6cee3") // "#a6cee3"
+        .style("stroke", function(d) { 
+        return d.color = color(d.source.name.replace(/ .*/, "")); }) // "#a6cee3"
         .style("stroke-opacity",0.5)
         .sort(function(a, b) { return b.dy - a.dy; });
 

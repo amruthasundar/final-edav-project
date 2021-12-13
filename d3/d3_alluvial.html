@@ -410,7 +410,8 @@ xmlns:xlink="https://www.w3.org/1999/xlink" >
         .attr("d", path)
         .style("stroke-width", function(d) { return Math.max(1, d.dy); })
         .style("fill","none")
-        .style("stroke", "#a6cee3") // "#a6cee3"
+        .style("stroke", function(d) { 
+        return d.color = color(d.source.name.replace(/ .*/, "")); }) // "#a6cee3"
         .style("stroke-opacity",0.5)
         .sort(function(a, b) { return b.dy - a.dy; });
 
