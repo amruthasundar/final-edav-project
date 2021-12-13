@@ -233,7 +233,10 @@ grid.arrange(amb, attr, nrow=1)
 
 Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,
   
-* Race 2 - Majority of the participants are from Race 2 and the distribution of importance for ambition is split from 0 to 20. The same 
+* Race 1 - Seems to have a nearly equal distribution across all the bins for attractiveness while only upto importance of 20 for ambition.
+* Race 2 and Race 4- Majority of the participants are from Race 2 followed by Race 4 and the distribution of importance for ambition is split from 0 to 20. While the distribution of ratings for attractiveness is spread across a range of 0-100. This is a clear indication that Race 2 and Race 4 values attractiveness over ambition and is likely to be comprised over the younger population who value attractiveness more than anything.
+* Race 3 - Apparently has a greater distribution spanning until rating of 30-40 for ambition for a smaller set of population while attractiveness is equally distributed throughout. We suspect that Race 3 could comprise of a small set of higher age groups that are mature enough to value ambitiion in addition to attractiveness.
+* Race 5 - Follows a trend reverse in the direction of ratings in relation to the others, i.e, Ambition and Attractiveness is valued with almost equal distribution spanning from 10 - 60. Although the higher values seem to have characteristically low sized rectangles, they are unique as there are instances where participants exist who find both these disparate attributes important. We can infer that they might either contain an good representation of male and female ratio or a good representation of the comprehensive age groups. 
 
 ## Change of feature perception with time
 
