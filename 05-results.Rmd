@@ -272,6 +272,11 @@ df_1_a = unique(df_1_a)
 
 g_1_a = ggparcoord(df_1_a, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Attractiveness with time")
@@ -287,6 +292,11 @@ df_1_b = unique(df_1_b)
 
 g_1_b = ggparcoord(df_1_b, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Sincerity with time")
@@ -301,6 +311,11 @@ df_1_c = unique(df_1_c)
 
 g_1_c = ggparcoord(df_1_c, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Intelligence with time")
@@ -315,6 +330,11 @@ df_1_d = unique(df_1_d)
 
 g_1_d = ggparcoord(df_1_d, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Fun with time")
@@ -329,6 +349,11 @@ df_1_e = unique(df_1_e)
 
 g_1_e = ggparcoord(df_1_e, columns = c(2:4), scale = "uniminmax", alphaLines = 0.75, groupColumn = "gender") +
   scale_colour_manual(values = c("#77D86C", "#DD8C75")) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   xlab("Variables") +
   ylab("Normalized ratings/match values") +
   ggtitle("Perception of Ambition with time")
@@ -468,7 +493,11 @@ p1 <- df_bar_f_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fi
                                               "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
                                                                         "fun","intelligence","sincerity")) +
-  theme_gray(10) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - Before Experiment")
@@ -480,7 +509,11 @@ p2 <- df_bar_f_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, f
                                               "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
                                                                         "fun","intelligence","sincerity")) +
-  theme_gray(10) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - After Experiment")
@@ -496,7 +529,11 @@ p4<- df_bar_m_pre %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, fil
                                               "Intelligence", "mean_fun1_1" = "Fun", "mean_amb1_1" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
                                                                         "fun","intelligence","sincerity")) +
-  theme_gray(10) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - Before Experiment")
@@ -508,7 +545,11 @@ p5 <- df_bar_m_post %>% ggplot(mapping = aes(x=reorder(name, -value), y=value, f
                                               "Intelligence", "mean_fun1_2" = "Fun", "mean_amb1_2" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Attributes", labels = c("ambition", "attractiveness", 
                                                                         "fun","intelligence","sincerity")) +
-  theme_gray(10) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - After Experiment")
@@ -790,7 +831,6 @@ p5 <- ggplot(data = df_bar_post_plt_m) +
                                             "amb" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
                                                                         "fellow men rating")) +
-  theme_gray(10) +
   theme(panel.border = element_blank(),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
