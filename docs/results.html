@@ -138,7 +138,7 @@
 <p>First, let us check the representation of our participants. This answers the question if the sample of students participating in this research experiment is truly randomized. This can help us know if there is/are a group of people that is/are over-represented. In other words, it tells us about the selection bias.</p>
 <p>We have chosen four characteristics of the participants: field of study, age, race, and intended career. Here are the bar plots for the same.</p>
 <p><em>Note: The field, race, and career codes are summarized in the <a href="https://github.com/amruthasundar/final-edav-project/blob/main/Speed%20Dating%20Data%20Key.doc">data key</a>.</em></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-74-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="1152" /></p>
 <p>Here are the inferences from these plots:</p>
 <p><strong>1. For field of study</strong></p>
 <p>We can see that about 23% of the participants are from the 8th field of study, which is Business/Econ/Finance. This represents the highest percentage of students. Considering that this experiment was conducted by professors from the Columbia Business School, a lot of students from that field were expected. This is followed by fields 10 (Biological Sciences/Chemistry/Physics) and 5 (Engineering) representing the 2nd and 3rd highest percentages.</p>
@@ -154,7 +154,7 @@
 <div id="number-of-yes-matches-per-participant" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Number of yes matches per participant</h2>
 <p>In the original experiment, the variable <code>match</code> is the target variable. This indicates if the person was matched to the other person or not. We can use a Cleveland dot plot to show the number of yes matches each participant got. As mentioned before, we are using waves 10-21. Moreover, we faceted them by waves and color coded by the gender so we can also understand patterns among genders and within individual waves.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-75-1.png" width="1152" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="1152" /></p>
 <p>Here, we can observe that the maximum number of yes matches of participants in waves 10 and 13 is always less than 5. Also, the highest number of matches for waves 20 and 18 is 3. Waves 11, 14, 15, 18 and 21 have a wide variety of matches for different people.</p>
 <p>Moreover, all waves have participants who are not matched with other people. The number of participants across all waves who did not get matched seem to have an even number of males and females. The most matched participant is a female from wave 21 who got 14 matches.</p>
 </div>
@@ -163,7 +163,7 @@
 <p>One of the important questions we want to address is visualizing whether the features in the dataset exhibit correlation among themselves or with the target variable that tells whether the pair matched or not. This is important as it will help us come up with blatant patterns observed in features that help in formulations of simple if-then rules.
 For the purposes of this visualization, we have narrowed down comparison of ratings to a specific question that were asked prior to the event - Distribute a score of 100 among the five attributes in the order of importance that you would like to see in your potential date.</p>
 <p>This question is interesting to inspect if the attributes of what people look for in their potential partners bear any correlation among themselves and also with the actual number of people they agreed to match with.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-76-1.png" width="1440" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="1440" /></p>
 <p>Some of the interesting inferences we can make regarding the plots are,</p>
 <ul>
 <li>The distribution of most of the attributes are close to normal except for ambition with seems to be right skewed. A relatively high number of participants have given a low priority to ambition of their potential partners as a deciding factor.</li>
@@ -177,7 +177,7 @@ For the purposes of this visualization, we have narrowed down comparison of rati
 <h2><span class="header-section-number">5.4</span> Analysis of decision making on Race</h2>
 <p>One of the factors of taken into consideration for understanding the requirements of participant’s expectation with their partners is the Race. Each participant is required to report a rating out of 10 for their potential partner to be of the same race as them. This visualization is to analyze whether the actual decision of the partcipants is influenced by any other factors that overpowers them to match with their dates from Race other than their own.</p>
 <p>The following hexmap is a visual of Proportion of Matches that interested the participants from the same Race vs Importance of Race reported before the actual experiment.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-77-1.png" width="768" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="768" /></p>
 <p>The hexmap uncovers some interesting patterns observed from the participants’ responses,</p>
 <ul>
 <li>There are instances of participants matching with only participants of different Races irrespective of their response to Importance of same Race. This indicates that Race is clearly not the sole factor for making a decision of matching with people.</li>
@@ -190,7 +190,7 @@ For the purposes of this visualization, we have narrowed down comparison of rati
 <h2><span class="header-section-number">5.5</span> Attribute Rating Analysis by Race</h2>
 <p>From the previous plot we inferred that certain attributes are strong enough to change participant’s prior perception of importance of Race. Diving further, we want to understand how the attributes are rated for differently across the Race of the participants. This sheds light on how certain group of participants, characteristically from a certain Race, have prioritized attributes in their potential partners.
 Below is a mosaic plot for two specific features - attractiveness and ambition as independent features and visualized by Race as the dependent variable.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-78-1.png" width="1440" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="1440" /></p>
 <p>Some of the inferences we can draw from the above mosaic plots of attributes - attractiveness and ambition are,</p>
 <ul>
 <li>Race 2 - Majority of the participants are from Race 2 and the distribution of importance for ambition is split from 0 to 20. The same</li>
@@ -209,7 +209,7 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 <p>To answer our question, we decided to use parallel coordinate axis plots since it helps us to visualize multiple variables at once and also account for correlations among the variables by comparing the direction of the lines (which are our participants in this case). We color coded them by gender to find more inferences. Again, we used waves 10-21 for this plot.</p>
 <p>We did this for each of the five features: Attractiveness, Sincerity, Intelligence, Fun, and Ambition. We normalized the values of each variable in the plots using the <code>uniminmax</code> scale. We did not use splines because we believe we lost information if we include it.</p>
 <p>Here are the plots:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-79-1.png" width="960" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="960" /></p>
 <p>Here are the interpretations from the above plot:</p>
 <p><strong>1) For Attractiveness</strong></p>
 <p>Since most lines go slightly upwards from <code>attr1_1</code> to <code>attr1_2</code>, we can say that people give slightly more importance to the attractiveness of the other person a day after the speed dating experiment. From <code>attr1_2</code> to <code>attr1_3</code>, most lines go upward but some go downward. Hence, in general, most people give significant importance to the attractiveness of the partner. We can observe that few people drastically bring their rating from 25% to 100%, while some people reach 0% rating in 3-4 weeks. In general, the importance of attractiveness usually keeps increasing for males more, while there is no pattern for females. However, the increase of importance for females is more drastic in females.</p>
@@ -224,7 +224,7 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 </div>
 <div id="importance-of-attributes-for-each-gender-group" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Importance of attributes for each gender group</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-88-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-88-2.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
 <p>Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes.</p>
 <p>It can be observed from the 1st plot that that most women before the Speed Dating Experiment rated Intelligence as most important attribute followed by Sincerity then Attractiveness. Whereas after the experiment women rated Attractiveness as the most important attribute followed by Intelligence then Sincerity.</p>
 <p>It can be observed from the 2nd plot that most men before the Speed Dating Experiment rated Attractiveness as most important attribute followed by Intelligence then Fun. Even after the Experiment men rated Attractiveness as the most important attribute followed by Fun then Intelligence.</p>
@@ -232,7 +232,7 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 </div>
 <div id="perception-of-different-groups-of-people-regarding-importance-of-attributes" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Perception of different groups of people regarding importance of attributes</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-96-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-96-2.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
 <p>Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes. They were also asked to rate what they think opposite sex would rate and what fellow women/men would rate how important the attributes are.</p>
 <p>We get this information from the questions 1_1, 2_1, 4_1 for the data before experiment and 1_2, 2_2, 4_2 for the data after experiment. We plotted the average rating given by individual vs the rating given by opposite sex vs the rating of what fellow women/men would rate the attributes.</p>
 <p>It can be observed from the plot that most women do not consider Attractiveness to be an important attribute but think that fellow women consider Attractiveness to be an important attribute. Similarly, even men think that women consider Attractiveness to be most important attribute but in real life women consider Intelligence to be the most important attribute.</p>
@@ -241,14 +241,14 @@ Below is a mosaic plot for two specific features - attractiveness and ambition a
 </div>
 <div id="satisfaction-score-vs.-number-of-matches" class="section level2" number="5.9">
 <h2><span class="header-section-number">5.9</span> Satisfaction score vs. number of matches</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-98-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-98-2.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-55-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
 <p>We plotted a heatmap to see the how the number of matches and the satisfaction score are distributed for the participants. The number of matches signifies the number of people they want to go on a 2nd date with and the satisfaction score signifies how satisfied they are with the experiment. We are calculating the frequency for the pairs of number of matches and satisfaction score. And plotting a heatmap to see what is the highest frequency pair.</p>
 <p>From the first heatmap plotted for the females we can see that there are many people with 1 match and satisfaction score more than 5. Similar observations can be seen in the 2nd heatmap as well which is plotted for the males.</p>
 <p>Overall, we can observe that people with lesser number of matches are more satisfied with the experiment. We can also infer than there are no females with 9, 11,12,13 number of matches. The data is left skewed as there are more people with 5 or lesser number of matches. Hence the plot is darker towards the left-hand side. We can also see that there are more people with satisfaction score of 5 or higher.</p>
 </div>
 <div id="actual-vs.-personal-perception" class="section level2" number="5.10">
 <h2><span class="header-section-number">5.10</span> Actual vs. Personal perception</h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-109-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-109-2.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
 <p>The participants were asked to rate themselves over the five attributes (Attractiveness, Sincerity, Intelligence, Fun and Ambition) on a scale of 1- 10 (1 being awful and 10 being great) they were also asked to rate their partners over these 5 attributes after each four-minute first date and were also asked how do they think others perceive them. The data for these questions is stored in questions 3_1, attr_o and 5_1 respectively. The participants were asked the same questions after the experiment as well the results for the questions are stored in 3_2 and 5_2 respectively.</p>
 <p>We plotted box plots of the data to compare people’s actual rating vs self-perception vs what the participants assumed they would potentially receive. It can be observed while comparing self-ratings and the actual ratings, that the participants did generally overestimate themselves. The attribute that they overestimated the most was fun while the one that overestimated the least was intelligence. Females overestimated the attribute sincerity, most of the women rated themselves 9/10 where as most women received a score of 7/10. Whereas men overestimated the fun attribute most of the men rated themselves 8/10 but most received a score of 6.5/10.</p>
 <p>It can also be seen from the results that most women increased their self-rating for the attributes after the experiment except from sincerity whereas most men decreased their self-rating for sincerity and fun. When comparing their assumed partner’s ratings and the actual ratings, we saw that while the participants knew that they were underestimated, the ratings they perceived were even lower than they thought over every attribute.</p>

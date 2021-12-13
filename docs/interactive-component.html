@@ -133,6 +133,11 @@
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
+<p>For the interactive component, we aimed to show the flow of the number of people from one characteristic to another. For example, we tried to find how many students from which gender went into which field of their career. If we used five characteristics and wanted to find the flow from one to each other, it would require 20 static plots and would be very confusing to interpret. Hence, we created an interactive alluvial diagram with two axis which can be chosen by the user.</p>
+<p>Moreover, as mentioned in the data transformation chapter, we chose a specific subset of our data for this plot. Also, we chose five characteristic features of the students: <em>field, gender, race, from and career.</em></p>
+<p><em>Instructions for interactivity:</em></p>
+<p>Below are two buttons which can help you choose your first and the second axis for the alluvial diagram. After choosing the two axes, clicking on the plot button will plot the diagram. Now, for both the axes, you can hover over any strata to find out how many students belong to that category. You can also drag the strata up or down to change its position. Moreover, if you hover on a flow or an alluvium, it will tell you how many people which of the left axis category belong to which category in the right axis category.</p>
+<p><strong><em>Note:</em></strong> Since it does not make sense to have an alluvial diagram with two axes but the same column, there will be no plot if you choose the same characteristic for both the axes. Please use different characteristics for different plots.</p>
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/2000/svg"
 xmlns:xlink="https://www.w3.org/1999/xlink" >
@@ -654,6 +659,13 @@ var path = sankey.link();
 
 </body>
 </html>
+<p>From these plots, we can infer the various distribution of students. Here are some of the important observations:</p>
+<ol style="list-style-type: decimal">
+<li><p>Most males and females are European/Caucasian American. Least males are Black/African American while least females fall into the other category.</p></li>
+<li><p>Most Latino/Hispanic American students are from Chile, Mexico and Colombia. Most Asian/Pacific Islander/Asian American students are from Taiwan, Toronto and Baltimore. Most Black/African American students are from Brooklyn and California.</p></li>
+<li><p>Majority of the females aim to become lawyers while majority of the males aim to be either lawyers or have a career in consulting.</p></li>
+<li><p>Most males are studying MBA, while most females are studying law.</p></li>
+</ol>
 
 </div>
             </section>

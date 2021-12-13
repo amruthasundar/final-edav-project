@@ -741,8 +741,11 @@ p1 <- ggplot(data = df_bar_pre_plt_f) +
                                             "amb" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
                                                                         "fellow women rating")) +
-  theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - Before Experiment")
@@ -753,8 +756,11 @@ p2 <- ggplot(data = df_bar_post_plt_f) +
                                             "amb" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("female Rating", "opposite sex rating", 
                                                                         "fellow women rating")) +
-  theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Female - After Experiment")
@@ -769,8 +775,11 @@ p4 <- ggplot(data = df_bar_pre_plt_m) +
                                             "amb" = "Ambition")) + 
   scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
                                                                         "fellow men rating")) +
-  theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - Before Experiment")
@@ -782,7 +791,11 @@ p5 <- ggplot(data = df_bar_post_plt_m) +
   scale_fill_brewer(palette = "Pastel1", name = "Questions", labels = c("male Rating", "opposite sex rating", 
                                                                         "fellow men rating")) +
   theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Ratings out of 100") + 
   xlab("Atrributes") + 
   ggtitle("Male - After Experiment")
@@ -841,9 +854,12 @@ getPalette_10 = colorRampPalette(brewer.pal(9, "Greens"))
 
 ggplot(df_satis_f_1,aes(x=no_matches,y=satisfied)) +
   geom_tile(aes(fill=Freq))+
-  scale_fill_manual(values = (getPalette_10(25)[-1:-7]))+
-  #theme_gray(10) +
-  theme(legend.title=element_blank()) + 
+  scale_fill_manual(values = (getPalette_10(25)[-1:-7])) +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
   ylab("Satisfaction score out of 10") + 
   xlab("number of Matches") + 
   ggtitle("Satisfaction score vs no. of matches for Female")
@@ -1070,8 +1086,11 @@ p1 <-  ggplot(data = df_box_pre_plt_f, aes(x = Attribute, y = value, fill = plot
                                                     "Fun", "amb" = "Ambition")) +
         scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
                                                                         "Assumed Perception")) +
-        theme_gray(10) +
-        theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
         ylab("Ratings out of 10") + 
         xlab("Atrributes") + 
         ggtitle("Female - Before Experiment")
@@ -1082,8 +1101,11 @@ p2 <-  ggplot(data = df_box_pre_plt_m, aes(x = Attribute, y = value, fill = plot
                                                     "Fun", "amb" = "Ambition")) +
         scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
                                                                         "Assumed Perception")) +
-        theme_gray(10) +
-        theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
         ylab("Ratings out of 10") + 
         xlab("Atrributes") + 
         ggtitle("Male - Before Experiment")
@@ -1098,8 +1120,11 @@ p4 <-  ggplot(data = df_box_post_plt_f, aes(x = Attribute, y = value, fill = plo
                                                     "Fun", "amb" = "Ambition")) +
         scale_fill_brewer(palette = "Pastel1", name = "Perception", labels = c("Actual Rating", "Self Perception", 
                                                                         "Assumed Perception")) +
-        theme_gray(10) +
-        theme(legend.title=element_blank()) + 
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
         ylab("Ratings out of 10") + 
         xlab("Atrributes") + 
         ggtitle("Female - After Experiment")
