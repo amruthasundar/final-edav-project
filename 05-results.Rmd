@@ -785,6 +785,16 @@ p6 <- ggarrange(p4, p5, ncol=2, common.legend = TRUE, legend="bottom")
 annotate_figure(p6, top = textGrob("Attribute Importance for Male",gp=gpar(fontsize=15)))
 ```
 
+Before the Speed Dating experiment all the participants were asked to rate how important are these five attributes – Ambition, Attractiveness, Fun, Intelligence, Sincerity. They were asked to distribute 100 points across these attributes. They were also asked to rate what they think opposite sex would rate and what fellow women/men would rate how important the attributes are.
+
+We get this information from the questions 1_1, 2_1, 4_1 for the data before experiment and 1_2, 2_2, 4_2 for the data after experiment. We plotted the average rating given by individual vs the rating given by opposite sex vs the rating of what fellow women/men would rate the attributes.
+
+It can be observed from the plot that most women do not consider Attractiveness to be an important attribute but think that fellow women consider Attractiveness to be an important attribute. Similarly, even men think that women consider Attractiveness to be most important attribute but in real life women consider Intelligence to be the most important attribute.
+
+It can be observed from the plot that men consider Attractiveness to be the most important attribute and also perceive that the fellow men also have same perception that Attractiveness is the most important attribute. It can also be observed that the women’s perception of what men think the most important attribute is correct as most women gave high rating for what men might rate for each attribute.
+
+Overall, it can be observed that women’s perception of what men consider about each attribute is very accurate whereas men’s perception of what women might consider as important attributes is inaccurate (It can be seen in the difference between the pink bar and blue bar).
+
 ```{r}
 df_satis <- df_post[c("iid","gender","match", "satis_2")]
 df_satis_f <- df_satis[ which(df_satis$gender == 0),]
